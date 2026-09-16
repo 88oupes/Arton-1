@@ -1,0 +1,6 @@
+{
+  "name": "DormiLux - Literie Haut de Gamme",
+  "description": "DormiLux : Fabricant français de matelas, sommiers et literie éco-responsable de qualité supérieure.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
