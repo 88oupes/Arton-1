@@ -44,7 +44,7 @@ export default function SearchModal({
             autoFocus
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Rechercher un matelas, technologie (ressorts, latex, mémoire)..."
+            placeholder="Rechercher un matelas Arton Confort, technologie (ressorts, latex, mémoire)..."
             className="w-full pl-10 pr-10 py-2 text-base text-[#0F172A] placeholder:text-gray-400 focus:outline-none"
           />
           <button
@@ -118,7 +118,7 @@ export default function SearchModal({
                 </div>
 
                 <div className="text-right shrink-0 pl-2">
-                  <div className="font-bold text-sm text-[#0F172A]">dès {p.price} €</div>
+                  <div className="font-bold text-sm text-[#0F172A]">dès {p.price.toLocaleString('fr-FR')} DH</div>
                   <div className="flex items-center justify-end text-[#F59E0B] text-xs">
                     <Star className="w-3 h-3 fill-current mr-0.5" />
                     <span>{p.rating}</span>

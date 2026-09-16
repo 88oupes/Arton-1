@@ -2,7 +2,7 @@ import { X, ShieldCheck, Factory, Leaf, Award } from 'lucide-react';
 
 interface InfoModalProps {
   isOpen: boolean;
-  type: 'factory' | 'eco' | 'checkout' | null;
+  type: 'factory' | 'eco' | 'checkout' | 'reviews' | null;
   onClose: () => void;
 }
 
@@ -25,14 +25,14 @@ export default function InfoModal({ isOpen, type, onClose }: InfoModalProps) {
               <Factory className="w-6 h-6" />
             </div>
             <span className="text-xs font-bold uppercase tracking-wider text-[#204033]">
-              Manufacture Française
+              Manufacture Marocaine
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F172A] mt-1 mb-4">
               Notre savoir-faire d'atelier
             </h3>
             <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
               <p>
-                Depuis notre atelier implanté en région Auvergne-Rhône-Alpes, nos maîtres matelassiers perpétuent la grande tradition de la literie française.
+                Depuis notre manufacture au Maroc, nos artisans matelassiers conçoivent des matelas d'exception répondant aux exigences les plus strictes d'ergonomie et de longévité.
               </p>
               <p>
                 Chaque pièce passe par 18 points de contrôle stricts : densité des mousses haute résilience, tension des ressorts ensachés en alliage titane, robustesse du capitonnage et régularité des coutures gansées.
@@ -40,7 +40,7 @@ export default function InfoModal({ isOpen, type, onClose }: InfoModalProps) {
               <div className="bg-[#F8FAF9] p-4 rounded-xl border border-[#E2E8E4] space-y-2 text-xs text-[#0F172A] font-medium">
                 <div className="flex items-center gap-2">
                   <Award className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>100% de la confection réalisée sur notre site de production</span>
+                  <span>100% de la confection réalisée dans notre manufacture au Maroc</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -84,6 +84,38 @@ export default function InfoModal({ isOpen, type, onClose }: InfoModalProps) {
           </div>
         )}
 
+        {type === 'reviews' && (
+          <div>
+            <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+              <Award className="w-6 h-6" />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-[#204033]">
+              Avis Clients Certifiés
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F172A] mt-1 mb-4">
+              Transparence & Satisfaction 4,8 / 5
+            </h3>
+            <div className="space-y-3 text-sm text-gray-600 leading-relaxed">
+              <p>
+                Chez Arton Confort, 100% de nos avis proviennent d'acheteurs réels au Maroc ayant reçu leur commande.
+              </p>
+              <p>
+                Chaque client reçoit un questionnaire après 30 nuits de sommeil pour évaluer la qualité de l'accueil, le maintien morphologique et la tenue dans le temps de leur matelas.
+              </p>
+              <div className="bg-[#F8FAF9] p-4 rounded-xl border border-[#E2E8E4] space-y-2 text-xs text-[#0F172A] font-medium">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>97,8% de nos dormeurs recommandent Arton Confort à leurs proches</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Livraison et service après-vente basé au Maroc</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {type === 'checkout' && (
           <div className="text-center py-4">
             <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-4">
@@ -96,10 +128,10 @@ export default function InfoModal({ isOpen, type, onClose }: InfoModalProps) {
               Merci pour votre confiance !
             </h3>
             <p className="text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
-              Votre commande DormiLux a été prise en compte avec succès. Notre atelier commence la préparation de votre literie avec le plus grand soin.
+              Votre commande Arton Confort a été prise en compte avec succès. Notre atelier commence la préparation de votre literie avec le plus grand soin.
             </p>
             <div className="bg-[#F8FAF9] p-4 rounded-xl border border-gray-200 mt-6 text-xs text-left text-gray-700 space-y-1">
-              <div><strong>Numéro de commande :</strong> #DL-78492</div>
+              <div><strong>Numéro de commande :</strong> #AC-78492</div>
               <div><strong>Délai estimé :</strong> 48 à 72 heures avec prise de rendez-vous</div>
               <div><strong>Garantie :</strong> 100 nuits d'essai à compter de la réception</div>
             </div>

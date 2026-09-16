@@ -21,7 +21,7 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [infoModalType, setInfoModalType] = useState<'factory' | 'eco' | 'checkout' | null>(null);
+  const [infoModalType, setInfoModalType] = useState<'factory' | 'eco' | 'checkout' | 'reviews' | null>(null);
 
   // Cart actions
   const handleAddToCart = (product: Product, size: string, quantity: number = 1) => {
@@ -131,9 +131,7 @@ export default function App() {
 
         {/* 7. Social Proof & Reviews: "Ils dorment déjà mieux" */}
         <ReviewsSection
-          onWriteReview={() => {
-            alert('Merci ! Vos avis certifiés sont récoltés automatiquement suite à vos commandes livrées.');
-          }}
+          onWriteReview={() => setInfoModalType('reviews')}
         />
       </main>
 

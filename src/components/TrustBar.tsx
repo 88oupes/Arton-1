@@ -15,7 +15,7 @@ export default function TrustBar() {
     {
       icon: Truck,
       title: 'Livraison rapide',
-      subtitle: 'Partout en France',
+      subtitle: 'Partout au Maroc',
     },
     {
       icon: ShieldCheck,

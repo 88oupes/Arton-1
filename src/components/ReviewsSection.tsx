@@ -59,7 +59,7 @@ export default function ReviewsSection({ onWriteReview }: ReviewsSectionProps) {
                 if (onWriteReview) {
                   onWriteReview();
                 } else {
-                  alert('Merci de votre intérêt ! Les 1 500+ avis certifiés DormiLux sont collectés via Avis Vérifiés®.');
+                  alert('Merci de votre intérêt ! Les 1 500+ avis certifiés Arton Confort sont collectés via Avis Vérifiés®.');
                 }
               }}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-[#CBD5E1] hover:border-[#0F172A] text-[#0F172A] text-xs sm:text-sm font-semibold rounded-lg transition-colors shadow-xs group cursor-pointer"

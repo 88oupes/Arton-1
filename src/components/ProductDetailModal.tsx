@@ -97,15 +97,15 @@ export default function ProductDetailModal({
 
               <div className="mt-2 flex items-baseline gap-3">
                 <span className="text-3xl font-extrabold text-[#0F172A]">
-                  {currentPrice * quantity} €
+                  {(currentPrice * quantity).toLocaleString('fr-FR')} DH
                 </span>
                 {product.originalPrice && (
                   <span className="text-base text-gray-400 line-through">
-                    {Math.round(product.originalPrice * (currentPrice / product.price)) * quantity} €
+                    {(Math.round(product.originalPrice * (currentPrice / product.price)) * quantity).toLocaleString('fr-FR')} DH
                   </span>
                 )}
                 <span className="text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-sm font-semibold">
-                  TTC • Livraison offerte
+                  TTC • Livraison partout au Maroc
                 </span>
               </div>
 
@@ -137,7 +137,7 @@ export default function ProductDetailModal({
                     >
                       <div className="font-bold">{sz.size}</div>
                       <div className={`text-[11px] ${selectedSizeIndex === idx ? 'text-emerald-100' : 'text-gray-500'}`}>
-                        {sz.price} €
+                        {sz.price.toLocaleString('fr-FR')} DH
                       </div>
                     </button>
                   ))}
@@ -200,7 +200,7 @@ export default function ProductDetailModal({
                   ) : (
                     <>
                       <ShoppingBag className="w-4 h-4" />
-                      <span>Ajouter au panier • {currentPrice * quantity} €</span>
+                      <span>Ajouter au panier • {(currentPrice * quantity).toLocaleString('fr-FR')} DH</span>
                     </>
                   )}
                 </button>
@@ -210,7 +210,7 @@ export default function ProductDetailModal({
               <div className="flex items-center justify-between gap-2 mt-4 text-[11px] text-gray-500 pt-3 border-t border-gray-100">
                 <span className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 text-emerald-600" />
-                  Livraison gratuite 48-72h
+                  Livraison gratuite partout au Maroc
                 </span>
                 <span className="flex items-center gap-1">
                   <RotateCcw className="w-3.5 h-3.5 text-emerald-600" />

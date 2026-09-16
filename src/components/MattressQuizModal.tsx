@@ -36,29 +36,29 @@ export default function MattressQuizModal({
   const getRecommendation = (): { product: Product; reason: string } => {
     if (answers.firmness === 'Moelleux' || answers.position === 'Côté') {
       return {
-        product: PRODUCTS.find((p) => p.id === 'matelas-serenite') || PRODUCTS[1],
+        product: PRODUCTS.find((p) => p.id === 'matelas-feelsoft') || PRODUCTS[1],
         reason:
-          'Grâce à sa couche mémoire de forme et ses ressorts ensachés, le Matelas Sérénité élimine toute pression sur vos épaules et votre bassin en position latérale.',
+          'Grâce à son surmatelas Pillow-Top ultra-moelleux et sa technologie d\'absorption de points de pression, le Matelas Feelsoft élimine toute tension sur vos épaules et hanches en position latérale.',
       };
     }
     if (answers.firmness === 'Ferme' || answers.backPain === 'Oui') {
       return {
-        product: PRODUCTS.find((p) => p.id === 'matelas-naturel') || PRODUCTS[2],
+        product: PRODUCTS.find((p) => p.id === 'matelas-relax') || PRODUCTS[3],
         reason:
-          'Le cœur en latex 100% naturel offre une résilience optimale pour maintenir la colonne vertébrale parfaitement alignée et soulager les lombaires.',
+          'Le Matelas Relax offre un soutien orthopédique renforcé pour maintenir la colonne vertébrale parfaitement alignée, soulager les tensions lombaires et garantir un réveil sans douleur.',
       };
     }
     if (answers.sleepers === 'Couple luxe') {
       return {
-        product: PRODUCTS.find((p) => p.id === 'matelas-prestige') || PRODUCTS[3],
+        product: PRODUCTS.find((p) => p.id === 'matelas-la-nuit') || PRODUCTS[2],
         reason:
-          'L\'indépendance de couchage hôtelière 5 étoiles et les 29 cm de capitonnage manuel vous garantissent un sommeil sans jamais ressentir les mouvements de l\'autre.',
+          'L\'indépendance de couchage hôtelière 5 étoiles et les 32 cm de capitonnage de prestige du Matelas La Nuit vous garantissent des nuits royales sans ressentir les mouvements de votre partenaire.',
       };
     }
     return {
-      product: PRODUCTS.find((p) => p.id === 'matelas-equilibre') || PRODUCTS[0],
+      product: PRODUCTS.find((p) => p.id === 'matelas-consoft') || PRODUCTS[0],
       reason:
-        'Le Matelas Équilibre s\'adapte universellement à toutes les morphologies avec ses 7 zones de confort ergonomiques.',
+        'Le Matelas Consoft allie une âme haute densité et un accueil soft progressif qui s\'adapte universellement à toutes les morphologies pour un confort quotidien équilibré.',
     };
   };
 
@@ -204,7 +204,7 @@ export default function MattressQuizModal({
                 <p className="font-semibold text-[#0F172A] mb-1">Pourquoi ce choix ?</p>
                 <p>{getRecommendation().reason}</p>
                 <p className="mt-2 font-bold text-emerald-800">
-                  À partir de {getRecommendation().product.price} € • 100 nuits d'essai
+                  À partir de {getRecommendation().product.price.toLocaleString('fr-FR')} DH • 100 nuits d'essai
                 </p>
               </div>
             </div>

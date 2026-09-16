@@ -45,7 +45,7 @@ export default function Footer() {
             </div>
             <div>
               <div className="text-sm font-bold text-white">Livraison offerte</div>
-              <div className="text-xs text-slate-400">Partout en France métropolitaine</div>
+              <div className="text-xs text-slate-400">Partout au Maroc (Casablanca, Rabat...)</div>
             </div>
           </div>
 
@@ -54,8 +54,8 @@ export default function Footer() {
               <CreditCard className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">Paiement 3x ou 4x</div>
-              <div className="text-xs text-slate-400">Sans frais dès 150 €</div>
+              <div className="text-sm font-bold text-white">Paiement facile</div>
+              <div className="text-xs text-slate-400">À la livraison ou en 3x sans frais</div>
             </div>
           </div>
         </div>
@@ -64,25 +64,25 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-slate-800">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <Logo variant="white" size="lg" />
+            <Logo size="lg" className="bg-white px-3.5 py-1.5 rounded-lg shadow-sm" />
             <p className="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
-              Atelier et manufacture française de literie d'exception. Nous combinons recherche ergonomique, matières nobles durables et circuit court direct usine.
+              Atelier et manufacture marocaine de literie d'exception. Nous combinons recherche ergonomique, matières nobles durables et circuit court direct usine.
             </p>
 
             <div className="space-y-2 pt-2 text-xs text-slate-300">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
                 <a href="tel:0681707445" className="hover:text-white transition-colors">
-                  06 81 70 74 45 (du lun au ven 9h-19h)
+                  06 81 70 74 45 (du lun au sam 9h-19h)
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>contact@dormilux.fr</span>
+                <span>contact@artonconfort.ma</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Manufacture DormiLux, 69000 Lyon, France</span>
+                <span>Manufacture Arton Confort, Casablanca, Maroc</span>
               </div>
             </div>
           </div>
@@ -90,14 +90,14 @@ export default function Footer() {
           {/* Column 1: Nos produits */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
-              Nos produits
+              Nos matelas
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-400">
-              <li><a href="#matelas" className="hover:text-white transition-colors">Matelas Équilibre</a></li>
-              <li><a href="#matelas" className="hover:text-white transition-colors">Matelas Sérénité</a></li>
-              <li><a href="#matelas" className="hover:text-white transition-colors">Matelas Naturel Latex</a></li>
-              <li><a href="#matelas" className="hover:text-white transition-colors">Matelas Prestige Palace</a></li>
-              <li><a href="#sommiers" className="hover:text-white transition-colors">Sommiers tapissiers</a></li>
+              <li><a href="#matelas-consoft" className="hover:text-white transition-colors">Matelas Consoft</a></li>
+              <li><a href="#matelas-feelsoft" className="hover:text-white transition-colors">Matelas Feelsoft</a></li>
+              <li><a href="#matelas-la-nuit" className="hover:text-white transition-colors">Matelas La Nuit</a></li>
+              <li><a href="#matelas-relax" className="hover:text-white transition-colors">Matelas Relax</a></li>
+              <li><a href="#sommiers" className="hover:text-white transition-colors">Sommiers tapissiers Arton</a></li>
               <li><a href="#accessoires" className="hover:text-white transition-colors">Oreillers ergonomiques</a></li>
             </ul>
           </div>
@@ -105,14 +105,14 @@ export default function Footer() {
           {/* Column 2: L'Atelier */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
-              L'Atelier DormiLux
+              L'Atelier Arton Confort
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-400">
-              <li><a href="#notre-usine" className="hover:text-white transition-colors">Notre usine française</a></li>
+              <li><a href="#notre-usine" className="hover:text-white transition-colors">Notre manufacture au Maroc</a></li>
               <li><a href="#notre-usine" className="hover:text-white transition-colors">Engagement éco-responsable</a></li>
               <li><a href="#avis" className="hover:text-white transition-colors">Avis clients certifiés</a></li>
               <li><a href="#conseils" className="hover:text-white transition-colors">Guide du sommeil</a></li>
-              <li><a href="#garantie" className="hover:text-white transition-colors">Conditions de garantie</a></li>
+              <li><a href="#garantie" className="hover:text-white transition-colors">Conditions de garantie 10 ans</a></li>
               <li><a href="#presse" className="hover:text-white transition-colors">Espace Presse</a></li>
             </ul>
           </div>
@@ -123,7 +123,7 @@ export default function Footer() {
               Offre Privilège
             </h4>
             <p className="text-xs text-slate-400 mb-3 leading-relaxed">
-              Inscrivez-vous pour recevoir nos conseils sommeil et <strong>20 € offerts</strong> sur votre première commande.
+              Inscrivez-vous pour recevoir nos conseils sommeil et <strong>200 DH offerts</strong> sur votre première commande.
             </p>
 
             {subscribed ? (
@@ -145,7 +145,7 @@ export default function Footer() {
                   type="submit"
                   className="w-full py-2.5 bg-[#204033] hover:bg-[#2a5544] text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5"
                 >
-                  <span>Bénéficier de -20 €</span>
+                  <span>Bénéficier de -200 DH</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </form>
@@ -156,7 +156,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} DormiLux France SAS. Tous droits réservés.</span>
+            <span>© {new Date().getFullYear()} Arton Confort Maroc SARL. Tous droits réservés.</span>
           </div>
 
           <div className="flex items-center gap-4 flex-wrap justify-center">

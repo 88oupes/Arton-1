@@ -52,27 +52,27 @@ export default function Navbar({
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           {/* Left reassurance items */}
           <div className="flex items-center flex-wrap justify-center gap-3 sm:gap-4 font-normal text-[#334155]">
-            <span className="flex items-center gap-1.5 hover:text-[#204033] transition-colors">
-              <span className="inline-block w-3.5 h-3.5 rounded-full border border-current flex items-center justify-center text-[9px] font-semibold">
-                FR
+            <span className="flex items-center gap-1.5 hover:text-[#204033] transition-colors font-medium">
+              <span className="inline-block w-4 h-4 rounded-full bg-[#C1272D] text-white flex items-center justify-center text-[9px] font-bold">
+                MA
               </span>
-              Fabrication locale
+              Entreprise & Manufacture Marocaine
             </span>
             <span className="text-[#CBD5E1] hidden xs:inline">|</span>
             <span className="flex items-center gap-1 hover:text-[#204033] transition-colors">
               <ShieldCheck className="w-3.5 h-3.5 text-[#204033]" />
-              Qualité certifiée
+              Garantie 10 ans fabricant
             </span>
             <span className="text-[#CBD5E1] hidden sm:inline">|</span>
             <span className="flex items-center gap-1 hover:text-[#204033] transition-colors">
               <Truck className="w-3.5 h-3.5 text-[#204033]" />
-              Livraison partout en France
+              Livraison partout au Maroc
             </span>
           </div>
 
           {/* Right customer service phone */}
           <div className="flex items-center gap-1.5 font-medium text-[#204033]">
-            <span className="text-[#64748B]">Besoin d'aide ?</span>
+            <span className="text-[#64748B]">Service client :</span>
             <a
               href="tel:0681707445"
               className="font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
@@ -85,21 +85,30 @@ export default function Navbar({
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2">
         {/* Mobile menu button */}
-        <div className="flex items-center lg:hidden gap-3">
+        <div className="flex items-center lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 -ml-2 text-[#19222B] hover:bg-[#F2F4F2] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#204033]/20"
+            className="p-2 -ml-1 text-[#19222B] hover:bg-[#F2F4F2] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#204033]/20"
             aria-label="Menu principal"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Brand Logo */}
-        <a href="#" className="flex-shrink-0 cursor-pointer focus:outline-none">
-          <Logo size="md" />
+        {/* Brand Logo - Prominently displayed across mobile and desktop */}
+        <a
+          href="#"
+          className="flex-shrink-0 cursor-pointer focus:outline-none flex items-center py-0.5 group"
+          aria-label="Arton Confort - Accueil"
+        >
+          <div className="relative flex items-center px-1 sm:px-2 py-0.5 rounded-xl transition-all duration-200 group-hover:bg-slate-50/80">
+            <Logo
+              size="lg"
+              className="transition-all duration-300 group-hover:scale-[1.03] filter drop-shadow-[0_2px_10px_rgba(19,43,69,0.15)]"
+            />
+          </div>
         </a>
 
         {/* Desktop Navigation Links */}
@@ -127,57 +136,57 @@ export default function Navbar({
               {link.hasMenu && activeDropdown === link.name && (
                 <div className="absolute top-full left-0 w-80 bg-white border border-[#E2E8F0] shadow-xl rounded-xl p-4 mt-2 grid gap-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider px-2">
-                    Nos Gammes Phares
+                    Nos Matelas Arton Confort
                   </div>
                   <a
-                    href="#matelas-equilibre"
+                    href="#matelas-consoft"
                     onClick={() => setActiveDropdown(null)}
                     className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
                   >
                     <div>
                       <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas Équilibre
+                        Matelas Consoft
                       </div>
-                      <div className="text-xs text-[#64748B]">Mousse ergonomique 7 zones • Dès 349 €</div>
+                      <div className="text-xs text-[#64748B]">Haute densité & accueil soft • Dès 2 890 DH</div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
                   </a>
                   <a
-                    href="#matelas-serenite"
+                    href="#matelas-feelsoft"
                     onClick={() => setActiveDropdown(null)}
                     className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
                   >
                     <div>
                       <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas Sérénité
+                        Matelas Feelsoft
                       </div>
-                      <div className="text-xs text-[#64748B]">Ressorts & mémoire de forme • Dès 499 €</div>
+                      <div className="text-xs text-[#64748B]">Surmatelas Pillow-Top nuage • Dès 3 890 DH</div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
                   </a>
                   <a
-                    href="#matelas-naturel"
+                    href="#matelas-la-nuit"
                     onClick={() => setActiveDropdown(null)}
                     className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
                   >
                     <div>
                       <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas Naturel
+                        Matelas La Nuit
                       </div>
-                      <div className="text-xs text-[#64748B]">100% Latex naturel & coton bio • Dès 599 €</div>
+                      <div className="text-xs text-[#64748B]">Luxe Palace 32 cm capitonné • Dès 5 490 DH</div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
                   </a>
                   <a
-                    href="#matelas-prestige"
+                    href="#matelas-relax"
                     onClick={() => setActiveDropdown(null)}
                     className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
                   >
                     <div>
                       <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas Prestige
+                        Matelas Relax
                       </div>
-                      <div className="text-xs text-[#64748B]">Palace luxe fait main • Dès 799 €</div>
+                      <div className="text-xs text-[#64748B]">Orthopédique & maintien dos • Dès 1 990 DH</div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
                   </a>
@@ -213,7 +222,7 @@ export default function Navbar({
             href="#compte"
             onClick={(e) => {
               e.preventDefault();
-              alert('Espace client DormiLux : connectez-vous ou suivez votre commande avec votre numéro de suivi.');
+              alert('Espace client Arton Confort : connectez-vous ou suivez votre commande avec votre numéro de suivi.');
             }}
             className="p-2.5 text-[#19222B] hover:text-[#204033] hover:bg-[#F2F4F2] rounded-full transition-colors focus:outline-none"
             title="Mon Compte"
@@ -242,12 +251,13 @@ export default function Navbar({
         <div className="fixed inset-0 top-[96px] z-50 bg-black/40 backdrop-blur-xs lg:hidden">
           <div className="bg-white border-b border-[#E2E8F0] shadow-2xl p-6 flex flex-col gap-4 animate-in slide-in-from-top duration-250 max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                Menu de navigation
-              </span>
+              <div className="flex items-center">
+                <Logo size="md" />
+              </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-gray-500 hover:text-black p-1"
+                className="text-gray-500 hover:text-black p-1.5 rounded-lg hover:bg-gray-100"
+                aria-label="Fermer le menu"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -290,8 +300,8 @@ export default function Navbar({
                   <Phone className="w-4 h-4 text-[#204033]" />
                   <span>Service client :</span>
                 </div>
-                <a href="tel:+33123456789" className="font-bold text-[#204033]">
-                  +33 1 23 45 67 89
+                <a href="tel:0681707445" className="font-bold text-[#204033]">
+                  06 81 70 74 45
                 </a>
               </div>
             </div>

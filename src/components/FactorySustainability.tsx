@@ -20,7 +20,7 @@ export default function FactorySustainability({
             <div className="absolute inset-0 z-0">
               <img
                 src={factoryCraftsmanImg}
-                alt="Artisan matelassier dans l'usine DormiLux"
+                alt="Artisan matelassier dans la manufacture Arton Confort"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
               />
@@ -28,10 +28,10 @@ export default function FactorySustainability({
               <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/40" />
             </div>
 
-            {/* DormiLux brand stamp on image */}
+            {/* Arton Confort brand stamp on image */}
             <div className="relative z-10">
               <div className="inline-block px-3 py-1 bg-white/15 backdrop-blur-md rounded-full text-white text-[11px] font-semibold tracking-wider uppercase mb-4 border border-white/20">
-                Atelier DormiLux • France
+                Manufacture Arton Confort • Maroc
               </div>
 
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal leading-[1.15] max-w-lg tracking-tight">

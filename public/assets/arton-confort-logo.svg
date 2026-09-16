@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 100" fill="none" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&amp;family=Plus+Jakarta+Sans:ital,wght@1,600;1,700&amp;display=swap');
+      .brand-arton {
+        font-family: 'Playfair Display', 'Bodoni Moda', 'Didot', 'Cinzel', serif;
+        font-weight: 800;
+        font-size: 64px;
+        letter-spacing: 0.03em;
+      }
+      .brand-confort {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 20px;
+        letter-spacing: 0.14em;
+      }
+    </style>
+  </defs>
+
+  <!-- Golden Elegant Undulating Swoosh Wave -->
+  <path
+    d="M 6 36 C 8 48, 22 74, 58 92 C 92 107, 136 88, 172 68 C 205 50, 248 58, 298 67 C 265 62, 218 56, 178 71 C 142 85, 96 100, 64 87 C 36 76, 20 54, 8 36 Z"
+    fill="#BA8C48"
+  />
+
+  <!-- Navy Accent Smile Arc beneath A and R -->
+  <path
+    d="M 43 69 C 55 76, 80 76, 96 68 C 82 74, 56 74, 43 69 Z"
+    fill="#132B45"
+  />
+
+  <!-- ARTON Logotype -->
+  <text
+    x="34"
+    y="56"
+    fill="#132B45"
+    class="brand-arton"
+  >ARTON</text>
+
+  <!-- CONFORT Sub-mark -->
+  <text
+    x="166"
+    y="86"
+    fill="#BA8C48"
+    class="brand-confort"
+  >CONFORT</text>
+</svg>

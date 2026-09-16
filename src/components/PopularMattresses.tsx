@@ -91,7 +91,7 @@ export default function PopularMattresses({ onSelectProduct, onAddToCart }: Popu
                       {product.name}
                     </h3>
                     <div className="mt-1 text-xs sm:text-sm font-medium text-[#475569]">
-                      À partir de <span className="font-bold text-[#0F172A]">{product.price} €</span>
+                      À partir de <span className="font-bold text-[#0F172A]">{product.price.toLocaleString('fr-FR')} DH</span>
                     </div>
                   </div>
 

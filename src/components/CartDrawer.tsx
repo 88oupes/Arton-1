@@ -26,18 +26,18 @@ export default function CartDrawer({
   const [promoError, setPromoError] = useState('');
 
   const subtotal = items.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0);
-  const freeShippingThreshold = 250;
+  const freeShippingThreshold = 2000;
   const progressPercent = Math.min(100, (subtotal / freeShippingThreshold) * 100);
   const isFreeShipping = subtotal >= freeShippingThreshold;
 
   const handleApplyPromo = (e: FormEvent) => {
     e.preventDefault();
     const cleanCode = promoInput.trim().toUpperCase();
-    if (cleanCode === 'DORMI20' || cleanCode === 'BIENVENUE') {
-      setDiscountApplied(20);
+    if (cleanCode === 'ARTON20' || cleanCode === 'ARTONCONFORT' || cleanCode === 'DORMI20' || cleanCode === 'BIENVENUE') {
+      setDiscountApplied(200);
       setPromoError('');
     } else {
-      setPromoError('Code promo invalide. Essayez "DORMI20" !');
+      setPromoError('Code promo invalide. Essayez "ARTON20" !');
     }
   };
 
@@ -68,10 +68,10 @@ export default function CartDrawer({
             <span className="flex items-center gap-1.5">
               <Truck className="w-4 h-4" />
               {isFreeShipping ? (
-                <span>Livraison standard offerte partout en France !</span>
+                <span>Livraison standard offerte partout au Maroc !</span>
               ) : (
                 <span>
-                  Plus que {freeShippingThreshold - subtotal} € pour la livraison offerte
+                  Plus que {(freeShippingThreshold - subtotal).toLocaleString('fr-FR')} DH pour la livraison offerte
                 </span>
               )}
             </span>
@@ -94,7 +94,7 @@ export default function CartDrawer({
               </div>
               <p className="text-base font-semibold text-gray-700">Votre panier est vide</p>
               <p className="text-xs text-gray-500 max-w-xs">
-                Découvrez nos matelas conçus avec amour dans notre usine française.
+                Découvrez nos matelas conçus avec passion dans notre usine au Maroc.
               </p>
               <button
                 onClick={onClose}
@@ -170,7 +170,7 @@ export default function CartDrawer({
                     </div>
 
                     <div className="text-sm font-bold text-[#0F172A]">
-                      {item.unitPrice * item.quantity} €
+                      {(item.unitPrice * item.quantity).toLocaleString('fr-FR')} DH
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@ export default function CartDrawer({
                 <div className="flex items-center justify-between bg-emerald-50 text-emerald-800 px-3 py-2 rounded-lg text-xs font-medium border border-emerald-200">
                   <span className="flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                    Code promotionnel appliqué (-20 €)
+                    Code promotionnel appliqué (-200 DH)
                   </span>
                   <button
                     onClick={() => setDiscountApplied(null)}
@@ -203,7 +203,7 @@ export default function CartDrawer({
                     type="text"
                     value={promoInput}
                     onChange={(e) => setPromoInput(e.target.value)}
-                    placeholder="Code promo (ex: DORMI20)"
+                    placeholder="Code promo (ex: ARTON20)"
                     className="flex-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#204033] uppercase"
                   />
                   <button
@@ -223,27 +223,27 @@ export default function CartDrawer({
             <div className="space-y-1.5 text-xs text-gray-600 border-t border-gray-100 pt-3">
               <div className="flex justify-between">
                 <span>Sous-total</span>
-                <span className="font-semibold text-gray-900">{subtotal} €</span>
+                <span className="font-semibold text-gray-900">{subtotal.toLocaleString('fr-FR')} DH</span>
               </div>
 
               {discountApplied && (
                 <div className="flex justify-between text-emerald-700 font-semibold">
                   <span>Remise promo</span>
-                  <span>- {discountApplied} €</span>
+                  <span>- {discountApplied.toLocaleString('fr-FR')} DH</span>
                 </div>
               )}
 
               <div className="flex justify-between">
                 <span>Livraison</span>
                 <span className="font-semibold text-emerald-700">
-                  {isFreeShipping ? 'Offerte' : '29 €'}
+                  {isFreeShipping ? 'Offerte' : '150 DH'}
                 </span>
               </div>
 
               <div className="flex justify-between text-base font-bold text-gray-900 pt-2 border-t border-gray-100">
                 <span>Total TTC</span>
                 <span className="text-xl font-extrabold text-[#204033]">
-                  {finalTotal} €
+                  {finalTotal.toLocaleString('fr-FR')} DH
                 </span>
               </div>
             </div>

@@ -12,7 +12,7 @@ export default function Hero({ onExploreClick, onOpenQuiz }: HeroProps) {
 
   const slides = [
     {
-      eyebrow: 'L\'ARTISANAT FRANÇAIS DEPUIS 1978',
+      eyebrow: 'MANUFACTURE MAROCAINE D\'EXCEPTION',
       titleLine1: 'L\'excellence',
       titleLine2: 'du repos',
       description: 'Chaque détail est pensé pour aligner parfaitement votre colonne vertébrale et réguler naturellement votre température.',
@@ -49,12 +49,12 @@ export default function Hero({ onExploreClick, onOpenQuiz }: HeroProps) {
         <div className="absolute inset-0 z-0">
           <img
             src={heroBedroomImg}
-            alt="Chambre luxueuse avec lit et matelas DormiLux"
+            alt="Chambre raffinée avec lit et matelas d'exception Arton Confort"
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center scale-100 transition-transform duration-1000 ease-out"
+            className="w-full h-full object-cover object-[70%_center] sm:object-right md:object-center scale-100 transition-transform duration-1000 ease-out"
           />
           {/* Subtle natural vignette & left white wash gradient matching the photo layout */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#F7F8F7]/95 via-[#F7F8F7]/85 to-transparent sm:w-[65%] lg:w-[55%]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#F7F8F7]/95 via-[#F7F8F7]/80 to-transparent sm:w-[60%] lg:w-[50%]" />
           <div className="absolute inset-0 bg-black/5" />
         </div>
 
@@ -68,12 +68,12 @@ export default function Hero({ onExploreClick, onOpenQuiz }: HeroProps) {
           </div>
         </div>
 
-        {/* Interactive DormiLux Mattress Label Tag */}
+        {/* Interactive Arton Confort Mattress Label Tag */}
         <div className="absolute bottom-24 right-10 lg:bottom-28 lg:right-32 z-20 hidden sm:block">
-          <div className="bg-[#0F172A] text-white px-4 py-1.5 rounded-md shadow-xl text-xs font-semibold tracking-wider flex items-center gap-2 border border-slate-700 animate-pulse">
-            <span className="w-2 h-2 rounded-full bg-[#34D399]" />
-            DormiLux
-            <span className="text-[10px] text-gray-400 font-normal">Fabriqué en France</span>
+          <div className="bg-[#132B45] text-white px-4 py-2 rounded-lg shadow-xl text-xs font-semibold tracking-wider flex items-center gap-2.5 border border-[#BA8C48]/40">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#BA8C48] animate-pulse" />
+            <span className="font-serif font-bold text-white tracking-wide">ARTON CONFORT</span>
+            <span className="text-[10px] text-slate-300 font-normal pl-1 border-l border-slate-600">Matelas Consoft • Fait au Maroc</span>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export default function Hero({ onExploreClick, onOpenQuiz }: HeroProps) {
 
             {/* 3 Circular Micro-Badges from the screenshot */}
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 border-t border-[#CBD5E1]/60">
-              {/* Badge 1: Fabrication française */}
+              {/* Badge 1: Fabrication marocaine */}
               <div className="flex items-center gap-2 text-xs font-semibold text-[#1E293B]">
                 <div className="w-7 h-7 rounded-full bg-white shadow-xs border border-[#CBD5E1] flex items-center justify-center text-[#204033]">
                   {/* Split circle icon */}
@@ -127,7 +127,7 @@ export default function Hero({ onExploreClick, onOpenQuiz }: HeroProps) {
                     <path d="M12 3v18" />
                   </svg>
                 </div>
-                <span>Fabrication française</span>
+                <span>Fabrication marocaine</span>
               </div>
 
               {/* Badge 2: Matériaux durables */}
