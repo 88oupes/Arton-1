@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import { Search, User, ShoppingBag, Menu, X, Phone, ChevronRight, Sparkles, ShieldCheck, Truck } from 'lucide-react';
+import { useState, type MouseEvent } from 'react';
+import { Search, ShoppingBag, Menu, X, Phone, ChevronRight, Sparkles, MapPin } from 'lucide-react';
 import Logo from './Logo';
+import { CATEGORIES_LIST, PRODUCTS } from '../data/products';
+import { navigateTo, getCategoryUrl, getProductUrl, getHomeUrl, getSitemapUrl } from '../utils/navigation';
+import { CategoryId } from '../types';
 
 interface NavbarProps {
   cartCount: number;
@@ -15,71 +18,64 @@ export default function Navbar({
   onOpenCart,
   onOpenSearch,
   onOpenQuiz,
-  onSelectCategory,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  const navLinks = [
-    { name: 'Matelas', href: '#matelas', hasMenu: true },
-    { name: 'Sommiers', href: '#sommiers' },
-    { name: 'Oreillers & Accessoires', href: '#accessoires' },
-    { name: 'Nos collections', href: '#collections' },
-    { name: 'À propos', href: '#notre-usine' },
-    { name: 'Conseils', href: '#conseils', isQuiz: true },
-  ];
+  const handleCopyCode = (e?: MouseEvent) => {
+    if (e) e.stopPropagation();
+    try {
+      navigator.clipboard?.writeText('DARY15');
+    } catch {
+      // Fallback
+    }
+  };
 
-  const handleNavClick = (link: typeof navLinks[0]) => {
-    if (link.isQuiz) {
-      onOpenQuiz();
-      setMobileMenuOpen(false);
-      return;
-    }
-    if (onSelectCategory && link.href.startsWith('#')) {
-      onSelectCategory(link.href.replace('#', ''));
-    }
-    const target = document.querySelector(link.href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navCategories: { id: CategoryId; name: string; slug: string }[] = CATEGORIES_LIST;
+
+  const handleCategoryClick = (slug: string, e?: MouseEvent) => {
+    navigateTo(getCategoryUrl(slug), e);
+    setActiveDropdown(null);
     setMobileMenuOpen(false);
   };
 
   return (
-    <header className="w-full sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all border-b border-[#E8ECE9]">
-      {/* Top Utility Announcement Bar */}
-      <div className="bg-[#F6F7F5] border-b border-[#EBECE8] text-[#4A5568] text-xs py-2 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-          {/* Left reassurance items */}
-          <div className="flex items-center flex-wrap justify-center gap-3 sm:gap-4 font-normal text-[#334155]">
-            <span className="flex items-center gap-1.5 hover:text-[#204033] transition-colors font-medium">
-              <span className="inline-block w-4 h-4 rounded-full bg-[#C1272D] text-white flex items-center justify-center text-[9px] font-bold">
-                MA
-              </span>
-              Entreprise & Manufacture Marocaine
-            </span>
-            <span className="text-[#CBD5E1] hidden xs:inline">|</span>
-            <span className="flex items-center gap-1 hover:text-[#204033] transition-colors">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#204033]" />
-              Garantie 10 ans fabricant
-            </span>
-            <span className="text-[#CBD5E1] hidden sm:inline">|</span>
-            <span className="flex items-center gap-1 hover:text-[#204033] transition-colors">
-              <Truck className="w-3.5 h-3.5 text-[#204033]" />
-              Livraison partout au Maroc
+    <header className="w-full sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all border-b border-[#F0EAF3]">
+      {/* Top Utility Announcement Bar - Slim & Refined Code Promo */}
+      <div className="bg-[#542D6B] border-b border-[#48255c] text-white py-1 sm:py-1.5 px-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs">
+          <div className="hidden md:flex items-center gap-1.5 text-white/80 text-[11px]">
+            <MapPin className="w-3 h-3 text-[#E7BFF5]" />
+            <span>Manufacture & Showroom Casablanca • Livraison tout le Maroc</span>
+          </div>
+
+          <div
+            onClick={() => handleCopyCode()}
+            className="mx-auto md:mx-0 inline-flex items-center justify-center text-[10.5px] sm:text-[11.5px] font-light tracking-[0.18em] uppercase text-white/90 hover:text-white transition-colors cursor-pointer group select-none"
+            title="Cliquez pour copier le code promo DARY15"
+          >
+            <span>-15% sur toute la collection</span>
+            <span className="mx-2.5 text-white/40 font-thin">•</span>
+            <span className="font-normal text-white">
+              Code : <span className="font-semibold tracking-widest text-white border-b border-white/40 pb-px group-hover:border-white transition-colors">DARY15</span>
             </span>
           </div>
 
-          {/* Right customer service phone */}
-          <div className="flex items-center gap-1.5 font-medium text-[#204033]">
-            <span className="text-[#64748B]">Service client :</span>
+          <div className="hidden md:flex items-center gap-3 text-[11px]">
             <a
-              href="tel:0681707445"
-              className="font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
+              href={getSitemapUrl()}
+              onClick={(e) => navigateTo(getSitemapUrl(), e)}
+              className="text-white/80 hover:text-white transition-colors underline-offset-2 hover:underline"
             >
-              <Phone className="w-3 h-3" />
-              06 81 70 74 45
+              Plan du site
             </a>
+            <span className="text-white/40">|</span>
+            <button
+              onClick={onOpenQuiz}
+              className="text-[#E7BFF5] hover:text-white font-medium flex items-center gap-1 cursor-pointer"
+            >
+              <Sparkles className="w-3 h-3" /> Diagnostic Literie
+            </button>
           </div>
         </div>
       </div>
@@ -90,156 +86,122 @@ export default function Navbar({
         <div className="flex items-center lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 -ml-1 text-[#19222B] hover:bg-[#F2F4F2] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#204033]/20"
+            className="p-2 -ml-1 text-[#2D1C38] hover:bg-[#F3EDF6] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#723C90]/20 cursor-pointer"
             aria-label="Menu principal"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Brand Logo - Prominently displayed across mobile and desktop */}
+        {/* Brand Logo - Official DARY Logomark */}
         <a
-          href="#"
+          href={getHomeUrl()}
+          onClick={(e) => navigateTo(getHomeUrl(), e)}
           className="flex-shrink-0 cursor-pointer focus:outline-none flex items-center py-0.5 group"
-          aria-label="Arton Confort - Accueil"
+          aria-label="DARY - Accueil"
         >
-          <div className="relative flex items-center px-1 sm:px-2 py-0.5 rounded-xl transition-all duration-200 group-hover:bg-slate-50/80">
+          <div className="relative flex items-center px-1 sm:px-2 py-0.5 rounded-xl transition-all duration-200 group-hover:bg-[#F8F6F9]">
             <Logo
-              size="lg"
-              className="transition-all duration-300 group-hover:scale-[1.03] filter drop-shadow-[0_2px_10px_rgba(19,43,69,0.15)]"
+              size="md"
+              className="transition-all duration-300 group-hover:scale-[1.02]"
             />
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7 xl:gap-9 text-[14.5px] font-medium text-[#1E293B]">
-          {navLinks.map((link) => (
-            <div
-              key={link.name}
-              className="relative py-1"
-              onMouseEnter={() => link.hasMenu && setActiveDropdown(link.name)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button
-                onClick={() => handleNavClick(link)}
-                className="transition-colors hover:text-[#204033] flex items-center gap-1 text-left cursor-pointer"
+        {/* Desktop Navigation Links with the 6 Requested Categories */}
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[14.5px] font-medium text-[#2D1C38]">
+          {navCategories.map((cat) => {
+            const catProducts = PRODUCTS.filter((p) => p.category === cat.id);
+            return (
+              <div
+                key={cat.id}
+                className="relative py-1"
+                onMouseEnter={() => setActiveDropdown(cat.id)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                {link.name}
-                {link.isQuiz && (
-                  <span className="ml-1 text-[10px] bg-[#204033] text-white px-1.5 py-0.5 rounded-full uppercase tracking-wider font-semibold">
-                    Guide
-                  </span>
-                )}
-              </button>
+                <a
+                  href={getCategoryUrl(cat.id)}
+                  onClick={(e) => handleCategoryClick(cat.id, e)}
+                  className="transition-colors hover:text-[#723C90] flex items-center gap-1 text-left cursor-pointer font-medium py-1"
+                >
+                  <span>{cat.name}</span>
+                </a>
 
-              {/* Mega submenu preview for Matelas */}
-              {link.hasMenu && activeDropdown === link.name && (
-                <div className="absolute top-full left-0 w-80 bg-white border border-[#E2E8F0] shadow-xl rounded-xl p-4 mt-2 grid gap-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <div className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider px-2">
-                    Nos Matelas Arton Confort
+                {/* Dropdown preview of products in this category */}
+                {activeDropdown === cat.id && catProducts.length > 0 && (
+                  <div className="absolute top-full left-0 w-80 bg-white border border-[#F0EAF3] shadow-xl rounded-xl p-3 mt-1 grid gap-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                    <div className="text-[11px] font-semibold text-[#723C90] uppercase tracking-wider px-2 py-1 flex items-center justify-between">
+                      <span>Rayon {cat.name}</span>
+                      <span className="text-[#8E7E9C] font-normal lowercase">{catProducts.length} modèles</span>
+                    </div>
+                    {catProducts.map((p) => (
+                      <a
+                        key={p.id}
+                        href={getProductUrl(p.slug)}
+                        onClick={(e) => {
+                          navigateTo(getProductUrl(p.slug), e);
+                          setActiveDropdown(null);
+                        }}
+                        className="p-2 rounded-lg hover:bg-[#F8F6F9] transition-colors flex items-center justify-between group cursor-pointer"
+                      >
+                        <div className="min-w-0 pr-2">
+                          <div className="font-semibold text-xs text-[#2D1C38] group-hover:text-[#723C90] truncate">
+                            {p.name}
+                          </div>
+                          <div className="text-[11px] text-[#735F80]">
+                            Dès {p.price.toLocaleString()} DH
+                          </div>
+                        </div>
+                        <ChevronRight className="w-3.5 h-3.5 text-[#A982B8] group-hover:text-[#723C90] transition-transform group-hover:translate-x-0.5 flex-shrink-0" />
+                      </a>
+                    ))}
+                    <div className="pt-2 border-t border-[#F5EFF8] px-2">
+                      <a
+                        href={getCategoryUrl(cat.id)}
+                        onClick={(e) => handleCategoryClick(cat.id, e)}
+                        className="text-xs font-bold text-[#723C90] hover:underline flex items-center justify-between"
+                      >
+                        <span>Découvrir toute la catégorie</span>
+                        <span>→</span>
+                      </a>
+                    </div>
                   </div>
-                  <a
-                    href="#matelas-consoft"
-                    onClick={() => setActiveDropdown(null)}
-                    className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
-                  >
-                    <div>
-                      <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas Consoft
-                      </div>
-                      <div className="text-xs text-[#64748B]">Haute densité & accueil soft • Dès 2 890 DH</div>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
-                  </a>
-                  <a
-                    href="#matelas-feelsoft"
-                    onClick={() => setActiveDropdown(null)}
-                    className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
-                  >
-                    <div>
-                      <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas Feelsoft
-                      </div>
-                      <div className="text-xs text-[#64748B]">Surmatelas Pillow-Top nuage • Dès 3 890 DH</div>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
-                  </a>
-                  <a
-                    href="#matelas-la-nuit"
-                    onClick={() => setActiveDropdown(null)}
-                    className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
-                  >
-                    <div>
-                      <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas La Nuit
-                      </div>
-                      <div className="text-xs text-[#64748B]">Luxe Palace 32 cm capitonné • Dès 5 490 DH</div>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
-                  </a>
-                  <a
-                    href="#matelas-relax"
-                    onClick={() => setActiveDropdown(null)}
-                    className="p-2 rounded-lg hover:bg-[#F4F6F4] transition-colors flex items-center justify-between group"
-                  >
-                    <div>
-                      <div className="font-semibold text-sm text-[#0F172A] group-hover:text-[#204033]">
-                        Matelas Relax
-                      </div>
-                      <div className="text-xs text-[#64748B]">Orthopédique & maintien dos • Dès 1 990 DH</div>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#204033] transition-transform group-hover:translate-x-0.5" />
-                  </a>
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
+                )}
+              </div>
+            );
+          })}
 
-        {/* Action icons (Search, Account, Cart) */}
-        <div className="flex items-center gap-1.5 sm:gap-3">
-          {/* Quiz CTA on tablet/desktop */}
+          {/* Direct Guide / Quiz link */}
           <button
             onClick={onOpenQuiz}
-            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#204033] bg-[#EAF2ED] hover:bg-[#DCEAE1] transition-colors border border-[#C5DCD0]"
+            className="text-xs font-bold bg-[#FAF5FC] hover:bg-[#F3E7F7] text-[#723C90] px-3 py-1.5 rounded-full transition-colors flex items-center gap-1 cursor-pointer border border-[#EFE4F5]"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#204033]" />
-            Trouver mon matelas
+            <Sparkles className="w-3 h-3" />
+            <span>Guide d'achat</span>
           </button>
+        </nav>
 
+        {/* Action icons (Search, Sitemap, and Cart) */}
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Search button */}
           <button
             onClick={onOpenSearch}
-            className="p-2.5 text-[#19222B] hover:text-[#204033] hover:bg-[#F2F4F2] rounded-full transition-colors focus:outline-none"
+            className="p-2.5 text-[#2D1C38] hover:text-[#723C90] hover:bg-[#F3EDF6] rounded-full transition-colors focus:outline-none cursor-pointer"
             title="Rechercher"
             aria-label="Rechercher"
           >
             <Search className="w-5 h-5 stroke-[1.8]" />
           </button>
 
-          {/* Account button */}
-          <a
-            href="#compte"
-            onClick={(e) => {
-              e.preventDefault();
-              alert('Espace client Arton Confort : connectez-vous ou suivez votre commande avec votre numéro de suivi.');
-            }}
-            className="p-2.5 text-[#19222B] hover:text-[#204033] hover:bg-[#F2F4F2] rounded-full transition-colors focus:outline-none"
-            title="Mon Compte"
-            aria-label="Mon Compte"
-          >
-            <User className="w-5 h-5 stroke-[1.8]" />
-          </a>
-
           {/* Cart button with counter */}
           <button
             onClick={onOpenCart}
-            className="p-2.5 text-[#19222B] hover:text-[#204033] hover:bg-[#F2F4F2] rounded-full transition-colors relative focus:outline-none"
+            className="p-2.5 text-[#2D1C38] hover:text-[#723C90] hover:bg-[#F3EDF6] rounded-full transition-colors relative focus:outline-none cursor-pointer"
             title="Panier"
             aria-label="Panier d'achats"
           >
             <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
-            <span className="absolute top-1 right-1 bg-[#19222B] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
+            <span className="absolute top-1 right-1 bg-[#723C90] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
               {cartCount}
             </span>
           </button>
@@ -249,58 +211,70 @@ export default function Navbar({
       {/* Mobile Slide-over Navigation Menu */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 top-[96px] z-50 bg-black/40 backdrop-blur-xs lg:hidden">
-          <div className="bg-white border-b border-[#E2E8F0] shadow-2xl p-6 flex flex-col gap-4 animate-in slide-in-from-top duration-250 max-h-[80vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+          <div className="bg-white border-b border-[#F0EAF3] shadow-2xl p-6 flex flex-col gap-4 animate-in slide-in-from-top duration-250 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-[#F0EAF3]">
               <div className="flex items-center">
-                <Logo size="md" />
+                <Logo size="sm" />
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-gray-500 hover:text-black p-1.5 rounded-lg hover:bg-gray-100"
+                className="text-gray-500 hover:text-[#723C90] p-1.5 rounded-lg hover:bg-[#F3EDF6] cursor-pointer"
                 aria-label="Fermer le menu"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => handleNavClick(link)}
-                  className="flex items-center justify-between py-3 px-3 rounded-lg text-base font-medium text-[#1E293B] hover:bg-[#F4F6F4] hover:text-[#204033] text-left transition-colors"
-                >
-                  <span className="flex items-center gap-2">
-                    {link.name}
-                    {link.isQuiz && (
-                      <span className="text-[10px] bg-[#204033] text-white px-2 py-0.5 rounded-full font-semibold">
-                        Guide
-                      </span>
-                    )}
-                  </span>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
-                </button>
-              ))}
+            <div className="text-[11px] uppercase font-bold text-[#8E7E9C] tracking-wider px-2">
+              Nos Catégories
             </div>
 
-            <div className="pt-4 border-t border-gray-100 flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
+              {navCategories.map((cat) => (
+                <a
+                  key={cat.id}
+                  href={getCategoryUrl(cat.id)}
+                  onClick={(e) => handleCategoryClick(cat.id, e)}
+                  className="flex items-center justify-between py-3 px-3 rounded-lg text-base font-medium text-[#2D1C38] hover:bg-[#F8F6F9] hover:text-[#723C90] text-left transition-colors cursor-pointer"
+                >
+                  <span>{cat.name}</span>
+                  <ChevronRight className="w-4 h-4 text-[#A982B8]" />
+                </a>
+              ))}
+
+              <div className="border-t border-[#F0EAF3] my-2" />
+
+              <a
+                href={getSitemapUrl()}
+                onClick={(e) => {
+                  navigateTo(getSitemapUrl(), e);
+                  setMobileMenuOpen(false);
+                }}
+                className="flex items-center justify-between py-2.5 px-3 rounded-lg text-sm font-semibold text-[#723C90] hover:bg-[#F8F6F9] text-left transition-colors cursor-pointer"
+              >
+                <span>Plan du site e-commerce</span>
+                <ChevronRight className="w-4 h-4" />
+              </a>
+            </div>
+
+            <div className="pt-4 border-t border-[#F0EAF3] flex flex-col gap-3">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenQuiz();
                 }}
-                className="w-full py-3 px-4 bg-[#204033] text-white rounded-lg text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#183329] transition-colors"
+                className="w-full py-3 px-4 bg-[#723C90] text-white rounded-xl text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#542D6B] transition-colors cursor-pointer"
               >
                 <Sparkles className="w-4 h-4" />
                 Trouver mon matelas idéal (Guide)
               </button>
 
-              <div className="bg-[#F8FAF9] p-4 rounded-xl flex items-center justify-between text-sm text-[#334155]">
+              <div className="bg-[#F8F6F9] p-4 rounded-xl flex items-center justify-between text-sm text-[#2D1C38]">
                 <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#204033]" />
+                  <Phone className="w-4 h-4 text-[#723C90]" />
                   <span>Service client :</span>
                 </div>
-                <a href="tel:0681707445" className="font-bold text-[#204033]">
+                <a href="tel:0681707445" className="font-bold text-[#723C90]">
                   06 81 70 74 45
                 </a>
               </div>
@@ -311,3 +285,4 @@ export default function Navbar({
     </header>
   );
 }
+

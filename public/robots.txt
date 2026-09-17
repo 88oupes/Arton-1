@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dary.ma/sitemap.xml

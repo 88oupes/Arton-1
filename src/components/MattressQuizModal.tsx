@@ -79,12 +79,12 @@ export default function MattressQuizModal({
 
         {step < 5 ? (
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#204033] uppercase tracking-wider mb-2">
-              <Sparkles className="w-4 h-4 text-[#204033]" />
-              <span>Diagnostic Morphologique • Étape {step}/4</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#723C90] uppercase tracking-wider mb-2">
+              <Sparkles className="w-4 h-4 text-[#723C90]" />
+              <span>Diagnostic Morphologique DARY • Étape {step}/4</span>
             </div>
 
-            <h3 className="font-serif text-2xl text-[#0F172A] font-bold mb-6">
+            <h3 className="font-serif text-2xl text-[#2D1C38] font-bold mb-6">
               {step === 1 && 'Quelle est votre position de sommeil principale ?'}
               {step === 2 && 'Quelle fermeté appréciez-vous en général ?'}
               {step === 3 && 'Ressentez-vous des raideurs ou douleurs au réveil ?'}
@@ -102,12 +102,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('position', item.label)}
-                    className="p-4 border border-gray-200 rounded-xl text-left hover:border-[#204033] hover:bg-[#F3F7F5] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#0F172A] group-hover:text-[#204033]">
+                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -123,12 +123,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('firmness', item.label)}
-                    className="p-4 border border-gray-200 rounded-xl text-left hover:border-[#204033] hover:bg-[#F3F7F5] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#0F172A] group-hover:text-[#204033]">
+                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -144,12 +144,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('backPain', item.label)}
-                    className="p-4 border border-gray-200 rounded-xl text-left hover:border-[#204033] hover:bg-[#F3F7F5] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#0F172A] group-hover:text-[#204033]">
+                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -165,12 +165,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('sleepers', item.label)}
-                    className="p-4 border border-gray-200 rounded-xl text-left hover:border-[#204033] hover:bg-[#F3F7F5] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#0F172A] group-hover:text-[#204033]">
+                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -179,20 +179,20 @@ export default function MattressQuizModal({
         ) : (
           /* Results Screen */
           <div className="text-center py-2">
-            <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-full bg-[#F0EAF3] text-[#723C90] flex items-center justify-center mx-auto mb-3">
               <Check className="w-6 h-6" />
             </div>
 
-            <span className="text-xs font-bold uppercase tracking-wider text-[#204033]">
-              Recommandation personnalisée
+            <span className="text-xs font-bold uppercase tracking-wider text-[#723C90]">
+              Recommandation personnalisée DARY
             </span>
 
-            <h3 className="font-serif text-3xl font-bold text-[#0F172A] mt-1 mb-3">
+            <h3 className="font-serif text-3xl font-bold text-[#2D1C38] mt-1 mb-3">
               {getRecommendation().product.name}
             </h3>
 
-            <div className="bg-[#F6F8F6] p-4 rounded-xl border border-[#E2E8E4] my-4 flex flex-col sm:flex-row items-center gap-4 text-left">
-              <div className="w-24 h-20 shrink-0 bg-white p-2 rounded-lg">
+            <div className="bg-[#F8F6F9] p-4 rounded-xl border border-[#F0EAF3] my-4 flex flex-col sm:flex-row items-center gap-4 text-left">
+              <div className="w-24 h-20 shrink-0 bg-white p-2 rounded-lg border border-[#F0EAF3]">
                 <img
                   src={getRecommendation().product.image}
                   alt={getRecommendation().product.name}
@@ -200,11 +200,11 @@ export default function MattressQuizModal({
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-xs text-gray-600">
-                <p className="font-semibold text-[#0F172A] mb-1">Pourquoi ce choix ?</p>
+              <div className="text-xs text-[#554860]">
+                <p className="font-semibold text-[#2D1C38] mb-1">Pourquoi ce choix ?</p>
                 <p>{getRecommendation().reason}</p>
-                <p className="mt-2 font-bold text-emerald-800">
-                  À partir de {getRecommendation().product.price.toLocaleString('fr-FR')} DH • 100 nuits d'essai
+                <p className="mt-2 font-bold text-[#723C90]">
+                  À partir de {getRecommendation().product.price.toLocaleString('fr-FR')} DH • 100 nuits d'essai DARY
                 </p>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function MattressQuizModal({
                   onSelectProduct(getRecommendation().product);
                   onClose();
                 }}
-                className="flex-1 py-3 px-6 bg-[#204033] hover:bg-[#183329] text-white rounded-lg text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="flex-1 py-3 px-6 bg-[#723C90] hover:bg-[#542D6B] text-white rounded-lg text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <span>Découvrir et configurer</span>
                 <ArrowRight className="w-4 h-4" />
@@ -223,7 +223,7 @@ export default function MattressQuizModal({
 
               <button
                 onClick={resetQuiz}
-                className="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
+                className="px-4 py-3 bg-[#F0EAF3] hover:bg-[#E5DAEA] text-[#542D6B] rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Recommencer</span>

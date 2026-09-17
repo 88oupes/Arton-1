@@ -33,11 +33,15 @@ export default function CartDrawer({
   const handleApplyPromo = (e: FormEvent) => {
     e.preventDefault();
     const cleanCode = promoInput.trim().toUpperCase();
-    if (cleanCode === 'ARTON20' || cleanCode === 'ARTONCONFORT' || cleanCode === 'DORMI20' || cleanCode === 'BIENVENUE') {
+    if (cleanCode === 'DARY15' || cleanCode === 'PROMO15' || cleanCode === '-15%' || cleanCode === 'ARTON15') {
+      const discount = Math.round(subtotal * 0.15);
+      setDiscountApplied(discount);
+      setPromoError('');
+    } else if (cleanCode === 'DARY20' || cleanCode === 'BIENVENUE' || cleanCode === 'ARTON20') {
       setDiscountApplied(200);
       setPromoError('');
     } else {
-      setPromoError('Code promo invalide. Essayez "ARTON20" !');
+      setPromoError('Code promo invalide. Utilisez le code "DARY15" (-15%) !');
     }
   };
 
@@ -47,26 +51,26 @@ export default function CartDrawer({
     <div className="fixed inset-0 z-50 overflow-hidden bg-black/60 backdrop-blur-xs flex justify-end animate-in fade-in duration-200">
       <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
         {/* Cart Header */}
-        <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-[#F8FAF8]">
+        <div className="p-5 border-b border-[#F0EAF3] flex items-center justify-between bg-[#F8F6F9]">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-[#204033]" />
-            <h2 className="font-bold text-base text-[#0F172A]">
-              Votre panier ({items.reduce((acc, item) => acc + item.quantity, 0)})
+            <ShoppingBag className="w-5 h-5 text-[#723C90]" />
+            <h2 className="font-bold text-base text-[#2D1C38]">
+              Votre panier DARY ({items.reduce((acc, item) => acc + item.quantity, 0)})
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-gray-400 hover:text-black rounded-lg hover:bg-gray-200/60 transition-colors cursor-pointer"
+            className="p-1.5 text-[#A982B8] hover:text-[#2D1C38] rounded-lg hover:bg-[#F0EAF3] transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Free shipping progress bar */}
-        <div className="bg-[#EEF4F0] px-5 py-3 border-b border-[#D8E6DD]">
-          <div className="flex items-center justify-between text-xs font-semibold text-[#204033] mb-1.5">
+        <div className="bg-[#FAF7FC] px-5 py-3 border-b border-[#F0EAF3]">
+          <div className="flex items-center justify-between text-xs font-semibold text-[#542D6B] mb-1.5">
             <span className="flex items-center gap-1.5">
-              <Truck className="w-4 h-4" />
+              <Truck className="w-4 h-4 text-[#723C90]" />
               {isFreeShipping ? (
                 <span>Livraison standard offerte partout au Maroc !</span>
               ) : (
@@ -75,11 +79,11 @@ export default function CartDrawer({
                 </span>
               )}
             </span>
-            {isFreeShipping && <Check className="w-4 h-4 text-emerald-600" />}
+            {isFreeShipping && <Check className="w-4 h-4 text-[#723C90]" />}
           </div>
-          <div className="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden">
+          <div className="w-full bg-[#EFE8F3] h-1.5 rounded-full overflow-hidden">
             <div
-              className="bg-[#204033] h-full transition-all duration-500 rounded-full"
+              className="bg-[#723C90] h-full transition-all duration-500 rounded-full"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -88,28 +92,28 @@ export default function CartDrawer({
         {/* Cart Items List */}
         <div className="flex-1 overflow-y-auto p-5 space-y-4">
           {items.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-4 text-gray-500">
-              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
+            <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-4 text-[#665373]">
+              <div className="w-16 h-16 rounded-full bg-[#F8F6F9] border border-[#F0EAF3] flex items-center justify-center text-[#A982B8]">
                 <ShoppingBag className="w-8 h-8" />
               </div>
-              <p className="text-base font-semibold text-gray-700">Votre panier est vide</p>
-              <p className="text-xs text-gray-500 max-w-xs">
-                Découvrez nos matelas conçus avec passion dans notre usine au Maroc.
+              <p className="text-base font-semibold text-[#2D1C38]">Votre panier est vide</p>
+              <p className="text-xs text-[#665373] max-w-xs">
+                Découvrez nos matelas d'exception conçus avec passion dans notre atelier DARY au Maroc.
               </p>
               <button
                 onClick={onClose}
-                className="px-5 py-2.5 bg-[#204033] text-white rounded-lg text-xs font-semibold hover:bg-[#183329] transition-colors"
+                className="px-5 py-2.5 bg-[#723C90] text-white rounded-lg text-xs font-semibold hover:bg-[#542D6B] transition-colors cursor-pointer shadow-sm"
               >
-                Découvrir nos matelas
+                Découvrir la collection DARY
               </button>
             </div>
           ) : (
             items.map((item) => (
               <div
                 key={`${item.product.id}-${item.selectedSize}`}
-                className="flex gap-4 p-3 bg-[#FBFBFB] rounded-xl border border-gray-100 shadow-2xs"
+                className="flex gap-4 p-3 bg-[#FAF8FB] rounded-xl border border-[#F0EAF3] shadow-2xs"
               >
-                <div className="w-20 h-20 bg-white rounded-lg p-2 border border-gray-100 shrink-0 flex items-center justify-center">
+                <div className="w-20 h-20 bg-white rounded-lg p-2 border border-[#F0EAF3] shrink-0 flex items-center justify-center">
                   <img
                     src={item.product.image}
                     alt={item.product.name}
@@ -121,17 +125,17 @@ export default function CartDrawer({
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="flex justify-between items-start gap-2">
                     <div>
-                      <h3 className="font-bold text-sm text-[#0F172A] leading-tight">
+                      <h3 className="font-bold text-sm text-[#2D1C38] leading-tight">
                         {item.product.name}
                       </h3>
-                      <span className="text-xs text-gray-500 block mt-0.5">
+                      <span className="text-xs text-[#665373] block mt-0.5">
                         Taille : {item.selectedSize}
                       </span>
                     </div>
 
                     <button
                       onClick={() => onRemoveItem(item.product.id, item.selectedSize)}
-                      className="text-gray-400 hover:text-red-600 transition-colors p-1"
+                      className="text-[#A982B8] hover:text-red-600 transition-colors p-1 cursor-pointer"
                       title="Supprimer"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -139,7 +143,7 @@ export default function CartDrawer({
                   </div>
 
                   <div className="flex items-center justify-between mt-3">
-                    <div className="flex items-center border border-gray-200 rounded-md bg-white">
+                    <div className="flex items-center border border-[#E5DAEA] rounded-md bg-white">
                       <button
                         onClick={() =>
                           onUpdateQuantity(
@@ -148,11 +152,11 @@ export default function CartDrawer({
                             item.quantity - 1,
                           )
                         }
-                        className="px-2 py-0.5 text-xs text-gray-600 hover:bg-gray-100 font-bold"
+                        className="px-2 py-0.5 text-xs text-[#554860] hover:bg-[#F0EAF3] font-bold cursor-pointer"
                       >
                         -
                       </button>
-                      <span className="px-2.5 py-0.5 text-xs font-bold text-gray-800">
+                      <span className="px-2.5 py-0.5 text-xs font-bold text-[#2D1C38]">
                         {item.quantity}
                       </span>
                       <button
@@ -163,13 +167,13 @@ export default function CartDrawer({
                             item.quantity + 1,
                           )
                         }
-                        className="px-2 py-0.5 text-xs text-gray-600 hover:bg-gray-100 font-bold"
+                        className="px-2 py-0.5 text-xs text-[#554860] hover:bg-[#F0EAF3] font-bold cursor-pointer"
                       >
                         +
                       </button>
                     </div>
 
-                    <div className="text-sm font-bold text-[#0F172A]">
+                    <div className="text-sm font-bold text-[#723C90]">
                       {(item.unitPrice * item.quantity).toLocaleString('fr-FR')} DH
                     </div>
                   </div>
@@ -181,18 +185,18 @@ export default function CartDrawer({
 
         {/* Cart Footer */}
         {items.length > 0 && (
-          <div className="p-5 border-t border-gray-200 bg-white space-y-4">
+          <div className="p-5 border-t border-[#F0EAF3] bg-white space-y-4">
             {/* Promo Code Input */}
             <div>
               {discountApplied ? (
-                <div className="flex items-center justify-between bg-emerald-50 text-emerald-800 px-3 py-2 rounded-lg text-xs font-medium border border-emerald-200">
-                  <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                    Code promotionnel appliqué (-200 DH)
+                <div className="flex items-center justify-between bg-[#FAF5FC] text-[#723C90] px-3 py-2 rounded-lg text-xs font-medium border border-[#E5DAEA]">
+                  <span className="flex items-center gap-1.5 font-semibold">
+                    <Sparkles className="w-3.5 h-3.5 text-[#723C90]" />
+                    Code promotionnel appliqué (-{discountApplied.toLocaleString('fr-FR')} DH)
                   </span>
                   <button
                     onClick={() => setDiscountApplied(null)}
-                    className="text-gray-500 hover:text-black font-bold"
+                    className="text-[#A982B8] hover:text-[#2D1C38] font-bold cursor-pointer"
                   >
                     ✕
                   </button>
@@ -203,12 +207,12 @@ export default function CartDrawer({
                     type="text"
                     value={promoInput}
                     onChange={(e) => setPromoInput(e.target.value)}
-                    placeholder="Code promo (ex: ARTON20)"
-                    className="flex-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-[#204033] uppercase"
+                    placeholder="Code promo (ex: DARY15)"
+                    className="flex-1 px-3 py-1.5 border border-[#E5DAEA] rounded-lg text-xs focus:outline-none focus:border-[#723C90] uppercase"
                   />
                   <button
                     type="submit"
-                    className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+                    className="px-3 py-1.5 bg-[#F0EAF3] hover:bg-[#E5DAEA] text-[#542D6B] text-xs font-semibold rounded-lg transition-colors cursor-pointer"
                   >
                     Appliquer
                   </button>
@@ -220,14 +224,14 @@ export default function CartDrawer({
             </div>
 
             {/* Price Calculations */}
-            <div className="space-y-1.5 text-xs text-gray-600 border-t border-gray-100 pt-3">
+            <div className="space-y-1.5 text-xs text-[#554860] border-t border-[#F0EAF3] pt-3">
               <div className="flex justify-between">
                 <span>Sous-total</span>
-                <span className="font-semibold text-gray-900">{subtotal.toLocaleString('fr-FR')} DH</span>
+                <span className="font-semibold text-[#2D1C38]">{subtotal.toLocaleString('fr-FR')} DH</span>
               </div>
 
               {discountApplied && (
-                <div className="flex justify-between text-emerald-700 font-semibold">
+                <div className="flex justify-between text-[#723C90] font-semibold">
                   <span>Remise promo</span>
                   <span>- {discountApplied.toLocaleString('fr-FR')} DH</span>
                 </div>
@@ -235,14 +239,14 @@ export default function CartDrawer({
 
               <div className="flex justify-between">
                 <span>Livraison</span>
-                <span className="font-semibold text-emerald-700">
+                <span className="font-semibold text-[#723C90]">
                   {isFreeShipping ? 'Offerte' : '150 DH'}
                 </span>
               </div>
 
-              <div className="flex justify-between text-base font-bold text-gray-900 pt-2 border-t border-gray-100">
+              <div className="flex justify-between text-base font-bold text-[#2D1C38] pt-2 border-t border-[#F0EAF3]">
                 <span>Total TTC</span>
-                <span className="text-xl font-extrabold text-[#204033]">
+                <span className="text-xl font-extrabold text-[#723C90]">
                   {finalTotal.toLocaleString('fr-FR')} DH
                 </span>
               </div>
@@ -251,16 +255,16 @@ export default function CartDrawer({
             {/* Checkout Action Button */}
             <button
               onClick={onCheckout}
-              className="w-full py-3.5 px-6 bg-[#204033] hover:bg-[#183329] text-white rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-md group cursor-pointer"
+              className="w-full py-3.5 px-6 bg-[#723C90] hover:bg-[#542D6B] text-white rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-md group cursor-pointer"
             >
               <span>Valider ma commande</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
 
             {/* Security Guarantee */}
-            <div className="flex items-center justify-center gap-2 text-[11px] text-gray-400">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Paiement 100% sécurisé • 100 nuits d'essai incluses</span>
+            <div className="flex items-center justify-center gap-2 text-[11px] text-[#A982B8]">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#723C90]" />
+              <span>Paiement sécurisé • 100 nuits d'essai DARY incluses</span>
             </div>
           </div>
         )}

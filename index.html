@@ -3,17 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arton Confort - Literie & Matelas d'Exception</title>
-    <meta name="description" content="Arton Confort : Fabricant et manufacture marocaine de matelas de haute qualité (Consoft, Feelsoft, La Nuit, Relax). Le confort sur-mesure pour votre sommeil au Maroc." />
-    <meta property="og:title" content="Arton Confort - Literie & Matelas d'Exception" />
-    <meta property="og:description" content="Arton Confort : Fabricant et manufacture marocaine de matelas de haute qualité (Consoft, Feelsoft, La Nuit, Relax). Le confort sur-mesure pour votre sommeil au Maroc." />
+    <script>
+      // Polyfill/fix for environments where window.fetch has only a getter on Window.prototype
+      (function() {
+        try {
+          var originalFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : undefined;
+          var _fetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _fetch;
+            },
+            set: function(val) {
+              _fetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          // Graceful fallback
+        }
+      })();
+    </script>
+    <title>DARY — Literie & Confort d'Exception | Manufacture Marocaine</title>
+    <meta name="description" content="DARY : Marque et manufacture marocaine de literie d'exception. Élégance accessible, féminité assumée et confort sur-mesure pour un sommeil d'excellence." />
+    <link rel="icon" type="image/jpeg" href="https://res.cloudinary.com/psbqhe7h/image/upload/v1789644319/Dari_logo.jpg" />
+    <meta property="og:title" content="DARY — Literie & Confort d'Exception" />
+    <meta property="og:description" content="DARY : Marque et manufacture marocaine de literie d'exception. Élégance accessible, féminité assumée et confort sur-mesure pour un sommeil d'excellence." />
+    <meta property="og:image" content="https://res.cloudinary.com/psbqhe7h/image/upload/v1789644319/Dari_logo.jpg" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://res.cloudinary.com/psbqhe7h/image/upload/v1789644319/Dari_logo.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#FBFBF9] text-[#19222B] antialiased selection:bg-[#204033] selection:text-white">
+  <body class="bg-[#F8F6F9] text-[#2D1C38] antialiased selection:bg-[#723C90] selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

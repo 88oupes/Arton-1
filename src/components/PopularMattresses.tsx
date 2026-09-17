@@ -19,20 +19,20 @@ export default function PopularMattresses({ onSelectProduct, onAddToCart }: Popu
   };
 
   return (
-    <section id="matelas" className="w-full bg-[#EDF2EF] py-14 sm:py-20 border-b border-[#D8E2DC]">
+    <section id="matelas" className="w-full bg-[#F8F6F9] py-14 sm:py-20 border-b border-[#F0EAF3]">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         {/* Responsive Grid: Callout banner on top or left, followed by the 4 cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           {/* Left Callout Block */}
           <div className="lg:col-span-3 flex flex-col justify-between p-6 sm:p-8 bg-transparent">
             <div>
-              <div className="w-8 h-1 bg-[#204033] mb-4 rounded-full" />
-              <h2 className="font-serif text-3xl sm:text-4xl text-[#0F172A] font-normal tracking-tight leading-[1.15]">
+              <div className="w-8 h-1 bg-[#723C90] mb-4 rounded-full" />
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#2D1C38] font-normal tracking-tight leading-[1.15]">
                 Nos matelas <br />
-                <span className="italic font-normal">les plus populaires</span>
+                <span className="italic font-normal text-[#723C90]">les plus populaires</span>
               </h2>
-              <p className="text-sm text-[#526460] mt-4 leading-relaxed font-normal">
-                Des modèles plébiscités pour leur confort, leur durabilité et leur excellent rapport qualité-prix.
+              <p className="text-sm text-[#665373] mt-4 leading-relaxed font-normal">
+                Des modèles plébiscités pour leur confort absolu, leur élégance et leur confection marocaine d'excellence.
               </p>
             </div>
 
@@ -43,9 +43,9 @@ export default function PopularMattresses({ onSelectProduct, onAddToCart }: Popu
                   e.preventDefault();
                   onSelectProduct(PRODUCTS[0]);
                 }}
-                className="inline-flex items-center gap-2 px-5 py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-xs group cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-[#723C90] hover:bg-[#542D6B] text-white text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-xs group cursor-pointer"
               >
-                <span>Voir tous les matelas</span>
+                <span>Voir tous les matelas DARY</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
@@ -58,7 +58,7 @@ export default function PopularMattresses({ onSelectProduct, onAddToCart }: Popu
                 key={product.id}
                 id={product.id}
                 onClick={() => onSelectProduct(product)}
-                className="group relative bg-white rounded-xl overflow-hidden border border-[#DCE4DF] shadow-xs hover:shadow-xl hover:border-[#204033]/30 transition-all duration-300 flex flex-col cursor-pointer"
+                className="group relative bg-white rounded-xl overflow-hidden border border-[#F0EAF3] shadow-xs hover:shadow-xl hover:border-[#723C90]/40 transition-all duration-300 flex flex-col cursor-pointer"
               >
                 {/* Top Badge (if present) */}
                 <div className="absolute top-3 left-3 z-10">
@@ -66,7 +66,7 @@ export default function PopularMattresses({ onSelectProduct, onAddToCart }: Popu
                     <span
                       className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold text-white tracking-wide shadow-xs"
                       style={{
-                        backgroundColor: product.badgeColor || '#204033',
+                        backgroundColor: product.badgeColor || '#723C90',
                       }}
                     >
                       {product.badge}
@@ -75,7 +75,7 @@ export default function PopularMattresses({ onSelectProduct, onAddToCart }: Popu
                 </div>
 
                 {/* Product Image Stage */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#FAFBFA] p-4 flex items-center justify-center">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#FCFAFD] p-4 flex items-center justify-center">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -85,37 +85,37 @@ export default function PopularMattresses({ onSelectProduct, onAddToCart }: Popu
                 </div>
 
                 {/* Card Details */}
-                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 border-t border-[#F0F2F0]">
+                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 border-t border-[#F0EAF3]">
                   <div>
-                    <h3 className="font-bold text-[15px] sm:text-base text-[#0F172A] group-hover:text-[#204033] transition-colors leading-snug">
+                    <h3 className="font-bold text-[15px] sm:text-base text-[#2D1C38] group-hover:text-[#723C90] transition-colors leading-snug">
                       {product.name}
                     </h3>
-                    <div className="mt-1 text-xs sm:text-sm font-medium text-[#475569]">
-                      À partir de <span className="font-bold text-[#0F172A]">{product.price.toLocaleString('fr-FR')} DH</span>
+                    <div className="mt-1 text-xs sm:text-sm font-medium text-[#665373]">
+                      À partir de <span className="font-bold text-[#723C90]">{product.price.toLocaleString('fr-FR')} DH</span>
                     </div>
                   </div>
 
-                  {/* Rating Stars and Cart Button matching screenshot */}
-                  <div className="mt-4 pt-3 flex items-center justify-between border-t border-[#F1F5F2]">
+                  {/* Rating Stars and Cart Button */}
+                  <div className="mt-4 pt-3 flex items-center justify-between border-t border-[#F8F6F9]">
                     {/* Stars */}
                     <div className="flex items-center gap-1">
-                      <div className="flex text-[#F59E0B]">
+                      <div className="flex text-[#723C90]">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className="w-3.5 h-3.5 fill-current" />
                         ))}
                       </div>
-                      <span className="text-xs text-[#64748B] font-medium ml-1">
+                      <span className="text-xs text-[#665373] font-medium ml-1">
                         ({product.reviewsCount})
                       </span>
                     </div>
 
-                    {/* Quick Add Square Navy Button */}
+                    {/* Quick Add DARY Violet Button */}
                     <button
                       onClick={(e) => handleQuickAdd(e, product)}
                       className={`w-9 h-9 rounded-md flex items-center justify-center transition-all cursor-pointer shadow-xs ${
                         addedId === product.id
-                          ? 'bg-[#10B981] text-white scale-105'
-                          : 'bg-[#0F172A] hover:bg-[#204033] text-white active:scale-95'
+                          ? 'bg-[#723C90] text-white scale-105'
+                          : 'bg-[#723C90] hover:bg-[#542D6B] text-white active:scale-95'
                       }`}
                       title={`Ajouter ${product.name} au panier`}
                       aria-label={`Ajouter ${product.name} au panier`}

@@ -25,7 +25,7 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="w-full bg-white border-b border-[#E8ECE9] py-8 sm:py-10">
+    <section className="w-full bg-white border-b border-[#F0EAF3] py-8 sm:py-10">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6">
           {items.map((item, idx) => {
@@ -33,16 +33,16 @@ export default function TrustBar() {
             return (
               <div
                 key={idx}
-                className="flex items-center gap-3.5 sm:gap-4 p-2 rounded-xl transition-all duration-200 hover:bg-[#F9FAF9]"
+                className="flex items-center gap-3.5 sm:gap-4 p-2 rounded-xl transition-all duration-200 hover:bg-[#F8F6F9]"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#F4F6F4] flex items-center justify-center shrink-0 text-[#204033] border border-[#E3E8E4]">
+                <div className="w-12 h-12 rounded-xl bg-[#F8F6F9] flex items-center justify-center shrink-0 text-[#723C90] border border-[#F0EAF3]">
                   <Icon className="w-6 h-6 stroke-[1.75]" />
                 </div>
                 <div>
-                  <h2 className="text-sm font-bold text-[#0F172A] leading-tight">
+                  <h2 className="text-sm font-bold text-[#2D1C38] leading-tight">
                     {item.title}
                   </h2>
-                  <p className="text-xs text-[#64748B] mt-0.5 font-normal">
+                  <p className="text-xs text-[#665373] mt-0.5 font-normal">
                     {item.subtitle}
                   </p>
                 </div>

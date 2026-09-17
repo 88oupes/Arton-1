@@ -1,6 +1,6 @@
 {
-  "name": "Arton Confort - Literie & Matelas d'Exception",
-  "description": "Arton Confort : Fabricant et manufacture marocaine de matelas de haute qualité (Consoft, Feelsoft, La Nuit, Relax). Le confort sur-mesure pour votre sommeil au Maroc.",
+  "name": "DARY — Literie & Confort d'Exception",
+  "description": "DARY : Marque et manufacture marocaine de literie d'exception. Élégance accessible, féminité assumée et confort sur-mesure pour un sommeil d'excellence.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

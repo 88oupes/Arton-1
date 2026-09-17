@@ -1,27 +1,88 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { MessageCircle } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
 import CategoriesSection from './components/CategoriesSection';
-import PopularMattresses from './components/PopularMattresses';
 import FactorySustainability from './components/FactorySustainability';
 import ReviewsSection from './components/ReviewsSection';
 import Footer from './components/Footer';
+import CategoryPage from './components/CategoryPage';
+import ProductPage from './components/ProductPage';
+import SitemapPage from './components/SitemapPage';
 import ProductDetailModal from './components/ProductDetailModal';
 import CartDrawer from './components/CartDrawer';
 import MattressQuizModal from './components/MattressQuizModal';
 import SearchModal from './components/SearchModal';
 import InfoModal from './components/InfoModal';
-import { PRODUCTS } from './data/products';
 import { Product, CartItem } from './types';
+import { PRODUCTS } from './data/products';
+import { parseCurrentRoute, AppRoute, navigateTo, getProductUrl, getCategoryUrl } from './utils/navigation';
+import { updateMetaTags } from './utils/seo';
 
 export default function App() {
+  const [route, setRoute] = useState<AppRoute>(parseCurrentRoute());
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [infoModalType, setInfoModalType] = useState<'factory' | 'eco' | 'checkout' | 'reviews' | null>(null);
+
+  // Listen for browser navigation changes (back/forward or pushState)
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setRoute(parseCurrentRoute());
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
+  }, []);
+
+  // Default SEO meta tags when on home page
+  useEffect(() => {
+    if (route.type === 'home') {
+      updateMetaTags({
+        title: 'DARY — Matelas & Literie Haute Couture au Maroc | Confort d\'Exception',
+        description: 'Découvrez la manufacture marocaine DARY : matelas haute densité, sommiers, linge de lit satin, lits coffres et salons marocains. 10 ans de garantie & livraison offerte.',
+        canonicalPath: '/',
+        type: 'website',
+        schema: {
+          '@context': 'https://schema.org',
+          '@type': 'FurnitureStore',
+          name: 'DARY Manufacture',
+          image: 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789644319/Dari_logo.jpg',
+          url: 'https://dary.ma',
+          telephone: '+212691707445',
+          priceRange: '1990 MAD - 12900 MAD',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Zone Industrielle Sidi Maârouf',
+            addressLocality: 'Casablanca',
+            addressCountry: 'MA',
+          },
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: '33.5731',
+            longitude: '-7.5898',
+          },
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+              opens: '09:00',
+              closes: '19:30',
+            },
+          ],
+        },
+      });
+    }
+  }, [route]);
 
   // Cart actions
   const handleAddToCart = (product: Product, size: string, quantity: number = 1) => {
@@ -83,57 +144,70 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFBF9] text-[#19222B] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#F8F6F9] text-[#2D1C38] flex flex-col font-sans">
       {/* 1. Top Bar & Main Header Navigation */}
       <Navbar
         cartCount={totalCartCount}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenQuiz={() => setIsQuizOpen(true)}
-        onSelectCategory={(catId) => scrollToSection(catId === 'matelas' ? 'matelas' : 'nos-univers')}
       />
 
-      <main className="flex-1">
-        {/* 2. Hero Section: "Le confort naît ici" */}
-        <Hero
-          onExploreClick={() => scrollToSection('matelas')}
-          onOpenQuiz={() => setIsQuizOpen(true)}
-        />
+      {/* Dynamic View Router */}
+      <div className="flex-1">
+        {route.type === 'home' && (
+          <main>
+            {/* 2. Hero Section: "Le confort naît ici" */}
+            <Hero
+              onExploreClick={() => scrollToSection('matelas')}
+              onOpenQuiz={() => setIsQuizOpen(true)}
+            />
 
-        {/* 3. 4-item Trust / Guarantees Bar */}
-        <TrustBar />
+            {/* 3. 4-item Trust / Guarantees Bar */}
+            <TrustBar />
 
-        {/* 4. Category Grid: "Nos univers" */}
-        <CategoriesSection
-          onSelectCategory={(catId) => {
-            if (catId === 'matelas') {
-              scrollToSection('matelas');
-            } else {
-              setSelectedProduct(PRODUCTS[0]);
-            }
-          }}
-        />
+            {/* 4. 6 Category Grid: "Nos univers" */}
+            <CategoriesSection />
 
-        {/* 5. Popular Mattresses: "Nos matelas les plus populaires" */}
-        <PopularMattresses
-          onSelectProduct={(product) => setSelectedProduct(product)}
-          onAddToCart={(product, size) => {
-            handleAddToCart(product, size, 1);
-            setIsCartOpen(true);
-          }}
-        />
+            {/* 5. Split Workshop & Sustainability: "Notre usine, votre garantie" */}
+            <FactorySustainability
+              onLearnMoreFactory={() => setInfoModalType('factory')}
+              onLearnMoreEco={() => setInfoModalType('eco')}
+            />
 
-        {/* 6. Split Workshop & Sustainability: "Notre usine, votre garantie" */}
-        <FactorySustainability
-          onLearnMoreFactory={() => setInfoModalType('factory')}
-          onLearnMoreEco={() => setInfoModalType('eco')}
-        />
+            {/* 6. Social Proof & Reviews: "Ils dorment déjà mieux" */}
+            <ReviewsSection
+              onWriteReview={() => setInfoModalType('reviews')}
+            />
+          </main>
+        )}
 
-        {/* 7. Social Proof & Reviews: "Ils dorment déjà mieux" */}
-        <ReviewsSection
-          onWriteReview={() => setInfoModalType('reviews')}
-        />
-      </main>
+        {route.type === 'category' && (
+          <CategoryPage
+            categorySlug={route.categorySlug}
+            onAddToCart={(product, size, qty) => {
+              handleAddToCart(product, size, qty);
+              setIsCartOpen(true);
+            }}
+            onOpenQuiz={() => setIsQuizOpen(true)}
+          />
+        )}
+
+        {route.type === 'product' && (
+          <ProductPage
+            slug={route.productSlug}
+            onAddToCart={(product, size, qty) => {
+              handleAddToCart(product, size, qty);
+              setIsCartOpen(true);
+            }}
+            onOpenQuiz={() => setIsQuizOpen(true)}
+          />
+        )}
+
+        {route.type === 'sitemap' && (
+          <SitemapPage onOpenQuiz={() => setIsQuizOpen(true)} />
+        )}
+      </div>
 
       {/* 8. Comprehensive Atelier Footer */}
       <Footer />
@@ -160,14 +234,22 @@ export default function App() {
       <MattressQuizModal
         isOpen={isQuizOpen}
         onClose={() => setIsQuizOpen(false)}
-        onSelectProduct={(product) => setSelectedProduct(product)}
+        onSelectProduct={(product) => {
+          navigateTo(getProductUrl(product.slug));
+        }}
       />
 
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        onSelectProduct={(product) => setSelectedProduct(product)}
-        onSelectCategory={(catId) => scrollToSection(catId === 'matelas' ? 'matelas' : 'nos-univers')}
+        onSelectProduct={(product) => {
+          setIsSearchOpen(false);
+          navigateTo(getProductUrl(product.slug));
+        }}
+        onSelectCategory={(catId) => {
+          setIsSearchOpen(false);
+          navigateTo(getCategoryUrl(catId));
+        }}
       />
 
       <InfoModal
@@ -175,6 +257,21 @@ export default function App() {
         type={infoModalType}
         onClose={() => setInfoModalType(null)}
       />
+
+      {/* Floating Responsive Little Round Violet WhatsApp Button */}
+      <aside aria-label="Contact WhatsApp DARY">
+        <a
+          href="https://wa.me/212691707445?text=Bonjour%20DARY%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-5 right-5 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#723C90] hover:bg-[#542D6B] text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white/25 group cursor-pointer"
+          title="Discuter sur WhatsApp : 06 91 70 74 45"
+          aria-label="Discuter sur WhatsApp au 06 91 70 74 45"
+        >
+          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-white text-[#723C90]" />
+          <span className="sr-only">WhatsApp : 06 91 70 74 45</span>
+        </a>
+      </aside>
     </div>
   );
 }

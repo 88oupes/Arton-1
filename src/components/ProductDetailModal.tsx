@@ -44,11 +44,11 @@ export default function ProductDetailModal({
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left: Product Image Stage */}
-          <div className="bg-[#F6F8F6] p-6 sm:p-10 flex flex-col items-center justify-center relative border-b md:border-b-0 md:border-r border-[#E8ECE9]">
+          <div className="bg-[#F8F6F9] p-6 sm:p-10 flex flex-col items-center justify-center relative border-b md:border-b-0 md:border-r border-[#F0EAF3]">
             {product.badge && (
               <span
                 className="absolute top-6 left-6 px-3.5 py-1 rounded-full text-xs font-bold text-white shadow-xs"
-                style={{ backgroundColor: product.badgeColor || '#204033' }}
+                style={{ backgroundColor: product.badgeColor || '#723C90' }}
               >
                 {product.badge}
               </span>
@@ -64,14 +64,14 @@ export default function ProductDetailModal({
             </div>
 
             {/* Quick specifications badges */}
-            <div className="w-full grid grid-cols-2 gap-3 mt-6 text-xs text-[#475569]">
-              <div className="bg-white p-2.5 rounded-lg border border-[#E2E8E4] text-center">
-                <span className="text-gray-400 block text-[10px] uppercase">Épaisseur</span>
-                <span className="font-bold text-[#0F172A]">{product.thickness}</span>
+            <div className="w-full grid grid-cols-2 gap-3 mt-6 text-xs text-[#554860]">
+              <div className="bg-white p-2.5 rounded-lg border border-[#F0EAF3] text-center">
+                <span className="text-[#A982B8] block text-[10px] uppercase font-semibold">Épaisseur</span>
+                <span className="font-bold text-[#2D1C38]">{product.thickness}</span>
               </div>
-              <div className="bg-white p-2.5 rounded-lg border border-[#E2E8E4] text-center">
-                <span className="text-gray-400 block text-[10px] uppercase">Soutien</span>
-                <span className="font-bold text-[#204033]">{product.firmness}</span>
+              <div className="bg-white p-2.5 rounded-lg border border-[#F0EAF3] text-center">
+                <span className="text-[#A982B8] block text-[10px] uppercase font-semibold">Soutien</span>
+                <span className="font-bold text-[#723C90]">{product.firmness}</span>
               </div>
             </div>
           </div>
@@ -81,22 +81,22 @@ export default function ProductDetailModal({
             <div>
               {/* Rating */}
               <div className="flex items-center gap-2 mb-2">
-                <div className="flex text-[#F59E0B]">
+                <div className="flex text-[#723C90]">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-xs font-semibold text-[#0F172A]">{product.rating}/5</span>
-                <span className="text-xs text-gray-500">({product.reviewsCount} avis vérifiés)</span>
+                <span className="text-xs font-semibold text-[#2D1C38]">{product.rating}/5</span>
+                <span className="text-xs text-[#665373]">({product.reviewsCount} avis vérifiés DARY)</span>
               </div>
 
               {/* Title & Price */}
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#0F172A] font-bold">
+              <h2 className="font-serif text-2xl sm:text-3xl text-[#2D1C38] font-bold">
                 {product.name}
               </h2>
 
               <div className="mt-2 flex items-baseline gap-3">
-                <span className="text-3xl font-extrabold text-[#0F172A]">
+                <span className="text-3xl font-extrabold text-[#723C90]">
                   {(currentPrice * quantity).toLocaleString('fr-FR')} DH
                 </span>
                 {product.originalPrice && (
@@ -104,22 +104,22 @@ export default function ProductDetailModal({
                     {(Math.round(product.originalPrice * (currentPrice / product.price)) * quantity).toLocaleString('fr-FR')} DH
                   </span>
                 )}
-                <span className="text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-sm font-semibold">
-                  TTC • Livraison partout au Maroc
+                <span className="text-xs text-[#723C90] bg-[#F0EAF3] px-2.5 py-1 rounded-md font-semibold">
+                  TTC • Livraison offerte partout au Maroc
                 </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#554860] mt-3 leading-relaxed">
                 {product.description}
               </p>
 
               {/* Dimension / Size Selector */}
               <div className="mt-5">
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#0F172A]">
+                  <label className="text-xs font-bold uppercase tracking-wider text-[#2D1C38]">
                     Choisir la dimension :
                   </label>
-                  <span className="text-xs text-gray-500 font-medium">
+                  <span className="text-xs text-[#723C90] font-semibold">
                     {currentSizeObj.size}
                   </span>
                 </div>
@@ -131,12 +131,12 @@ export default function ProductDetailModal({
                       onClick={() => setSelectedSizeIndex(idx)}
                       className={`p-2.5 rounded-lg text-xs font-medium border text-left transition-all cursor-pointer ${
                         selectedSizeIndex === idx
-                          ? 'border-[#204033] bg-[#204033] text-white shadow-xs'
-                          : 'border-gray-200 bg-gray-50 hover:bg-white text-gray-800'
+                          ? 'border-[#723C90] bg-[#723C90] text-white shadow-xs'
+                          : 'border-[#F0EAF3] bg-[#F8F6F9] hover:bg-white text-[#2D1C38]'
                       }`}
                     >
                       <div className="font-bold">{sz.size}</div>
-                      <div className={`text-[11px] ${selectedSizeIndex === idx ? 'text-emerald-100' : 'text-gray-500'}`}>
+                      <div className={`text-[11px] ${selectedSizeIndex === idx ? 'text-[#E5DAEA]' : 'text-[#665373]'}`}>
                         {sz.price.toLocaleString('fr-FR')} DH
                       </div>
                     </button>
@@ -145,14 +145,14 @@ export default function ProductDetailModal({
               </div>
 
               {/* Key Features List */}
-              <div className="mt-5 pt-4 border-t border-gray-100">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#0F172A] block mb-2">
-                  Caractéristiques exclusives :
+              <div className="mt-5 pt-4 border-t border-[#F0EAF3]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#2D1C38] block mb-2">
+                  Caractéristiques d'exception :
                 </span>
-                <ul className="space-y-1.5 text-xs text-gray-600">
+                <ul className="space-y-1.5 text-xs text-[#554860]">
                   {product.features.map((feat, i) => (
                     <li key={i} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-[#723C90] shrink-0" />
                       <span>{feat}</span>
                     </li>
                   ))}
@@ -161,22 +161,22 @@ export default function ProductDetailModal({
             </div>
 
             {/* Bottom Actions */}
-            <div className="mt-6 pt-4 border-t border-gray-200">
+            <div className="mt-6 pt-4 border-t border-[#F0EAF3]">
               <div className="flex items-center gap-3">
                 {/* Quantity */}
-                <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-gray-50">
+                <div className="flex items-center border border-[#E5DAEA] rounded-lg overflow-hidden bg-[#F8F6F9]">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-3 py-2 text-gray-600 hover:bg-gray-200 font-bold transition-colors cursor-pointer"
+                    className="px-3 py-2 text-[#2D1C38] hover:bg-[#E5DAEA] font-bold transition-colors cursor-pointer"
                   >
                     -
                   </button>
-                  <span className="px-3 py-2 text-sm font-semibold text-gray-800 min-w-8 text-center">
+                  <span className="px-3 py-2 text-sm font-semibold text-[#2D1C38] min-w-8 text-center">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-3 py-2 text-gray-600 hover:bg-gray-200 font-bold transition-colors cursor-pointer"
+                    className="px-3 py-2 text-[#2D1C38] hover:bg-[#E5DAEA] font-bold transition-colors cursor-pointer"
                   >
                     +
                   </button>
@@ -188,8 +188,8 @@ export default function ProductDetailModal({
                   disabled={added}
                   className={`flex-1 py-3.5 px-6 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md ${
                     added
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-[#204033] hover:bg-[#183329] text-white active:scale-98'
+                      ? 'bg-[#723C90] text-white'
+                      : 'bg-[#723C90] hover:bg-[#542D6B] text-white active:scale-98'
                   }`}
                 >
                   {added ? (
@@ -207,17 +207,17 @@ export default function ProductDetailModal({
               </div>
 
               {/* Reassurances mini */}
-              <div className="flex items-center justify-between gap-2 mt-4 text-[11px] text-gray-500 pt-3 border-t border-gray-100">
+              <div className="flex items-center justify-between gap-2 mt-4 text-[11px] text-[#665373] pt-3 border-t border-[#F0EAF3]">
                 <span className="flex items-center gap-1">
-                  <Truck className="w-3.5 h-3.5 text-emerald-600" />
-                  Livraison gratuite partout au Maroc
+                  <Truck className="w-3.5 h-3.5 text-[#723C90]" />
+                  Livraison offerte
                 </span>
                 <span className="flex items-center gap-1">
-                  <RotateCcw className="w-3.5 h-3.5 text-emerald-600" />
+                  <RotateCcw className="w-3.5 h-3.5 text-[#723C90]" />
                   100 nuits d'essai
                 </span>
                 <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#723C90]" />
                   Garantie 10 ans
                 </span>
               </div>

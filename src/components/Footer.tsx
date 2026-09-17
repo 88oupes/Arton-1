@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, Truck, RotateCcw, CreditCard } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, Truck, RotateCcw, CreditCard, MessageCircle } from 'lucide-react';
 import Logo from './Logo';
+import { navigateTo } from '../utils/navigation';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -15,105 +16,186 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#0F172A] text-white pt-16 pb-12 border-t border-slate-800">
+    <footer className="w-full bg-[#1E1128] text-white pt-16 pb-12 border-t border-[#3B224C]">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         {/* Reinsurance Icons Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12 mb-12 border-b border-slate-800 text-center sm:text-left">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12 mb-12 border-b border-[#3B224C] text-center sm:text-left">
           <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center text-emerald-400 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
               <RotateCcw className="w-5 h-5" />
             </div>
             <div>
               <div className="text-sm font-bold text-white">100 nuits d'essai</div>
-              <div className="text-xs text-slate-400">Satisfait ou remboursé</div>
+              <div className="text-xs text-[#C5B3D0]">Satisfait ou remboursé</div>
             </div>
           </div>
 
           <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center text-emerald-400 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <div className="text-sm font-bold text-white">Garantie 10 ans</div>
-              <div className="text-xs text-slate-400">Tranquillité absolue</div>
+              <div className="text-xs text-[#C5B3D0]">Sérénité absolue</div>
             </div>
           </div>
 
           <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center text-emerald-400 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
               <Truck className="w-5 h-5" />
             </div>
             <div>
               <div className="text-sm font-bold text-white">Livraison offerte</div>
-              <div className="text-xs text-slate-400">Partout au Maroc (Casablanca, Rabat...)</div>
+              <div className="text-xs text-[#C5B3D0]">Partout au Maroc (Casablanca, Rabat...)</div>
             </div>
           </div>
 
           <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center text-emerald-400 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
               <CreditCard className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">Paiement facile</div>
-              <div className="text-xs text-slate-400">À la livraison ou en 3x sans frais</div>
+              <div className="text-sm font-bold text-white">Paiement à la livraison</div>
+              <div className="text-xs text-[#C5B3D0]">Ou en 3x sans frais</div>
             </div>
           </div>
         </div>
 
         {/* Main Footer Links & Newsletter */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-[#3B224C]">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
             <Logo size="lg" className="bg-white px-3.5 py-1.5 rounded-lg shadow-sm" />
-            <p className="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
-              Atelier et manufacture marocaine de literie d'exception. Nous combinons recherche ergonomique, matières nobles durables et circuit court direct usine.
+            <p className="text-xs sm:text-sm text-[#C5B3D0] max-w-sm leading-relaxed">
+              Atelier et manufacture marocaine de literie d'exception. Nous combinons recherche ergonomique, matières douces certifiées et circuit court direct atelier.
             </p>
 
-            <div className="space-y-2 pt-2 text-xs text-slate-300">
+            <div className="space-y-2.5 pt-2 text-xs text-[#E5DAEA]">
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a href="tel:0681707445" className="hover:text-white transition-colors">
-                  06 81 70 74 45 (du lun au sam 9h-19h)
+                <Phone className="w-4 h-4 text-[#A982B8] shrink-0" />
+                <a href="tel:0691707445" className="hover:text-white transition-colors">
+                  06 91 70 74 45 (du lun au sam 9h-19h)
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>contact@artonconfort.ma</span>
+                <Mail className="w-4 h-4 text-[#A982B8] shrink-0" />
+                <span>contact@dary.ma</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Manufacture Arton Confort, Casablanca, Maroc</span>
+                <MapPin className="w-4 h-4 text-[#A982B8] shrink-0" />
+                <span>Manufacture DARY, Casablanca, Maroc</span>
+              </div>
+
+              {/* Little Round Violet WhatsApp Button in Footer */}
+              <div className="pt-2">
+                <a
+                  href="https://wa.me/212691707445?text=Bonjour%20DARY%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[#723C90] hover:bg-[#8B4CAE] text-white text-xs font-semibold shadow-md hover:shadow-lg transition-all group cursor-pointer border border-[#8E52AF]/40"
+                  aria-label="Contacter sur WhatsApp au 06 91 70 74 45"
+                >
+                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                    <MessageCircle className="w-3.5 h-3.5 fill-white text-[#723C90]" />
+                  </div>
+                  <span>WhatsApp : 06 91 70 74 45</span>
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Column 1: Nos produits */}
+          {/* Column 1: Nos Catégories */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
-              Nos matelas
+              Nos Catégories
             </h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
-              <li><a href="#matelas-consoft" className="hover:text-white transition-colors">Matelas Consoft</a></li>
-              <li><a href="#matelas-feelsoft" className="hover:text-white transition-colors">Matelas Feelsoft</a></li>
-              <li><a href="#matelas-la-nuit" className="hover:text-white transition-colors">Matelas La Nuit</a></li>
-              <li><a href="#matelas-relax" className="hover:text-white transition-colors">Matelas Relax</a></li>
-              <li><a href="#sommiers" className="hover:text-white transition-colors">Sommiers tapissiers Arton</a></li>
-              <li><a href="#accessoires" className="hover:text-white transition-colors">Oreillers ergonomiques</a></li>
+            <ul className="space-y-2.5 text-xs text-[#C5B3D0]">
+              <li>
+                <a
+                  href="/categories/matelas"
+                  onClick={(e) => navigateTo('/categories/matelas', e)}
+                  className="hover:text-white transition-colors"
+                >
+                  Matelas Haute Densité
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/categories/linge"
+                  onClick={(e) => navigateTo('/categories/linge', e)}
+                  className="hover:text-white transition-colors"
+                >
+                  Linge de lit & Satin
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/categories/lit"
+                  onClick={(e) => navigateTo('/categories/lit', e)}
+                  className="hover:text-white transition-colors"
+                >
+                  Lits Coffres & Sommiers
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/categories/salon"
+                  onClick={(e) => navigateTo('/categories/salon', e)}
+                  className="hover:text-white transition-colors"
+                >
+                  Salons Marocains Modernes
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/categories/oreiller"
+                  onClick={(e) => navigateTo('/categories/oreiller', e)}
+                  className="hover:text-white transition-colors"
+                >
+                  Oreillers Ergonomiques
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/categories/accessoires"
+                  onClick={(e) => navigateTo('/categories/accessoires', e)}
+                  className="hover:text-white transition-colors"
+                >
+                  Accessoires & Surmatelas
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Column 2: L'Atelier */}
+          {/* Column 2: La Maison DARY & E-commerce */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
-              L'Atelier Arton Confort
+              Maison & Services
             </h4>
-            <ul className="space-y-2.5 text-xs text-slate-400">
-              <li><a href="#notre-usine" className="hover:text-white transition-colors">Notre manufacture au Maroc</a></li>
-              <li><a href="#notre-usine" className="hover:text-white transition-colors">Engagement éco-responsable</a></li>
+            <ul className="space-y-2.5 text-xs text-[#C5B3D0]">
+              <li>
+                <a
+                  href="/plan-du-site"
+                  onClick={(e) => navigateTo('/plan-du-site', e)}
+                  className="hover:text-white transition-colors font-semibold text-[#E7BFF5]"
+                >
+                  ★ Plan du site e-commerce
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/sitemap.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Fichier sitemap.xml
+                </a>
+              </li>
+              <li><a href="#notre-usine" className="hover:text-white transition-colors">Notre manufacture à Casablanca</a></li>
               <li><a href="#avis" className="hover:text-white transition-colors">Avis clients certifiés</a></li>
-              <li><a href="#conseils" className="hover:text-white transition-colors">Guide du sommeil</a></li>
-              <li><a href="#garantie" className="hover:text-white transition-colors">Conditions de garantie 10 ans</a></li>
-              <li><a href="#presse" className="hover:text-white transition-colors">Espace Presse</a></li>
+              <li><a href="#conseils" className="hover:text-white transition-colors">Guide du sommeil marocain</a></li>
+              <li><a href="#garantie" className="hover:text-white transition-colors">Garantie fabricant 10 ans</a></li>
             </ul>
           </div>
 
@@ -122,14 +204,14 @@ export default function Footer() {
             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
               Offre Privilège
             </h4>
-            <p className="text-xs text-slate-400 mb-3 leading-relaxed">
-              Inscrivez-vous pour recevoir nos conseils sommeil et <strong>200 DH offerts</strong> sur votre première commande.
+            <p className="text-xs text-[#C5B3D0] mb-3 leading-relaxed">
+              Inscrivez-vous pour recevoir nos conseils sommeil et <strong>200 DH offerts</strong> avec le code <span className="text-[#A982B8] font-bold">DARY15</span>.
             </p>
 
             {subscribed ? (
-              <div className="bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs p-3 rounded-lg flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Merci ! Votre bon de réduction vous a été envoyé.</span>
+              <div className="bg-[#542D6B]/80 border border-[#A982B8]/40 text-[#E5DAEA] text-xs p-3 rounded-lg flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#A982B8] shrink-0" />
+                <span>Merci ! Votre bon de réduction DARY vous a été envoyé.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
@@ -139,11 +221,11 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Votre adresse email..."
                   required
-                  className="w-full px-3.5 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-400"
+                  className="w-full px-3.5 py-2.5 bg-[#2B173B] border border-[#4C2963] rounded-lg text-xs text-white placeholder:text-[#8E789B] focus:outline-none focus:border-[#A982B8]"
                 />
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-[#204033] hover:bg-[#2a5544] text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5"
+                  className="w-full py-2.5 bg-[#723C90] hover:bg-[#542D6B] text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
                 >
                   <span>Bénéficier de -200 DH</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -153,18 +235,39 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        {/* Bottom bar with Little Round Violet WhatsApp Button */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8E789B]">
           <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} Arton Confort Maroc SARL. Tous droits réservés.</span>
+            <span>© {new Date().getFullYear()} DARY Maroc. Tous droits réservés.</span>
           </div>
 
           <div className="flex items-center gap-4 flex-wrap justify-center">
-            <a href="#cgv" className="hover:text-slate-300 transition-colors">CGV & Mentions légales</a>
+            <a
+              href="/plan-du-site"
+              onClick={(e) => navigateTo('/plan-du-site', e)}
+              className="text-[#E7BFF5] hover:text-white font-medium transition-colors"
+            >
+              Plan du site
+            </a>
             <span>•</span>
-            <a href="#confidentialite" className="hover:text-slate-300 transition-colors">Politique de confidentialité</a>
+            <a href="#cgv" className="hover:text-white transition-colors">CGV & Mentions légales</a>
             <span>•</span>
-            <a href="#cookies" className="hover:text-slate-300 transition-colors">Gestion des cookies</a>
+            <a href="#confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</a>
+            <span>•</span>
+            <a href="#cookies" className="hover:text-white transition-colors">Gestion des cookies</a>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="https://wa.me/212691707445?text=Bonjour%20DARY%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-[#723C90] hover:bg-[#8B4CAE] text-white flex items-center justify-center shadow-md hover:shadow-lg transition-all hover:scale-105"
+              title="Discuter sur WhatsApp : 06 91 70 74 45"
+              aria-label="Discuter sur WhatsApp au 06 91 70 74 45"
+            >
+              <MessageCircle className="w-4 h-4 fill-white text-[#723C90]" />
+            </a>
           </div>
         </div>
       </div>
