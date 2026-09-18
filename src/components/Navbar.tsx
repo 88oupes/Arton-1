@@ -43,15 +43,10 @@ export default function Navbar({
     <header className="w-full sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all border-b border-[#F0EAF3]">
       {/* Top Utility Announcement Bar - Slim & Refined Code Promo */}
       <div className="bg-[#542D6B] border-b border-[#48255c] text-white py-1 sm:py-1.5 px-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs">
-          <div className="hidden md:flex items-center gap-1.5 text-white/80 text-[11px]">
-            <MapPin className="w-3 h-3 text-[#E7BFF5]" />
-            <span>Manufacture & Showroom Casablanca • Livraison tout le Maroc</span>
-          </div>
-
+        <div className="max-w-7xl mx-auto flex items-center justify-center text-xs">
           <div
             onClick={() => handleCopyCode()}
-            className="mx-auto md:mx-0 inline-flex items-center justify-center text-[10.5px] sm:text-[11.5px] font-light tracking-[0.18em] uppercase text-white/90 hover:text-white transition-colors cursor-pointer group select-none"
+            className="inline-flex items-center justify-center text-[10.5px] sm:text-[11.5px] font-light tracking-[0.18em] uppercase text-white/90 hover:text-white transition-colors cursor-pointer group select-none"
             title="Cliquez pour copier le code promo DARY15"
           >
             <span>-15% sur toute la collection</span>
@@ -59,23 +54,6 @@ export default function Navbar({
             <span className="font-normal text-white">
               Code : <span className="font-semibold tracking-widest text-white border-b border-white/40 pb-px group-hover:border-white transition-colors">DARY15</span>
             </span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-3 text-[11px]">
-            <a
-              href={getSitemapUrl()}
-              onClick={(e) => navigateTo(getSitemapUrl(), e)}
-              className="text-white/80 hover:text-white transition-colors underline-offset-2 hover:underline"
-            >
-              Plan du site
-            </a>
-            <span className="text-white/40">|</span>
-            <button
-              onClick={onOpenQuiz}
-              className="text-[#E7BFF5] hover:text-white font-medium flex items-center gap-1 cursor-pointer"
-            >
-              <Sparkles className="w-3 h-3" /> Diagnostic Literie
-            </button>
           </div>
         </div>
       </div>

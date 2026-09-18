@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, Truck, RotateCcw, CreditCard, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, Truck, CreditCard, MessageCircle } from 'lucide-react';
 import Logo from './Logo';
 import { navigateTo } from '../utils/navigation';
 
@@ -19,17 +19,7 @@ export default function Footer() {
     <footer className="w-full bg-[#1E1128] text-white pt-16 pb-12 border-t border-[#3B224C]">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         {/* Reinsurance Icons Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12 mb-12 border-b border-[#3B224C] text-center sm:text-left">
-          <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
-              <RotateCcw className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-white">100 nuits d'essai</div>
-              <div className="text-xs text-[#C5B3D0]">Satisfait ou remboursé</div>
-            </div>
-          </div>
-
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pb-12 mb-12 border-b border-[#3B224C] text-center sm:text-left">
           <div className="flex items-center gap-3 justify-center sm:justify-start">
             <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
               <ShieldCheck className="w-5 h-5" />
@@ -62,7 +52,7 @@ export default function Footer() {
         </div>
 
         {/* Main Footer Links & Newsletter */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-[#3B224C]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-[#3B224C]">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
             <Logo size="lg" className="bg-white px-3.5 py-1.5 rounded-lg shadow-sm" />
@@ -131,39 +121,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 2: La Maison DARY & E-commerce */}
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
-              Maison & Services
-            </h4>
-            <ul className="space-y-2.5 text-xs text-[#C5B3D0]">
-              <li>
-                <a
-                  href="/plan-du-site"
-                  onClick={(e) => navigateTo('/plan-du-site', e)}
-                  className="hover:text-white transition-colors font-semibold text-[#E7BFF5]"
-                >
-                  ★ Plan du site e-commerce
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/sitemap.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  Fichier sitemap.xml
-                </a>
-              </li>
-              <li><a href="#notre-usine" className="hover:text-white transition-colors">Notre manufacture à Casablanca</a></li>
-              <li><a href="#avis" className="hover:text-white transition-colors">Avis clients certifiés</a></li>
-              <li><a href="#conseils" className="hover:text-white transition-colors">Guide du sommeil marocain</a></li>
-              <li><a href="#garantie" className="hover:text-white transition-colors">Garantie fabricant 10 ans</a></li>
-            </ul>
-          </div>
-
-          {/* Column 3: Newsletter */}
+          {/* Column 2: Newsletter */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
               Offre Privilège
@@ -206,19 +164,9 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-4 flex-wrap justify-center">
-            <a
-              href="/plan-du-site"
-              onClick={(e) => navigateTo('/plan-du-site', e)}
-              className="text-[#E7BFF5] hover:text-white font-medium transition-colors"
-            >
-              Plan du site
-            </a>
-            <span>•</span>
             <a href="#cgv" className="hover:text-white transition-colors">CGV & Mentions légales</a>
             <span>•</span>
             <a href="#confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</a>
-            <span>•</span>
-            <a href="#cookies" className="hover:text-white transition-colors">Gestion des cookies</a>
           </div>
 
           <div className="flex items-center gap-2">
