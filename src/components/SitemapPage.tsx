@@ -68,7 +68,7 @@ export default function SitemapPage({ onOpenQuiz }: SitemapPageProps) {
       return CATEGORIES_LIST.map((c) => ({
         ...c,
         info: CATEGORIES_INFO[c.id],
-        products: PRODUCTS.filter((p) => p.category === c.id),
+        products: PRODUCTS.filter((p) => p.category === c.id || (c.id === 'salon' && p.category === 'oreiller')),
       }));
     }
 
@@ -76,7 +76,7 @@ export default function SitemapPage({ onOpenQuiz }: SitemapPageProps) {
       const info = CATEGORIES_INFO[c.id];
       const matchingProducts = PRODUCTS.filter(
         (p) =>
-          p.category === c.id &&
+          (p.category === c.id || (c.id === 'salon' && p.category === 'oreiller')) &&
           (p.name.toLowerCase().includes(q) ||
             p.description.toLowerCase().includes(q) ||
             p.slug.toLowerCase().includes(q) ||
@@ -87,7 +87,9 @@ export default function SitemapPage({ onOpenQuiz }: SitemapPageProps) {
       return {
         ...c,
         info,
-        products: categoryMatches ? PRODUCTS.filter((p) => p.category === c.id) : matchingProducts,
+        products: categoryMatches
+          ? PRODUCTS.filter((p) => p.category === c.id || (c.id === 'salon' && p.category === 'oreiller'))
+          : matchingProducts,
       };
     }).filter((c) => c.products.length > 0);
   }, [searchQuery]);

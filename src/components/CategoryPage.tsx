@@ -29,7 +29,9 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
 
   // Filter products belonging to this category
   const categoryProducts = useMemo(() => {
-    let list = PRODUCTS.filter((p) => p.category === categorySlug);
+    let list = PRODUCTS.filter(
+      (p) => p.category === categorySlug || (categorySlug === 'salon' && p.category === 'oreiller')
+    );
 
     if (filterFirmness !== 'all') {
       list = list.filter((p) => p.firmness === filterFirmness);
@@ -224,6 +226,7 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
                 <img
                   src={product.image}
                   alt={`${product.name} DARY`}
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {product.badge && (

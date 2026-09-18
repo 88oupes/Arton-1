@@ -121,47 +121,11 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/categories/linge"
-                  onClick={(e) => navigateTo('/categories/linge', e)}
-                  className="hover:text-white transition-colors"
-                >
-                  Linge de lit & Satin
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/categories/lit"
-                  onClick={(e) => navigateTo('/categories/lit', e)}
-                  className="hover:text-white transition-colors"
-                >
-                  Lits Coffres & Sommiers
-                </a>
-              </li>
-              <li>
-                <a
                   href="/categories/salon"
                   onClick={(e) => navigateTo('/categories/salon', e)}
                   className="hover:text-white transition-colors"
                 >
-                  Salons Marocains Modernes
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/categories/oreiller"
-                  onClick={(e) => navigateTo('/categories/oreiller', e)}
-                  className="hover:text-white transition-colors"
-                >
-                  Oreillers Ergonomiques
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/categories/accessoires"
-                  onClick={(e) => navigateTo('/categories/accessoires', e)}
-                  className="hover:text-white transition-colors"
-                >
-                  Accessoires & Surmatelas
+                  Salon & Oreillers
                 </a>
               </li>
             </ul>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Star, ShieldCheck, RotateCcw, Truck, Check, ShoppingBag } from 'lucide-react';
+import { X, Star, ShieldCheck, Truck, Check, ShoppingBag } from 'lucide-react';
 import { Product } from '../types';
 
 interface ProductDetailModalProps {
@@ -213,12 +213,8 @@ export default function ProductDetailModal({
                   Livraison offerte
                 </span>
                 <span className="flex items-center gap-1">
-                  <RotateCcw className="w-3.5 h-3.5 text-[#723C90]" />
-                  100 nuits d'essai
-                </span>
-                <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#723C90]" />
-                  Garantie 10 ans
+                  {product.warranty || 'Garantie 10 ans'}
                 </span>
               </div>
             </div>

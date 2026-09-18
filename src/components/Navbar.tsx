@@ -108,10 +108,10 @@ export default function Navbar({
           </div>
         </a>
 
-        {/* Desktop Navigation Links with the 6 Requested Categories */}
+        {/* Desktop Navigation Links with the 2 Categories: Matelas and Salon & Oreillers */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[14.5px] font-medium text-[#2D1C38]">
           {navCategories.map((cat) => {
-            const catProducts = PRODUCTS.filter((p) => p.category === cat.id);
+            const catProducts = PRODUCTS.filter((p) => p.category === cat.id || (cat.id === 'salon' && p.category === 'oreiller'));
             return (
               <div
                 key={cat.id}
@@ -241,34 +241,9 @@ export default function Navbar({
                   <ChevronRight className="w-4 h-4 text-[#A982B8]" />
                 </a>
               ))}
-
-              <div className="border-t border-[#F0EAF3] my-2" />
-
-              <a
-                href={getSitemapUrl()}
-                onClick={(e) => {
-                  navigateTo(getSitemapUrl(), e);
-                  setMobileMenuOpen(false);
-                }}
-                className="flex items-center justify-between py-2.5 px-3 rounded-lg text-sm font-semibold text-[#723C90] hover:bg-[#F8F6F9] text-left transition-colors cursor-pointer"
-              >
-                <span>Plan du site e-commerce</span>
-                <ChevronRight className="w-4 h-4" />
-              </a>
             </div>
 
             <div className="pt-4 border-t border-[#F0EAF3] flex flex-col gap-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenQuiz();
-                }}
-                className="w-full py-3 px-4 bg-[#723C90] text-white rounded-xl text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#542D6B] transition-colors cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4" />
-                Trouver mon matelas idéal (Guide)
-              </button>
-
               <div className="bg-[#F8F6F9] p-4 rounded-xl flex items-center justify-between text-sm text-[#2D1C38]">
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-[#723C90]" />

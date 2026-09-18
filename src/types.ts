@@ -30,6 +30,7 @@ export interface Product {
   firmness?: 'Moelleux' | 'Équilibré' | 'Ferme' | 'Très ferme';
   thickness?: string;
   composition: string;
+  warranty?: string;
   sizes: {
     size: string;
     price: number;

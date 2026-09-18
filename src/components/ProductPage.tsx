@@ -3,7 +3,6 @@ import {
   Star,
   ShieldCheck,
   Truck,
-  RotateCcw,
   Check,
   Share2,
   MessageCircle,
@@ -12,7 +11,6 @@ import {
   ArrowLeft,
   ShoppingBag,
   Sliders,
-  Award,
   PackageCheck
 } from 'lucide-react';
 import { Product } from '../types';
@@ -34,7 +32,6 @@ export default function ProductPage({ slug, onAddToCart, onOpenQuiz }: ProductPa
   const [selectedImg, setSelectedImg] = useState<string>(product.image);
   const [quantity, setQuantity] = useState<number>(1);
   const [copiedLink, setCopiedLink] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<'features' | 'specs' | 'care'>('features');
   const [addedToast, setAddedToast] = useState<boolean>(false);
 
   // Update selected size and image when product slug changes
@@ -190,6 +187,7 @@ export default function ProductPage({ slug, onAddToCart, onOpenQuiz }: ProductPa
                 <img
                   src={selectedImg}
                   alt={`${product.name} - DARY Literie Maroc`}
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 {product.badge && (
@@ -222,6 +220,7 @@ export default function ProductPage({ slug, onAddToCart, onOpenQuiz }: ProductPa
                       <img
                         src={imgUrl}
                         alt={`${product.name} vue ${idx + 1}`}
+                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"
                       />
                     </button>
@@ -230,7 +229,7 @@ export default function ProductPage({ slug, onAddToCart, onOpenQuiz }: ProductPa
               )}
 
               {/* Guarantees Box below gallery */}
-              <div className="grid grid-cols-3 gap-3 pt-4">
+              <div className="grid grid-cols-2 gap-3 pt-4">
                 <div className="bg-white p-3.5 rounded-xl border border-[#EFE7F3] text-center shadow-xs">
                   <Truck className="w-5 h-5 text-[#723C90] mx-auto mb-1.5" />
                   <div className="text-xs font-semibold text-[#2D1C38]">Livraison Offerte</div>
@@ -238,13 +237,8 @@ export default function ProductPage({ slug, onAddToCart, onOpenQuiz }: ProductPa
                 </div>
                 <div className="bg-white p-3.5 rounded-xl border border-[#EFE7F3] text-center shadow-xs">
                   <ShieldCheck className="w-5 h-5 text-[#723C90] mx-auto mb-1.5" />
-                  <div className="text-xs font-semibold text-[#2D1C38]">Garantie 10 Ans</div>
+                  <div className="text-xs font-semibold text-[#2D1C38]">{product.warranty || 'Garantie 10 Ans'}</div>
                   <div className="text-[10px] text-[#735F80]">Atelier DARY</div>
-                </div>
-                <div className="bg-white p-3.5 rounded-xl border border-[#EFE7F3] text-center shadow-xs">
-                  <RotateCcw className="w-5 h-5 text-[#723C90] mx-auto mb-1.5" />
-                  <div className="text-xs font-semibold text-[#2D1C38]">100 Nuits d'Essai</div>
-                  <div className="text-[10px] text-[#735F80]">Satisfait ou échangé</div>
                 </div>
               </div>
             </div>
@@ -422,123 +416,6 @@ export default function ProductPage({ slug, onAddToCart, onOpenQuiz }: ProductPa
             </div>
           </div>
         </div>
-
-        {/* Technical Specification Tabs */}
-        <section className="mt-14 bg-white rounded-2xl border border-[#EFE7F3] p-6 sm:p-10 shadow-sm">
-          <div className="flex border-b border-[#F0EAF3] gap-4 sm:gap-8 mb-6 overflow-x-auto">
-            <button
-              onClick={() => setActiveTab('features')}
-              className={`pb-3 text-sm font-semibold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
-                activeTab === 'features'
-                  ? 'border-[#723C90] text-[#723C90]'
-                  : 'border-transparent text-[#735F80] hover:text-[#2D1C38]'
-              }`}
-            >
-              Fiche Technique Complète
-            </button>
-            <button
-              onClick={() => setActiveTab('specs')}
-              className={`pb-3 text-sm font-semibold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
-                activeTab === 'specs'
-                  ? 'border-[#723C90] text-[#723C90]'
-                  : 'border-transparent text-[#735F80] hover:text-[#2D1C38]'
-              }`}
-            >
-              Composition & Matériaux
-            </button>
-            <button
-              onClick={() => setActiveTab('care')}
-              className={`pb-3 text-sm font-semibold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
-                activeTab === 'care'
-                  ? 'border-[#723C90] text-[#723C90]'
-                  : 'border-transparent text-[#735F80] hover:text-[#2D1C38]'
-              }`}
-            >
-              Livraison & Entretien au Maroc
-            </button>
-          </div>
-
-          {activeTab === 'features' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-              <div className="space-y-3">
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Modèle</span>
-                  <span className="font-semibold text-[#2D1C38]">{product.name}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Catégorie</span>
-                  <span className="font-semibold text-[#2D1C38]">{product.categoryName}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Origine de fabrication</span>
-                  <span className="font-semibold text-[#2D1C38]">Manufacture DARY, Casablanca, Maroc 🇲🇦</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Garantie</span>
-                  <span className="font-semibold text-[#2D1C38]">10 ans contre tout affaissement</span>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Fermeté</span>
-                  <span className="font-semibold text-[#2D1C38]">{product.firmness || 'Confort anatomique'}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Épaisseur totale</span>
-                  <span className="font-semibold text-[#2D1C38]">{product.thickness || '25 cm'}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Période d'essai</span>
-                  <span className="font-semibold text-[#2D1C38]">100 nuits satisfait ou échangé</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-[#F5EFF8]">
-                  <span className="text-[#735F80]">Traitement hygiénique</span>
-                  <span className="font-semibold text-[#2D1C38]">Anti-acariens, hypoallergénique</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'specs' && (
-            <div className="space-y-4 text-sm text-[#52405F]">
-              <p className="font-semibold text-[#2D1C38]">
-                Formule exclusive développée par nos maîtres matelassiers :
-              </p>
-              <p>{product.composition}</p>
-              <div className="bg-[#FAF8FB] p-4 rounded-xl border border-[#F0EAF3] space-y-2">
-                <div className="flex items-center gap-2 font-semibold text-[#723C90]">
-                  <Award className="w-4 h-4" /> Certifications & Normes de sécurité
-                </div>
-                <p className="text-xs text-[#735F80]">
-                  Toutes les mousses et textiles utilisés dans la fabrication de nos produits respectent la norme OEKO-TEX® Standard 100 classe 1 (exempts de métaux lourds, formaldéhyde et phtalates). Tissus respirants et traitement antibactérien durable.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'care' && (
-            <div className="space-y-4 text-sm text-[#52405F]">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-4 rounded-xl bg-[#FAF8FB] border border-[#F0EAF3]">
-                  <h3 className="font-semibold text-[#2D1C38] mb-2 flex items-center gap-2">
-                    <Truck className="w-4 h-4 text-[#723C90]" /> Modalités de Livraison
-                  </h3>
-                  <p className="text-xs text-[#735F80] leading-relaxed">
-                    Livraison gratuite à Casablanca, Rabat, Marrakech, Tanger, Fès, Agadir et dans toutes les villes du Maroc sous 24 à 48 heures. Nos livreurs installent le produit directement dans la pièce de votre choix.
-                  </p>
-                </div>
-                <div className="p-4 rounded-xl bg-[#FAF8FB] border border-[#F0EAF3]">
-                  <h3 className="font-semibold text-[#2D1C38] mb-2 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#723C90]" /> Conseils de Longévité
-                  </h3>
-                  <p className="text-xs text-[#735F80] leading-relaxed">
-                    Aérez régulièrement votre chambre. Pour les matelas réversibles, nous conseillons d'inverser tête et pieds tous les 6 mois. Utiliser de préférence un protège-matelas respirant DARY pour protéger le coutil jacquard.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
 
         {/* Related Products in this category */}
         {relatedProducts.length > 0 && (

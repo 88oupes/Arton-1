@@ -20,10 +20,10 @@ export default function CategoriesSection() {
               Manufacture & Collections DARY
             </div>
             <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#2D1C38] font-bold tracking-tight">
-              Nos 6 univers de confection <span className="italic text-[#723C90] font-normal">DARY</span>
+              Nos univers de confection <span className="italic text-[#723C90] font-normal">DARY</span>
             </h2>
             <p className="text-xs sm:text-base text-[#665373] mt-1.5 sm:mt-2 max-w-xl leading-relaxed">
-              Explorez nos collections certifiées confectionnées à Casablanca : matelas, linge, lits, salons marocains, oreillers et accessoires.
+              Explorez nos collections certifiées confectionnées à Casablanca : matelas haute résilience et salons marocains & oreillers ergonomiques.
             </p>
           </div>
 
@@ -32,13 +32,13 @@ export default function CategoriesSection() {
             onClick={(e) => navigateTo(getCategoryUrl('matelas'), e)}
             className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm font-bold uppercase tracking-wider text-[#723C90] hover:text-[#542D6B] group transition-all self-start sm:self-auto px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white border border-[#E5D7EB] hover:border-[#723C90] shadow-xs hover:shadow-md cursor-pointer"
           >
-            <span>Explorer tous les rayons</span>
+            <span>Explorer la collection</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
           </a>
         </div>
 
-        {/* 6 Cards Grid - 2 per line on mobile, 3 on tablet/desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-6 lg:gap-7">
+        {/* 2 Cards Grid - Beautiful 2-column layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto">
           {CATEGORIES_LIST.map((cat) => {
             const info = CATEGORIES_INFO[cat.id];
             const catUrl = getCategoryUrl(cat.id);

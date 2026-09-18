@@ -36,9 +36,9 @@ export default function MattressQuizModal({
   const getRecommendation = (): { product: Product; reason: string } => {
     if (answers.firmness === 'Moelleux' || answers.position === 'Côté') {
       return {
-        product: PRODUCTS.find((p) => p.id === 'matelas-feelsoft') || PRODUCTS[1],
+        product: PRODUCTS.find((p) => p.id === 'matelas-feelsoft') || PRODUCTS[0],
         reason:
-          'Grâce à son surmatelas Pillow-Top ultra-moelleux et sa technologie d\'absorption de points de pression, le Matelas Feelsoft élimine toute tension sur vos épaules et hanches en position latérale.',
+          'Grâce à son âme 100% High-Density Foam et sa couche supérieure HR 30 PRO, le matelas FEELSOFT HR élimine toute tension sur vos épaules et hanches pour un repos réparateur.',
       };
     }
     if (answers.firmness === 'Ferme' || answers.backPain === 'Oui') {
