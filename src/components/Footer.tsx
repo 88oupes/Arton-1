@@ -25,7 +25,7 @@ export default function Footer() {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm font-bold text-white">Garantie 10 ans</div>
+              <div className="text-sm font-bold text-white">Garantie jusqu'à 35 ans</div>
               <div className="text-xs text-[#C5B3D0]">Sérénité absolue</div>
             </div>
           </div>
@@ -115,7 +115,16 @@ export default function Footer() {
                   onClick={(e) => navigateTo('/categories/salon', e)}
                   className="hover:text-white transition-colors"
                 >
-                  Salon & Oreillers
+                  Salons Marocains
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/categories/oreiller"
+                  onClick={(e) => navigateTo('/categories/oreiller', e)}
+                  className="hover:text-white transition-colors"
+                >
+                  Oreillers Ergonomiques
                 </a>
               </li>
             </ul>

@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { CATEGORIES_LIST, CATEGORIES_INFO } from '../data/products';
 import { navigateTo, getCategoryUrl } from '../utils/navigation';
 
@@ -12,18 +12,14 @@ export default function CategoriesSection() {
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#542D6B]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-3.5 sm:px-8 relative z-10">
-        {/* Section Header with refined badge */}
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-14">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F3EDF6] text-[#723C90] text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-2.5 sm:mb-3 border border-[#E6D9EC] shadow-2xs">
-              <Sparkles className="w-3 h-3 text-[#723C90]" />
-              Manufacture & Collections DARY
-            </div>
             <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#2D1C38] font-bold tracking-tight">
               Nos univers de confection <span className="italic text-[#723C90] font-normal">DARY</span>
             </h2>
             <p className="text-xs sm:text-base text-[#665373] mt-1.5 sm:mt-2 max-w-xl leading-relaxed">
-              Explorez nos collections certifiées confectionnées à Casablanca : matelas haute résilience et salons marocains & oreillers ergonomiques.
+              Explorez nos collections certifiées : matelas haute résilience, salons marocains et oreillers ergonomiques.
             </p>
           </div>
 
@@ -37,8 +33,8 @@ export default function CategoriesSection() {
           </a>
         </div>
 
-        {/* 2 Cards Grid - Beautiful 2-column layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto">
+        {/* 3 Cards Grid - Matelas, Salons, Oreillers */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {CATEGORIES_LIST.map((cat) => {
             const info = CATEGORIES_INFO[cat.id];
             const catUrl = getCategoryUrl(cat.id);

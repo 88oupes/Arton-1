@@ -29,9 +29,7 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
 
   // Filter products belonging to this category
   const categoryProducts = useMemo(() => {
-    let list = PRODUCTS.filter(
-      (p) => p.category === categorySlug || (categorySlug === 'salon' && p.category === 'oreiller')
-    );
+    let list = PRODUCTS.filter((p) => p.category === categorySlug);
 
     if (filterFirmness !== 'all') {
       list = list.filter((p) => p.firmness === filterFirmness);
@@ -54,7 +52,7 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const title = `${currentCategory.name} Haut de Gamme — DARY Manufacture Marocaine`;
-    const description = `${currentCategory.description.slice(0, 140)}... Fabrication artisanale à Casablanca, garantie 10 ans et livraison offerte.`;
+    const description = `${currentCategory.description.slice(0, 140)}... Fabrication artisanale d'exception, garantie jusqu'à 35 ans et livraison offerte.`;
 
     const schema = {
       '@context': 'https://schema.org',

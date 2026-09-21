@@ -4,6 +4,7 @@ import catMatelasImg from '../assets/images/cat_matelas_corner_1789503532815.jpg
 import catSommierImg from '../assets/images/cat_sommier_slats_1789503542852.jpg';
 import catOreillersImg from '../assets/images/cat_pillows_soft_1789503553898.jpg';
 import catCollectionsImg from '../assets/images/cat_bedroom_suite_1789503564553.jpg';
+import salonMarocainImg from '../assets/images/salon_marocain_33_1789989767901.jpg';
 
 // Real Arton Confort mattresses with authentic photography
 import prodConsoftImg from '../assets/images/matelas_consoft_1789590371464.jpg';
@@ -28,7 +29,8 @@ export {
 
 export const CATEGORIES_LIST: { id: CategoryId; name: string; slug: string }[] = [
   { id: 'matelas', name: 'Matelas', slug: 'matelas' },
-  { id: 'salon', name: 'Salon & Oreillers', slug: 'salon' },
+  { id: 'salon', name: 'Salons', slug: 'salon' },
+  { id: 'oreiller', name: 'Oreillers', slug: 'oreiller' },
 ];
 
 export const CATEGORIES_INFO: Record<CategoryId, CategoryInfo> = {
@@ -38,9 +40,9 @@ export const CATEGORIES_INFO: Record<CategoryId, CategoryInfo> = {
     slug: 'matelas',
     tagline: 'Manufacture d\'exception & confort ergonomique',
     description: 'Découvrez notre collection signature de matelas fabriqués au Maroc : technologie ressorts ensachés, mousse haute résilience certifiée et surmatelas intégrés pour des nuits réparatrices.',
-    image: 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789744027/Gemini_Generated_Image_jq4i0tjq4i0tjq4i.jpg',
+    image: 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789989832/Gemini_Generated_Image_lz4yfmlz4yfmlz4y.jpg',
     itemCountText: '4 modèles d\'exception',
-    highlights: ['100 nuits d\'essai', 'Garantie 10 ans', 'Livraison & installation offertes'],
+    highlights: ['100 nuits d\'essai', 'Garantie jusqu\'à 35 ans', 'Livraison & installation offertes'],
   },
   linge: {
     id: 'linge',
@@ -64,23 +66,23 @@ export const CATEGORIES_INFO: Record<CategoryId, CategoryInfo> = {
   },
   salon: {
     id: 'salon',
-    name: 'Salon & Oreillers',
+    name: 'Salons',
     slug: 'salon',
-    tagline: 'L\'art du salon marocain et des oreillers & coussins d\'exception',
-    description: 'Banquettes contemporaines, sedaris sur-mesure, coussins et oreillers ergonomiques alliant le savoir-faire artisanal marocain et le confort haute densité DARY.',
-    image: catCollectionsImg,
-    itemCountText: '4 créations & oreillers',
-    highlights: ['Mousses haute densité indéformables', 'Oreillers ergonomiques & duvet', 'Sur-mesure disponible'],
+    tagline: 'L\'art du salon contemporain et des banquettes sur-mesure',
+    description: 'Banquettes contemporaines, sedaris sur-mesure et mousses haute densité indéformables alliant le savoir-faire artisanal et le confort haute résilience DARY.',
+    image: salonMarocainImg,
+    itemCountText: '2 créations & banquettes',
+    highlights: ['Mousses haute densité 35-40 kg', 'Découpe sur-mesure sans supplément', 'Tissus antitaches premium'],
   },
   oreiller: {
     id: 'oreiller',
     name: 'Oreillers',
     slug: 'oreiller',
     tagline: 'Alignement cervical parfait & soutien voluptueux',
-    description: 'Oreillers à mémoire de forme thermosensible, microfibres effet duvet et latex végétal pour soulager instantanément vos tensions cervicales.',
+    description: 'Oreillers à mémoire de forme thermosensible et microfibres effet duvet palace pour un maintien ergonomique et un sommeil réparateur.',
     image: catOreillersImg,
-    itemCountText: '3 soutiens ergonomiques',
-    highlights: ['Soutien nuque & trapèzes', 'Housse lavable & respirante', 'Hypoallergénique certifié'],
+    itemCountText: '2 soutiens ergonomiques',
+    highlights: ['Soutien nuque & cervicales', 'Housse lavable & respirante', 'Hypoallergénique certifié'],
   },
   accessoires: {
     id: 'accessoires',
@@ -99,15 +101,22 @@ export const CATEGORIES: CategoryItem[] = [
     id: 'matelas',
     title: 'Matelas',
     subtitle: 'Confort pour tous les besoins →',
-    image: 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789744027/Gemini_Generated_Image_jq4i0tjq4i0tjq4i.jpg',
+    image: 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789989832/Gemini_Generated_Image_lz4yfmlz4yfmlz4y.jpg',
     link: '/categories/matelas',
   },
   {
     id: 'salon',
-    title: 'Salon & Oreillers',
-    subtitle: 'Banquettes artisanales & oreillers →',
-    image: catCollectionsImg,
+    title: 'Salons',
+    subtitle: 'Banquettes & sedaris sur-mesure →',
+    image: salonMarocainImg,
     link: '/categories/salon',
+  },
+  {
+    id: 'oreiller',
+    title: 'Oreillers',
+    subtitle: 'Maintien cervical & confort palace →',
+    image: catOreillersImg,
+    link: '/categories/oreiller',
   },
 ];
 
@@ -481,10 +490,10 @@ export const PRODUCTS: Product[] = [
     originalPrice: 5890,
     rating: 4.9,
     reviewsCount: 41,
-    image: catCollectionsImg,
+    image: salonMarocainImg,
     additionalImages: [
+      salonMarocainImg,
       catCollectionsImg,
-      'https://res.cloudinary.com/psbqhe7h/image/upload/v1789652990/Lit_5.png',
     ],
     description: 'Une réinterprétation contemporaine du salon marocain. Assise profonde capitonnée en mousse haute résilience 40 kg/m³, dossier ergonomique et piétement minimaliste en noyer ou métal noir brossé.',
     features: [
@@ -520,7 +529,7 @@ export const PRODUCTS: Product[] = [
       catMatelasImg,
       catCollectionsImg,
     ],
-    description: 'Mousse pour banquette et sedari marocain taillée dans notre manufacture de Casablanca. Densité 35 kg/m³ idéale pour garantir une assise droite sans aucun creusement avec les années.',
+    description: 'Mousse pour banquette et sedari marocain taillée dans notre manufacture. Densité 35 kg/m³ idéale pour garantir une assise droite sans aucun creusement avec les années.',
     features: [
       'Bloc mousse pure résilience certifiée',
       'Housse de propreté stretch zippée incluse',

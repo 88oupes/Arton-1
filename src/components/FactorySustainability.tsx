@@ -30,10 +30,6 @@ export default function FactorySustainability({
 
             {/* DARY brand stamp on image */}
             <div className="relative z-10">
-              <div className="inline-block px-3.5 py-1 bg-[#723C90]/60 backdrop-blur-md rounded-full text-white text-[11px] font-semibold tracking-wider uppercase mb-4 border border-[#A982B8]/40">
-                Manufacture DARY • Maroc
-              </div>
-
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-normal leading-[1.15] max-w-lg tracking-tight">
                 Notre manufacture, <br />
                 <span className="italic font-normal text-[#E5DAEA]">votre garantie</span>
@@ -42,16 +38,6 @@ export default function FactorySustainability({
               <p className="text-sm sm:text-base text-[#D4C3DC] mt-4 leading-relaxed max-w-lg font-normal">
                 Des matelas façonnés dans nos ateliers avec le respect des traditions artisanales et une exigence d'élégance à chaque couture.
               </p>
-
-              <div className="mt-7">
-                <button
-                  onClick={onLearnMoreFactory}
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-white text-[#2D1C38] hover:bg-[#F8F6F9] text-sm font-semibold rounded-lg transition-all shadow-md group/btn cursor-pointer"
-                >
-                  <span>Découvrir notre savoir-faire</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 text-[#723C90]" />
-                </button>
-              </div>
             </div>
 
             {/* 3 Badges at the bottom from the photo */}

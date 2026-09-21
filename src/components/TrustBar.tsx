@@ -19,30 +19,30 @@ export default function TrustBar() {
     },
     {
       icon: ShieldCheck,
-      title: 'Garantie jusqu\'à 10 ans',
+      title: "Garantie jusqu'à 35 ans",
       subtitle: 'Dormez en toute sérénité',
     },
   ];
 
   return (
-    <section className="w-full bg-white border-b border-[#F0EAF3] py-8 sm:py-10">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6">
+    <section className="w-full bg-[#FCFAFD] border-b border-[#EFE8F2] py-3 sm:py-3.5">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-2.5 sm:gap-4 lg:gap-6">
           {items.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={idx}
-                className="flex items-center gap-3.5 sm:gap-4 p-2 rounded-xl transition-all duration-200 hover:bg-[#F8F6F9]"
+                className="flex items-start sm:items-center gap-2 sm:gap-2.5 p-1 rounded-lg transition-colors hover:bg-white"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#F8F6F9] flex items-center justify-center shrink-0 text-[#723C90] border border-[#F0EAF3]">
-                  <Icon className="w-6 h-6 stroke-[1.75]" />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#F3EDF6] flex items-center justify-center shrink-0 text-[#723C90] border border-[#E8DCEE] mt-0.5 sm:mt-0">
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.5]" />
                 </div>
-                <div>
-                  <h2 className="text-sm font-bold text-[#2D1C38] leading-tight">
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-[10.5px] sm:text-[11.5px] font-medium text-[#2D1C38] leading-tight">
                     {item.title}
-                  </h2>
-                  <p className="text-xs text-[#665373] mt-0.5 font-normal">
+                  </h3>
+                  <p className="text-[9.5px] sm:text-[10.5px] text-[#665373] mt-0.5 leading-tight">
                     {item.subtitle}
                   </p>
                 </div>

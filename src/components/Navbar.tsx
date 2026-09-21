@@ -1,5 +1,5 @@
 import { useState, type MouseEvent } from 'react';
-import { Search, ShoppingBag, Menu, X, Phone, ChevronRight, Sparkles, MapPin } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, Phone, ChevronRight } from 'lucide-react';
 import Logo from './Logo';
 import { CATEGORIES_LIST, PRODUCTS } from '../data/products';
 import { navigateTo, getCategoryUrl, getProductUrl, getHomeUrl, getSitemapUrl } from '../utils/navigation';
@@ -86,10 +86,10 @@ export default function Navbar({
           </div>
         </a>
 
-        {/* Desktop Navigation Links with the 2 Categories: Matelas and Salon & Oreillers */}
+        {/* Desktop Navigation Links: Matelas, Salons, Oreillers */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[14.5px] font-medium text-[#2D1C38]">
           {navCategories.map((cat) => {
-            const catProducts = PRODUCTS.filter((p) => p.category === cat.id || (cat.id === 'salon' && p.category === 'oreiller'));
+            const catProducts = PRODUCTS.filter((p) => p.category === cat.id);
             return (
               <div
                 key={cat.id}
@@ -148,15 +148,6 @@ export default function Navbar({
               </div>
             );
           })}
-
-          {/* Direct Guide / Quiz link */}
-          <button
-            onClick={onOpenQuiz}
-            className="text-xs font-bold bg-[#FAF5FC] hover:bg-[#F3E7F7] text-[#723C90] px-3 py-1.5 rounded-full transition-colors flex items-center gap-1 cursor-pointer border border-[#EFE4F5]"
-          >
-            <Sparkles className="w-3 h-3" />
-            <span>Guide d'achat</span>
-          </button>
         </nav>
 
         {/* Action icons (Search, Sitemap, and Cart) */}
