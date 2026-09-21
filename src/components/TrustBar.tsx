@@ -4,8 +4,8 @@ export default function TrustBar() {
   const items = [
     {
       icon: Factory,
-      title: 'Production en circuit court',
-      subtitle: 'Dans notre propre usine',
+      title: 'Confection 100% Marocaine',
+      subtitle: 'Fabriqué dans nos ateliers',
     },
     {
       icon: Leaf,

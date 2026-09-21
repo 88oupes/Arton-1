@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -28,19 +28,41 @@ export default function Footer() {
               <span>Manufacture DARY, Casablanca, Maroc</span>
             </div>
 
-            {/* WhatsApp Contact Button in Green */}
-            <div className="pt-2">
+            {/* WhatsApp Contact & Social Media Channels */}
+            <div className="pt-3 flex flex-wrap items-center gap-2.5 sm:gap-3">
               <a
                 href="https://wa.me/212691707445?text=Bonjour%20DARY%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white text-xs font-semibold shadow-md hover:shadow-lg transition-all group cursor-pointer border border-[#25D366]/40"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white text-xs font-semibold shadow-md hover:shadow-lg transition-all group cursor-pointer border border-[#25D366]/40"
                 aria-label="Contacter sur WhatsApp au 06 91 70 74 45"
               >
-                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                   <MessageCircle className="w-3.5 h-3.5 fill-white text-[#25D366]" />
                 </div>
-                <span>WhatsApp : 06 91 70 74 45</span>
+                <span>WhatsApp</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/darymaroc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#361D46] hover:bg-[#E1306C] text-[#E5DAEA] hover:text-white text-xs font-semibold border border-[#4C2963] hover:border-[#E1306C] transition-all shadow-xs group cursor-pointer"
+                aria-label="Suivez-nous sur Instagram @darymaroc"
+              >
+                <Instagram className="w-4 h-4 text-[#C5B3D0] group-hover:text-white transition-colors" />
+                <span>Instagram</span>
+              </a>
+
+              <a
+                href="https://web.facebook.com/darybedmaroc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#361D46] hover:bg-[#1877F2] text-[#E5DAEA] hover:text-white text-xs font-semibold border border-[#4C2963] hover:border-[#1877F2] transition-all shadow-xs group cursor-pointer"
+                aria-label="Rejoignez-nous sur Facebook @darybedmaroc"
+              >
+                <Facebook className="w-4 h-4 text-[#C5B3D0] group-hover:text-white transition-colors" />
+                <span>Facebook</span>
               </a>
             </div>
           </div>
@@ -56,6 +78,30 @@ export default function Footer() {
             <a href="#cgv" className="hover:text-white transition-colors">CGV & Mentions légales</a>
             <span>•</span>
             <a href="#confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</a>
+          </div>
+
+          {/* Social Icons in Bottom Bar */}
+          <div className="flex items-center gap-2">
+            <a
+              href="https://www.instagram.com/darymaroc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-[#2E183B] hover:bg-[#E1306C] text-[#C5B3D0] hover:text-white flex items-center justify-center transition-all border border-[#4C2963] hover:border-[#E1306C]"
+              aria-label="Instagram DARY Maroc"
+              title="Instagram @darymaroc"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href="https://web.facebook.com/darybedmaroc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-[#2E183B] hover:bg-[#1877F2] text-[#C5B3D0] hover:text-white flex items-center justify-center transition-all border border-[#4C2963] hover:border-[#1877F2]"
+              aria-label="Facebook DARY Maroc"
+              title="Facebook @darybedmaroc"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>

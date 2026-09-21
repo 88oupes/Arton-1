@@ -1,9 +1,22 @@
-import { useState, type MouseEvent } from 'react';
-import { Search, ShoppingBag, Menu, X, Phone, ChevronRight } from 'lucide-react';
+import { useState, useRef, useEffect, type MouseEvent } from 'react';
+import { Search, ShoppingBag, Menu, X, Phone, ChevronRight, Check } from 'lucide-react';
 import Logo from './Logo';
 import { CATEGORIES_LIST, PRODUCTS } from '../data/products';
 import { navigateTo, getCategoryUrl, getProductUrl, getHomeUrl, getSitemapUrl } from '../utils/navigation';
 import { CategoryId } from '../types';
+
+const ANNOUNCEMENT_ITEMS = [
+  {
+    text: "-15% SUR TOUTE LA COLLECTION",
+    highlight: "CODE : DARY15",
+    isPromo: true,
+  },
+  {
+    text: "LIVRAISON OFFERTE PARTOUT AU MAROC",
+    highlight: "CASABLANCA, RABAT, MARRAKECH...",
+    isPromo: false,
+  },
+];
 
 interface NavbarProps {
   cartCount: number;
@@ -21,11 +34,37 @@ export default function Navbar({
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const tickerRef = useRef<HTMLDivElement>(null);
+  const scrollPos = useRef(0);
+
+  useEffect(() => {
+    let animationId: number;
+    const speed = 0.55; // Pixels per frame for smooth readable movement
+
+    const animate = () => {
+      if (!isPaused && tickerRef.current) {
+        scrollPos.current += speed;
+        const halfWidth = tickerRef.current.scrollWidth / 2;
+        if (halfWidth > 0 && scrollPos.current >= halfWidth) {
+          scrollPos.current -= halfWidth;
+        }
+        tickerRef.current.style.transform = `translate3d(-${scrollPos.current}px, 0, 0)`;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused]);
 
   const handleCopyCode = (e?: MouseEvent) => {
     if (e) e.stopPropagation();
     try {
       navigator.clipboard?.writeText('DARY15');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2400);
     } catch {
       // Fallback
     }
@@ -41,20 +80,51 @@ export default function Navbar({
 
   return (
     <header className="w-full sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all border-b border-[#F0EAF3]">
-      {/* Top Utility Announcement Bar - Slim & Refined Code Promo */}
-      <div className="bg-[#542D6B] border-b border-[#48255c] text-white py-1 sm:py-1.5 px-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-center text-xs">
-          <div
-            onClick={() => handleCopyCode()}
-            className="inline-flex items-center justify-center text-[10.5px] sm:text-[11.5px] font-light tracking-[0.18em] uppercase text-white/90 hover:text-white transition-colors cursor-pointer group select-none"
-            title="Cliquez pour copier le code promo DARY15"
-          >
-            <span>-15% sur toute la collection</span>
-            <span className="mx-2.5 text-white/40 font-thin">•</span>
-            <span className="font-normal text-white">
-              Code : <span className="font-semibold tracking-widest text-white border-b border-white/40 pb-px group-hover:border-white transition-colors">DARY15</span>
-            </span>
+      {/* Top Utility Announcement Bar - Moving Ticker with JavaScript */}
+      <div
+        className="bg-[#542D6B] border-b border-[#48255c] text-white py-1 sm:py-1.5 overflow-hidden select-none relative"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
+        {/* Visual feedback when code is copied */}
+        {copied && (
+          <div className="absolute inset-0 bg-[#361D46] z-10 flex items-center justify-center gap-2 text-xs font-semibold text-white transition-all">
+            <Check className="w-3.5 h-3.5 text-[#25D366]" />
+            <span>Code <strong>DARY15</strong> copié dans le presse-papier (-15% à la commande)</span>
           </div>
+        )}
+
+        <div
+          ref={tickerRef}
+          className="flex whitespace-nowrap will-change-transform cursor-pointer"
+          title="Cliquez pour copier le code DARY15 (défilement en pause au survol)"
+        >
+          {/* Repeated items for an infinite, continuous loop across all screen sizes */}
+          {[...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS].map((item, idx) => (
+            <div
+              key={idx}
+              onClick={item.isPromo ? (e) => handleCopyCode(e) : undefined}
+              className="inline-flex items-center text-[10.5px] sm:text-[11.5px] font-light tracking-[0.16em] uppercase text-white/90 hover:text-white transition-colors px-6 sm:px-10 group shrink-0"
+            >
+              <span>{item.text}</span>
+              <span className="mx-2.5 text-white/40 font-thin">•</span>
+              <span className="font-normal text-white">
+                {item.isPromo ? (
+                  <>
+                    Code :{' '}
+                    <span className="font-semibold tracking-widest text-white border-b border-white/40 pb-px group-hover:border-white transition-colors bg-white/10 px-1.5 py-0.5 rounded">
+                      DARY15
+                    </span>
+                  </>
+                ) : (
+                  <span className="text-[#E5DAEA] font-medium">{item.highlight}</span>
+                )}
+              </span>
+              <span className="ml-6 sm:ml-10 text-[#A982B8]/60 font-serif">✦</span>
+            </div>
+          ))}
         </div>
       </div>
 
