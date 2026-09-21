@@ -1,9 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import {
   Star,
-  ShieldCheck,
-  Truck,
-  RotateCcw,
   Sparkles,
   ChevronRight,
   ArrowRight,
@@ -19,7 +16,7 @@ import { updateMetaTags } from '../utils/seo';
 interface CategoryPageProps {
   categorySlug: CategoryId;
   onAddToCart: (product: Product, selectedSize: string, quantity: number) => void;
-  onOpenQuiz: () => void;
+  onOpenQuiz?: () => void;
 }
 
 export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: CategoryPageProps) {
@@ -313,71 +310,6 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Why Choose DARY for this category */}
-        <section className="mt-16 bg-white rounded-2xl border border-[#EFE7F3] p-8 sm:p-12 shadow-sm">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#723C90] block mb-2">
-              L'Excellence DARY
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#2D1C38]">
-              Pourquoi faire confiance à notre manufacture marocaine ?
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="text-center space-y-2 p-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#F8F3FA] text-[#723C90] flex items-center justify-center mx-auto mb-3 shadow-xs">
-                <Truck className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-base text-[#2D1C38]">Livraison Gratuite au Maroc</h3>
-              <p className="text-xs text-[#735F80] leading-relaxed">
-                Nos équipes livrent et installent vos produits directement à votre étage dans tout le Royaume.
-              </p>
-            </div>
-
-            <div className="text-center space-y-2 p-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#F8F3FA] text-[#723C90] flex items-center justify-center mx-auto mb-3 shadow-xs">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-base text-[#2D1C38]">Garantie Constructeur 10 Ans</h3>
-              <p className="text-xs text-[#735F80] leading-relaxed">
-                Confectionnés avec des matières nobles certifiées, nos articles sont conçus pour durer sans fléchir.
-              </p>
-            </div>
-
-            <div className="text-center space-y-2 p-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#F8F3FA] text-[#723C90] flex items-center justify-center mx-auto mb-3 shadow-xs">
-                <RotateCcw className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-base text-[#2D1C38]">100 Nuits Pour Essayer</h3>
-              <p className="text-xs text-[#735F80] leading-relaxed">
-                Prenez le temps d'adopter votre nouvelle literie dans le confort absolu de votre chambre.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Quiz CTA Banner */}
-        <div className="mt-12 bg-gradient-to-r from-[#542D6B] to-[#723C90] text-white p-8 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
-          <div className="space-y-1 text-center sm:text-left">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#E7BFF5]">
-              Conseils Personnalisés
-            </div>
-            <h3 className="text-xl sm:text-2xl font-serif font-bold">
-              Besoin d'aide pour choisir votre modèle idéal ?
-            </h3>
-            <p className="text-xs sm:text-sm text-white/80">
-              Répondez à 4 questions simples en moins de 60 secondes pour trouver le confort parfait.
-            </p>
-          </div>
-          <button
-            onClick={onOpenQuiz}
-            className="bg-white text-[#542D6B] hover:bg-[#FAF5FC] font-bold text-xs sm:text-sm py-3 px-6 rounded-xl transition-colors whitespace-nowrap cursor-pointer shadow-md"
-          >
-            Lancer le quiz DARY →
-          </button>
         </div>
       </main>
     </div>

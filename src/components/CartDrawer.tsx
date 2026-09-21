@@ -2,13 +2,20 @@ import { useState, type FormEvent } from 'react';
 import { X, Trash2, ShoppingBag, ArrowRight, ShieldCheck, Truck, Check, Sparkles } from 'lucide-react';
 import { CartItem } from '../types';
 
+export interface CheckoutData {
+  subtotal: number;
+  discount: number;
+  promoCode?: string;
+  finalTotal: number;
+}
+
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   items: CartItem[];
   onUpdateQuantity: (productId: string, size: string, newQty: number) => void;
   onRemoveItem: (productId: string, size: string) => void;
-  onCheckout: () => void;
+  onCheckout: (data: CheckoutData) => void;
 }
 
 export default function CartDrawer({
@@ -254,7 +261,14 @@ export default function CartDrawer({
 
             {/* Checkout Action Button */}
             <button
-              onClick={onCheckout}
+              onClick={() =>
+                onCheckout({
+                  subtotal,
+                  discount: discountApplied || 0,
+                  promoCode: discountApplied ? (promoInput.trim().toUpperCase() || 'DARY15') : undefined,
+                  finalTotal,
+                })
+              }
               className="w-full py-3.5 px-6 bg-[#723C90] hover:bg-[#542D6B] text-white rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-md group cursor-pointer"
             >
               <span>Valider ma commande</span>

@@ -10,10 +10,11 @@ import {
   PackageCheck,
   Building2,
   PhoneCall,
-  Sliders
+  Sliders,
+  Store
 } from 'lucide-react';
 import { PRODUCTS, CATEGORIES_INFO, CATEGORIES_LIST } from '../data/products';
-import { navigateTo, getProductUrl, getCategoryUrl, getHomeUrl } from '../utils/navigation';
+import { navigateTo, getProductUrl, getCategoryUrl, getHomeUrl, getStoresUrl } from '../utils/navigation';
 import { updateMetaTags } from '../utils/seo';
 
 interface SitemapPageProps {
@@ -249,7 +250,7 @@ export default function SitemapPage({ onOpenQuiz }: SitemapPageProps) {
             <span>Pages d'Informations & Services Clients</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 text-xs">
             <div
               onClick={(e) => navigateTo(getHomeUrl(), e)}
               className="p-4 rounded-xl bg-[#FAF8FB] border border-[#F0EAF3] hover:border-[#723C90] transition-colors cursor-pointer group"
@@ -260,6 +261,20 @@ export default function SitemapPage({ onOpenQuiz }: SitemapPageProps) {
               <div className="text-[11px] font-mono text-[#8E7E9C] mt-1">/ (Accueil officiel)</div>
               <p className="text-[11px] text-[#735F80] mt-2">
                 Manufacture marocaine, histoire de la marque, best-sellers et avis certifiés.
+              </p>
+            </div>
+
+            <div
+              onClick={(e) => navigateTo(getStoresUrl(), e)}
+              className="p-4 rounded-xl bg-[#FAF4FD] border border-[#EADBEE] hover:border-[#723C90] transition-colors cursor-pointer group"
+            >
+              <div className="font-bold text-sm text-[#723C90] flex items-center gap-1.5">
+                <Store className="w-3.5 h-3.5 text-[#723C90]" />
+                <span>Nos Magasins (Berrechid & Mohammedia)</span>
+              </div>
+              <div className="text-[11px] font-mono text-[#8E7E9C] mt-1">/nos-magasins (Google Maps)</div>
+              <p className="text-[11px] text-[#735F80] mt-2">
+                Boutiques et showrooms officiels avec plans interactifs, horaires et itinéraires.
               </p>
             </div>
 

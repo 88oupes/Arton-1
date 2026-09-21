@@ -5,6 +5,7 @@ export type AppRoute =
   | { type: 'home' }
   | { type: 'category'; categorySlug: CategoryId }
   | { type: 'product'; productSlug: string }
+  | { type: 'stores' }
   | { type: 'sitemap' };
 
 export function parseCurrentRoute(): AppRoute {
@@ -30,6 +31,10 @@ export function parseCurrentRoute(): AppRoute {
 
   if (cleanPath === 'plan-du-site' || cleanPath === 'sitemap') {
     return { type: 'sitemap' };
+  }
+
+  if (cleanPath === 'nos-magasins' || cleanPath === 'magasins' || cleanPath === 'stores') {
+    return { type: 'stores' };
   }
 
   // Check /categories/:slug
@@ -77,6 +82,10 @@ export function getCategoryUrl(category: CategoryId | string): string {
 
 export function getSitemapUrl(): string {
   return '/plan-du-site';
+}
+
+export function getStoresUrl(): string {
+  return '/nos-magasins';
 }
 
 export function getHomeUrl(): string {

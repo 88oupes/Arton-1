@@ -6,12 +6,15 @@ import TrustBar from './components/TrustBar';
 import CategoriesSection from './components/CategoriesSection';
 import FactorySustainability from './components/FactorySustainability';
 import ReviewsSection from './components/ReviewsSection';
+import StoresSection from './components/StoresSection';
+import StoresPage from './components/StoresPage';
 import Footer from './components/Footer';
 import CategoryPage from './components/CategoryPage';
 import ProductPage from './components/ProductPage';
 import SitemapPage from './components/SitemapPage';
 import ProductDetailModal from './components/ProductDetailModal';
-import CartDrawer from './components/CartDrawer';
+import CartDrawer, { CheckoutData } from './components/CartDrawer';
+import CheckoutModal from './components/CheckoutModal';
 import MattressQuizModal from './components/MattressQuizModal';
 import SearchModal from './components/SearchModal';
 import InfoModal from './components/InfoModal';
@@ -28,6 +31,12 @@ export default function App() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [infoModalType, setInfoModalType] = useState<'factory' | 'eco' | 'checkout' | 'reviews' | null>(null);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [checkoutData, setCheckoutData] = useState<CheckoutData>({
+    subtotal: 0,
+    discount: 0,
+    finalTotal: 0,
+  });
 
   // Listen for browser navigation changes (back/forward or pushState)
   useEffect(() => {
@@ -128,10 +137,14 @@ export default function App() {
     );
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = (data: CheckoutData) => {
     setIsCartOpen(false);
+    setCheckoutData(data);
+    setIsCheckoutOpen(true);
+  };
+
+  const handleOrderSuccess = () => {
     setCartItems([]);
-    setInfoModalType('checkout');
   };
 
   const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -175,11 +188,18 @@ export default function App() {
               onLearnMoreEco={() => setInfoModalType('eco')}
             />
 
-            {/* 6. Social Proof & Reviews: "Ils dorment déjà mieux" */}
+            {/* 6. Boutiques & Showrooms: "Venez essayer votre confort" */}
+            <StoresSection />
+
+            {/* 7. Social Proof & Reviews: "Ils dorment déjà mieux" */}
             <ReviewsSection
               onWriteReview={() => setInfoModalType('reviews')}
             />
           </main>
+        )}
+
+        {route.type === 'stores' && (
+          <StoresPage />
         )}
 
         {route.type === 'category' && (
@@ -229,6 +249,17 @@ export default function App() {
         onUpdateQuantity={handleUpdateCartQuantity}
         onRemoveItem={handleRemoveCartItem}
         onCheckout={handleCheckout}
+      />
+
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        items={cartItems}
+        subtotal={checkoutData.subtotal}
+        discount={checkoutData.discount}
+        promoCode={checkoutData.promoCode}
+        finalTotal={checkoutData.finalTotal}
+        onOrderSuccess={handleOrderSuccess}
       />
 
       <MattressQuizModal

@@ -1,5 +1,5 @@
 import heroBedroomImg from '../assets/images/arton_hero_suite_1789646884211.jpg';
-import factoryCraftsmanImg from '../assets/images/dormilux_factory_worker_1789503519564.jpg';
+const factoryCraftsmanImg = 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789991588/matelas_confection.jpg';
 import catMatelasImg from '../assets/images/cat_matelas_corner_1789503532815.jpg';
 import catSommierImg from '../assets/images/cat_sommier_slats_1789503542852.jpg';
 import catOreillersImg from '../assets/images/cat_pillows_soft_1789503553898.jpg';

@@ -46,13 +46,6 @@ export default function CategoriesSection() {
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2D1C38]/75 via-transparent to-black/10 opacity-70 group-hover:opacity-50 transition-opacity" />
 
-                  {/* Floating Tag / Badge */}
-                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10">
-                    <span className="bg-[#542D6B]/90 backdrop-blur-md text-white text-[8.5px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-white/20 shadow-xs">
-                      {info.itemCountText}
-                    </span>
-                  </div>
-
                   {/* Corner Visual Indicator */}
                   <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-10 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#723C90] shadow-md group-hover:bg-[#723C90] group-hover:text-white group-hover:scale-110 transition-all duration-300">
                     <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-0.5" />

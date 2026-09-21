@@ -1,5 +1,6 @@
-import { Phone, Mail, MapPin, MessageCircle, Instagram, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Instagram, Facebook, Store } from 'lucide-react';
 import Logo from './Logo';
+import { navigateTo, getStoresUrl } from '../utils/navigation';
 
 export default function Footer() {
   return (
@@ -26,6 +27,16 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-[#A982B8] shrink-0" />
               <span>Manufacture DARY, Casablanca, Maroc</span>
+            </div>
+            <div className="flex items-center gap-2 pt-1">
+              <Store className="w-4 h-4 text-[#25D366] shrink-0" />
+              <a
+                href={getStoresUrl()}
+                onClick={(e) => navigateTo(getStoresUrl(), e)}
+                className="text-[#EADBEE] hover:text-white underline decoration-[#A982B8] transition-colors"
+              >
+                Nos Magasins & Showrooms : Berrechid & Mohammedia (Google Maps)
+              </a>
             </div>
 
             {/* WhatsApp Contact & Social Media Channels */}

@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, type MouseEvent } from 'react';
-import { Search, ShoppingBag, Menu, X, Phone, ChevronRight, Check } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, Phone, ChevronRight, Check, MapPin } from 'lucide-react';
 import Logo from './Logo';
 import { CATEGORIES_LIST, PRODUCTS } from '../data/products';
-import { navigateTo, getCategoryUrl, getProductUrl, getHomeUrl, getSitemapUrl } from '../utils/navigation';
+import { navigateTo, getCategoryUrl, getProductUrl, getHomeUrl, getSitemapUrl, getStoresUrl } from '../utils/navigation';
 import { CategoryId } from '../types';
 
 const ANNOUNCEMENT_ITEMS = [
@@ -10,11 +10,6 @@ const ANNOUNCEMENT_ITEMS = [
     text: "-15% SUR TOUTE LA COLLECTION",
     highlight: "CODE : DARY15",
     isPromo: true,
-  },
-  {
-    text: "LIVRAISON OFFERTE PARTOUT AU MAROC",
-    highlight: "CASABLANCA, RABAT, MARRAKECH...",
-    isPromo: false,
   },
 ];
 
@@ -102,7 +97,7 @@ export default function Navbar({
           title="Cliquez pour copier le code DARY15 (défilement en pause au survol)"
         >
           {/* Repeated items for an infinite, continuous loop across all screen sizes */}
-          {[...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS].map((item, idx) => (
+          {Array.from({ length: 12 }, () => ANNOUNCEMENT_ITEMS).flat().map((item, idx) => (
             <div
               key={idx}
               onClick={item.isPromo ? (e) => handleCopyCode(e) : undefined}
@@ -218,6 +213,16 @@ export default function Navbar({
               </div>
             );
           })}
+
+          {/* Nos Magasins Link */}
+          <a
+            href={getStoresUrl()}
+            onClick={(e) => navigateTo(getStoresUrl(), e)}
+            className="transition-colors hover:text-[#723C90] flex items-center gap-1.5 text-left cursor-pointer font-medium py-1 px-2.5 rounded-lg hover:bg-[#F8F6F9]"
+          >
+            <MapPin className="w-3.5 h-3.5 text-[#723C90]" />
+            <span>Nos Magasins</span>
+          </a>
         </nav>
 
         {/* Action icons (Search, Sitemap, and Cart) */}
@@ -280,6 +285,21 @@ export default function Navbar({
                   <ChevronRight className="w-4 h-4 text-[#A982B8]" />
                 </a>
               ))}
+
+              <a
+                href={getStoresUrl()}
+                onClick={(e) => {
+                  navigateTo(getStoresUrl(), e);
+                  setMobileMenuOpen(false);
+                }}
+                className="flex items-center justify-between py-3 px-3 rounded-lg text-base font-medium text-[#723C90] bg-[#FAF4FD] hover:bg-[#F0EAF3] text-left transition-colors cursor-pointer mt-1 border border-[#EADBEE]"
+              >
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-[#723C90]" />
+                  <span>Nos Magasins (Berrechid & Mohammedia)</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-[#723C90]" />
+              </a>
             </div>
 
             <div className="pt-4 border-t border-[#F0EAF3] flex flex-col gap-3">
