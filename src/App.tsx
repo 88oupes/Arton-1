@@ -258,17 +258,17 @@ export default function App() {
         onClose={() => setInfoModalType(null)}
       />
 
-      {/* Floating Responsive Little Round Violet WhatsApp Button */}
+      {/* Floating WhatsApp Button */}
       <aside aria-label="Contact WhatsApp DARY">
         <a
           href="https://wa.me/212691707445?text=Bonjour%20DARY%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-5 right-5 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#723C90] hover:bg-[#542D6B] text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white/25 group cursor-pointer"
+          className="fixed bottom-5 right-5 z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] hover:shadow-[0_6px_25px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white group cursor-pointer"
           title="Discuter sur WhatsApp : 06 91 70 74 45"
           aria-label="Discuter sur WhatsApp au 06 91 70 74 45"
         >
-          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-white text-[#723C90]" />
+          <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 fill-white text-[#25D366]" />
           <span className="sr-only">WhatsApp : 06 91 70 74 45</span>
         </a>
       </aside>
