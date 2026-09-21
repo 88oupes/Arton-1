@@ -1,62 +1,17 @@
-import { useState, type FormEvent } from 'react';
-import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, Truck, CreditCard, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import Logo from './Logo';
 import { navigateTo } from '../utils/navigation';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail('');
-    }
-  };
-
   return (
     <footer className="w-full bg-[#1E1128] text-white pt-16 pb-12 border-t border-[#3B224C]">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        {/* Reinsurance Icons Strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pb-12 mb-12 border-b border-[#3B224C] text-center sm:text-left">
-          <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-white">Garantie jusqu'à 35 ans</div>
-              <div className="text-xs text-[#C5B3D0]">Sérénité absolue</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
-              <Truck className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-white">Livraison offerte</div>
-              <div className="text-xs text-[#C5B3D0]">Partout au Maroc (Casablanca, Rabat...)</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 justify-center sm:justify-start">
-            <div className="w-10 h-10 rounded-full bg-[#361D46] flex items-center justify-center text-[#A982B8] shrink-0 border border-[#4C2963]">
-              <CreditCard className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-white">Paiement à la livraison</div>
-              <div className="text-xs text-[#C5B3D0]">Ou en 3x sans frais</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer Links & Newsletter */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-[#3B224C]">
+        {/* Main Footer Links */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 pb-12 border-b border-[#3B224C]">
           {/* Brand Column */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="md:col-span-2 space-y-4">
             <Logo size="lg" className="bg-white px-3.5 py-1.5 rounded-lg shadow-sm" />
-            <p className="text-xs sm:text-sm text-[#C5B3D0] max-w-sm leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#C5B3D0] max-w-lg leading-relaxed">
               Atelier et manufacture marocaine de literie d'exception. Nous combinons recherche ergonomique, matières douces certifiées et circuit court direct atelier.
             </p>
 
@@ -129,44 +84,9 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
-          {/* Column 2: Newsletter */}
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
-              Offre Privilège
-            </h4>
-            <p className="text-xs text-[#C5B3D0] mb-3 leading-relaxed">
-              Inscrivez-vous pour recevoir nos conseils sommeil et <strong>200 DH offerts</strong> avec le code <span className="text-[#A982B8] font-bold">DARY15</span>.
-            </p>
-
-            {subscribed ? (
-              <div className="bg-[#542D6B]/80 border border-[#A982B8]/40 text-[#E5DAEA] text-xs p-3 rounded-lg flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#A982B8] shrink-0" />
-                <span>Merci ! Votre bon de réduction DARY vous a été envoyé.</span>
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Votre adresse email..."
-                  required
-                  className="w-full px-3.5 py-2.5 bg-[#2B173B] border border-[#4C2963] rounded-lg text-xs text-white placeholder:text-[#8E789B] focus:outline-none focus:border-[#A982B8]"
-                />
-                <button
-                  type="submit"
-                  className="w-full py-2.5 bg-[#723C90] hover:bg-[#542D6B] text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
-                >
-                  <span>Bénéficier de -200 DH</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </form>
-            )}
-          </div>
         </div>
 
-        {/* Bottom bar with Little Round Violet WhatsApp Button */}
+        {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8E789B]">
           <div className="flex items-center gap-2">
             <span>© {new Date().getFullYear()} DARY Maroc. Tous droits réservés.</span>
@@ -176,19 +96,6 @@ export default function Footer() {
             <a href="#cgv" className="hover:text-white transition-colors">CGV & Mentions légales</a>
             <span>•</span>
             <a href="#confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</a>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <a
-              href="https://wa.me/212691707445?text=Bonjour%20DARY%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-[#723C90] hover:bg-[#8B4CAE] text-white flex items-center justify-center shadow-md hover:shadow-lg transition-all hover:scale-105"
-              title="Discuter sur WhatsApp : 06 91 70 74 45"
-              aria-label="Discuter sur WhatsApp au 06 91 70 74 45"
-            >
-              <MessageCircle className="w-4 h-4 fill-white text-[#723C90]" />
-            </a>
           </div>
         </div>
       </div>

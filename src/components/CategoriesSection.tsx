@@ -13,24 +13,13 @@ export default function CategoriesSection() {
 
       <div className="max-w-7xl mx-auto px-3.5 sm:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-14">
-          <div>
-            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#2D1C38] font-bold tracking-tight">
-              Nos univers de confection <span className="italic text-[#723C90] font-normal">DARY</span>
-            </h2>
-            <p className="text-xs sm:text-base text-[#665373] mt-1.5 sm:mt-2 max-w-xl leading-relaxed">
-              Explorez nos collections certifiées : matelas haute résilience, salons marocains et oreillers ergonomiques.
-            </p>
-          </div>
-
-          <a
-            href={getCategoryUrl('matelas')}
-            onClick={(e) => navigateTo(getCategoryUrl('matelas'), e)}
-            className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm font-bold uppercase tracking-wider text-[#723C90] hover:text-[#542D6B] group transition-all self-start sm:self-auto px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white border border-[#E5D7EB] hover:border-[#723C90] shadow-xs hover:shadow-md cursor-pointer"
-          >
-            <span>Explorer la collection</span>
-            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
-          </a>
+        <div className="mb-8 sm:mb-14">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#2D1C38] font-bold tracking-tight">
+            Nos univers de confection <span className="italic text-[#723C90] font-normal">DARY</span>
+          </h2>
+          <p className="text-xs sm:text-base text-[#665373] mt-1.5 sm:mt-2 max-w-xl leading-relaxed">
+            Explorez nos collections certifiées : matelas haute résilience, salons marocains et oreillers ergonomiques.
+          </p>
         </div>
 
         {/* 3 Cards Grid - Matelas, Salons, Oreillers */}
