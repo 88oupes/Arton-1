@@ -2,13 +2,13 @@
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&amp;family=Plus+Jakarta+Sans:ital,wght@1,600;1,700&amp;display=swap');
-      .brand-arton {
+      .brand-arton-white {
         font-family: 'Playfair Display', 'Bodoni Moda', 'Didot', 'Cinzel', serif;
         font-weight: 800;
         font-size: 60px;
         letter-spacing: 0.05em;
       }
-      .brand-confort {
+      .brand-confort-gold {
         font-family: 'Plus Jakarta Sans', 'Montserrat', system-ui, -apple-system, sans-serif;
         font-weight: 700;
         font-style: italic;
@@ -18,31 +18,31 @@
     </style>
   </defs>
 
-  <!-- Golden Elegant Undulating Swoosh Ribbon (matching 1255.png) -->
+  <!-- Golden Elegant Undulating Swoosh Ribbon -->
   <path
     d="M 12 38 C 14 52, 30 76, 68 90 C 102 102, 142 82, 178 64 C 210 48, 250 56, 304 66 C 268 60, 222 54, 184 70 C 146 86, 102 98, 70 85 C 40 73, 24 53, 14 38 Z"
-    fill="#BA8C48"
+    fill="#D4A85B"
   />
 
-  <!-- Navy Accent Smile Arc beneath A and R -->
+  <!-- Subtle Accent Arc beneath A and R -->
   <path
     d="M 46 67 C 58 74, 82 74, 98 66 C 84 72, 58 72, 46 67 Z"
-    fill="#132B45"
+    fill="#4A6E94"
   />
 
-  <!-- ARTON Logotype -->
+  <!-- ARTON Logotype in Pure White -->
   <text
     x="38"
     y="55"
-    fill="#132B45"
-    class="brand-arton"
+    fill="#FFFFFF"
+    class="brand-arton-white"
   >ARTON</text>
 
-  <!-- CONFORT Sub-mark -->
+  <!-- CONFORT Sub-mark in Warm Gold -->
   <text
     x="172"
     y="84"
-    fill="#BA8C48"
-    class="brand-confort"
+    fill="#D4A85B"
+    class="brand-confort-gold"
   >CONFORT</text>
 </svg>

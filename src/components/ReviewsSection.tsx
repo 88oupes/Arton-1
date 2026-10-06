@@ -33,16 +33,16 @@ export default function ReviewsSection({}: ReviewsSectionProps) {
   const review = REVIEWS[currentIndex];
 
   return (
-    <section id="avis" className="w-full bg-[#F8F6F9] py-8 sm:py-12 border-b border-[#F0EAF3] relative overflow-hidden">
+    <section id="avis" className="w-full bg-[#FAF9F7] py-8 sm:py-12 border-b border-[#E8EEF5] relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <div className="pb-5 border-b border-[#EADBEE]/70">
-          <div className="w-6 h-0.5 bg-[#723C90] mb-2 rounded-full" />
-          <h2 className="font-serif text-2xl sm:text-3xl text-[#2D1C38] font-normal tracking-tight">
-            Ils dorment déjà mieux <span className="italic text-[#723C90]">avec DARY</span>
+        <div className="pb-5 border-b border-[#E8EEF5]">
+          <div className="w-8 h-1 bg-[#BA8C48] mb-2 rounded-full" />
+          <h2 className="font-serif text-2xl sm:text-3xl text-[#132B45] font-normal tracking-tight">
+            Ils dorment déjà mieux <span className="italic text-[#BA8C48]">avec ARTON CONFORT</span>
           </h2>
-          <p className="text-xs sm:text-sm text-[#665373] mt-1 font-normal">
-            Des milliers de clients satisfaits à travers tout le Maroc.
+          <p className="text-xs sm:text-sm text-[#536B82] mt-1 font-normal">
+            Des milliers de dormeurs comblés à travers tout le Maroc.
           </p>
         </div>
 
@@ -51,7 +51,7 @@ export default function ReviewsSection({}: ReviewsSectionProps) {
           {/* Left Arrow Button */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 sm:-left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#EADBEE] hover:border-[#723C90] text-[#542D6B] hover:text-[#723C90] shadow-sm hover:shadow-md flex items-center justify-center transition-all cursor-pointer group"
+            className="absolute left-0 sm:-left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E8EEF5] hover:border-[#BA8C48] text-[#132B45] hover:text-[#BA8C48] shadow-xs hover:shadow-md flex items-center justify-center transition-all cursor-pointer group"
             title="Témoignage précédent"
             aria-label="Témoignage précédent"
           >
@@ -61,7 +61,7 @@ export default function ReviewsSection({}: ReviewsSectionProps) {
           {/* Right Arrow Button */}
           <button
             onClick={handleNext}
-            className="absolute right-0 sm:-right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#EADBEE] hover:border-[#723C90] text-[#542D6B] hover:text-[#723C90] shadow-sm hover:shadow-md flex items-center justify-center transition-all cursor-pointer group"
+            className="absolute right-0 sm:-right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#E8EEF5] hover:border-[#BA8C48] text-[#132B45] hover:text-[#BA8C48] shadow-xs hover:shadow-md flex items-center justify-center transition-all cursor-pointer group"
             title="Témoignage suivant"
             aria-label="Témoignage suivant"
           >
@@ -69,26 +69,26 @@ export default function ReviewsSection({}: ReviewsSectionProps) {
           </button>
 
           {/* Main Text Testimonial Card */}
-          <div className="bg-white rounded-xl p-4 sm:p-6 border border-[#EADBEE] shadow-sm relative">
+          <div className="bg-white rounded-xl p-4 sm:p-6 border border-[#E8EEF5] shadow-xs relative">
             {/* Top Row: Stars, Product Bought & Counter */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#F4EEF6]">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#F0F4F8]">
               <div className="flex items-center gap-1.5">
-                <div className="flex text-[#723C90] gap-0.5">
+                <div className="flex text-[#BA8C48] gap-0.5">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-current" />
                   ))}
                 </div>
-                <span className="text-[11px] font-bold text-[#723C90] bg-[#F3EDF6] px-1.5 py-0.5 rounded-full ml-1">
+                <span className="text-[11px] font-bold text-[#BA8C48] bg-[#FAF6EE] px-1.5 py-0.5 rounded-full ml-1 border border-[#E6D6B6]">
                   5.0
                 </span>
-                <span className="text-xs text-[#723C90] font-medium ml-1.5 hidden sm:inline">
+                <span className="text-xs text-[#132B45] font-medium ml-1.5 hidden sm:inline">
                   • {review.productBought}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-[11px] text-[#8B7898]">{review.date}</span>
-                <span className="text-[11px] font-semibold text-[#542D6B] bg-[#FAF5FC] px-2 py-0.5 rounded-full border border-[#EADBEE]">
+                <span className="text-[11px] text-[#536B82]">{review.date}</span>
+                <span className="text-[11px] font-semibold text-[#132B45] bg-[#F7F9FB] px-2 py-0.5 rounded-full border border-[#E8EEF5]">
                   {currentIndex + 1} / {REVIEWS.length}
                 </span>
               </div>
@@ -96,30 +96,30 @@ export default function ReviewsSection({}: ReviewsSectionProps) {
 
             {/* Testimonial Quote & Text */}
             <div className="py-3 sm:py-4 relative">
-              <Quote className="w-7 h-7 text-[#723C90]/15 absolute -top-1 -left-1 pointer-events-none" />
+              <Quote className="w-7 h-7 text-[#BA8C48]/20 absolute -top-1 -left-1 pointer-events-none" />
 
-              <h3 className="font-serif font-bold text-base sm:text-lg text-[#2D1C38] leading-snug mb-2 relative z-10">
+              <h3 className="font-serif font-bold text-base sm:text-lg text-[#132B45] leading-snug mb-2 relative z-10">
                 « {review.title} »
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#4C3B57] leading-relaxed relative z-10 font-normal">
+              <p className="text-xs sm:text-sm text-[#37485A] leading-relaxed relative z-10 font-normal">
                 {review.comment}
               </p>
             </div>
 
             {/* Author Footer & Helpful button */}
-            <div className="pt-3 border-t border-[#F4EEF6] flex items-center justify-between gap-3">
+            <div className="pt-3 border-t border-[#F0F4F8] flex items-center justify-between gap-3">
               <div>
-                <div className="text-xs sm:text-sm font-bold text-[#2D1C38] flex items-center gap-1">
+                <div className="text-xs sm:text-sm font-bold text-[#132B45] flex items-center gap-1">
                   {review.author}
                   {review.verified && (
-                    <span title="Achat vérifié" className="text-[#723C90] inline-flex items-center">
-                      <CheckCircle className="w-3.5 h-3.5 fill-[#F0EAF3]" />
+                    <span title="Achat vérifié" className="text-[#BA8C48] inline-flex items-center">
+                      <CheckCircle className="w-3.5 h-3.5 fill-[#FAF6EE]" />
                     </span>
                   )}
                 </div>
-                <div className="text-[11px] text-[#7A6787] flex flex-wrap items-center gap-x-2 mt-0.5">
-                  <span className="font-medium text-[#723C90] sm:hidden">{review.productBought} •</span>
+                <div className="text-[11px] text-[#536B82] flex flex-wrap items-center gap-x-2 mt-0.5">
+                  <span className="font-medium text-[#132B45] sm:hidden">{review.productBought} •</span>
                   <span>{review.city}</span>
                 </div>
               </div>
@@ -127,10 +127,10 @@ export default function ReviewsSection({}: ReviewsSectionProps) {
               {/* Helpful count button */}
               <button
                 onClick={() => handleHelpful(review.id)}
-                className="flex items-center gap-1.5 text-[11px] font-semibold text-[#665373] hover:text-[#723C90] bg-[#F9F6FA] hover:bg-[#F3EDF6] px-2.5 py-1 rounded-md border border-[#EADBEE] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-[11px] font-semibold text-[#536B82] hover:text-[#132B45] bg-[#FAF9F7] hover:bg-[#F0F4F8] px-2.5 py-1 rounded-md border border-[#E8EEF5] transition-colors cursor-pointer"
                 title="Avis utile"
               >
-                <ThumbsUp className="w-3 h-3" />
+                <ThumbsUp className="w-3 h-3 text-[#BA8C48]" />
                 <span>Utile ({helpfulCounts[review.id]})</span>
               </button>
             </div>

@@ -6,7 +6,6 @@ import TrustBar from './components/TrustBar';
 import CategoriesSection from './components/CategoriesSection';
 import FactorySustainability from './components/FactorySustainability';
 import ReviewsSection from './components/ReviewsSection';
-import StoresSection from './components/StoresSection';
 import StoresPage from './components/StoresPage';
 import Footer from './components/Footer';
 import CategoryPage from './components/CategoryPage';
@@ -57,16 +56,16 @@ export default function App() {
   useEffect(() => {
     if (route.type === 'home') {
       updateMetaTags({
-        title: 'DARY — Matelas & Literie Haute Couture au Maroc | Confort d\'Exception',
-        description: 'Découvrez la manufacture marocaine DARY : matelas haute densité, sommiers, linge de lit satin, lits coffres et salons marocains. 10 ans de garantie & livraison offerte.',
+        title: 'ARTON CONFORT — Matelas & Literie Haute Couture au Maroc | Confort d\'Exception',
+        description: 'Découvrez la manufacture marocaine ARTON CONFORT : matelas haute densité, ressorts ensachés, sommiers et confort sur-mesure. Garantie longue durée & livraison partout au Maroc.',
         canonicalPath: '/',
         type: 'website',
         schema: {
           '@context': 'https://schema.org',
           '@type': 'FurnitureStore',
-          name: 'DARY Manufacture',
-          image: 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789644319/Dari_logo.jpg',
-          url: 'https://dary.ma',
+          name: 'ARTON CONFORT Manufacture',
+          image: 'https://res.cloudinary.com/psbqhe7h/image/upload/v1790081363/Logo_ArtonConfort.png',
+          url: 'https://artonconfort.ma',
           telephone: '+212691707445',
           priceRange: '1990 MAD - 12900 MAD',
           address: {
@@ -157,7 +156,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F6F9] text-[#2D1C38] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAF9F7] text-[#132B45] flex flex-col font-sans">
       {/* 1. Top Bar & Main Header Navigation */}
       <Navbar
         cartCount={totalCartCount}
@@ -188,10 +187,7 @@ export default function App() {
               onLearnMoreEco={() => setInfoModalType('eco')}
             />
 
-            {/* 6. Boutiques & Showrooms: "Venez essayer votre confort" */}
-            <StoresSection />
-
-            {/* 7. Social Proof & Reviews: "Ils dorment déjà mieux" */}
+            {/* 6. Social Proof & Reviews: "Ils dorment déjà mieux" */}
             <ReviewsSection
               onWriteReview={() => setInfoModalType('reviews')}
             />
@@ -290,9 +286,9 @@ export default function App() {
       />
 
       {/* Floating WhatsApp Button */}
-      <aside aria-label="Contact WhatsApp DARY">
+      <aside aria-label="Contact WhatsApp ARTON CONFORT">
         <a
-          href="https://wa.me/212691707445?text=Bonjour%20DARY%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
+          href="https://wa.me/212691707445?text=Bonjour%20ARTON%20CONFORT%2C%20je%20souhaite%20des%20informations%20sur%20vos%20matelas."
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-5 right-5 z-40 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.45)] hover:shadow-[0_6px_25px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white group cursor-pointer"

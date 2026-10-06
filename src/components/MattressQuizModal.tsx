@@ -36,29 +36,29 @@ export default function MattressQuizModal({
   const getRecommendation = (): { product: Product; reason: string } => {
     if (answers.firmness === 'Moelleux' || answers.position === 'Côté') {
       return {
-        product: PRODUCTS.find((p) => p.id === 'matelas-feelsoft') || PRODUCTS[0],
+        product: PRODUCTS.find((p) => p.id === 'matelas-airdorsal-soft') || PRODUCTS[0],
         reason:
-          'Grâce à son âme 100% High-Density Foam et sa couche supérieure HR 30 PRO, le matelas FEELSOFT HR élimine toute tension sur vos épaules et hanches pour un repos réparateur.',
+          'Grâce à son accueil Soft enveloppant et sa technologie ergonomique Airdorsal, le matelas Airdorsal Soft élimine toute tension sur vos épaules et hanches pour un repos réparateur.',
       };
     }
     if (answers.firmness === 'Ferme' || answers.backPain === 'Oui') {
       return {
-        product: PRODUCTS.find((p) => p.id === 'matelas-relax') || PRODUCTS[3],
+        product: PRODUCTS.find((p) => p.id === 'matelas-m33') || PRODUCTS[1],
         reason:
-          'Le Matelas Relax offre un soutien orthopédique renforcé pour maintenir la colonne vertébrale parfaitement alignée, soulager les tensions lombaires et garantir un réveil sans douleur.',
+          'Le modèle M33 en mousse haute densité D33 indéformable offre un soutien orthopédique tonique pour maintenir la colonne vertébrale parfaitement alignée et soulager les tensions lombaires.',
       };
     }
     if (answers.sleepers === 'Couple luxe') {
       return {
         product: PRODUCTS.find((p) => p.id === 'matelas-la-nuit') || PRODUCTS[2],
         reason:
-          'L\'indépendance de couchage hôtelière 5 étoiles et les 32 cm de capitonnage de prestige du Matelas La Nuit vous garantissent des nuits royales sans ressentir les mouvements de votre partenaire.',
+          'L\'indépendance de couchage hôtelière 5 étoiles et les 32 cm de capitonnage prestige du Matelas La Nuit vous garantissent des nuits royales sans ressentir les mouvements de votre partenaire.',
       };
     }
     return {
-      product: PRODUCTS.find((p) => p.id === 'matelas-consoft') || PRODUCTS[0],
+      product: PRODUCTS.find((p) => p.id === 'matelas-hr-pro-max') || PRODUCTS[3],
       reason:
-        'Le Matelas Consoft allie une âme haute densité et un accueil soft progressif qui s\'adapte universellement à toutes les morphologies pour un confort quotidien équilibré.',
+        'Le matelas HR Pro Max allie une mousse haute résilience 42 kg/m³ et un accueil équilibré qui s\'adapte universellement à toutes les morphologies pour un confort quotidien d\'exception.',
     };
   };
 
@@ -79,12 +79,12 @@ export default function MattressQuizModal({
 
         {step < 5 ? (
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#723C90] uppercase tracking-wider mb-2">
-              <Sparkles className="w-4 h-4 text-[#723C90]" />
-              <span>Diagnostic Morphologique DARY • Étape {step}/4</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#BA8C48] uppercase tracking-wider mb-2">
+              <Sparkles className="w-4 h-4 text-[#BA8C48]" />
+              <span>Diagnostic Morphologique ARTON • Étape {step}/4</span>
             </div>
 
-            <h3 className="font-serif text-2xl text-[#2D1C38] font-bold mb-6">
+            <h3 className="font-serif text-2xl text-[#132B45] font-bold mb-6">
               {step === 1 && 'Quelle est votre position de sommeil principale ?'}
               {step === 2 && 'Quelle fermeté appréciez-vous en général ?'}
               {step === 3 && 'Ressentez-vous des raideurs ou douleurs au réveil ?'}
@@ -102,12 +102,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('position', item.label)}
-                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E8EEF5] rounded-xl text-left hover:border-[#BA8C48] hover:bg-[#FAF6EE] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
+                    <div className="font-bold text-sm text-[#132B45] group-hover:text-[#BA8C48]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#536B82] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -123,12 +123,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('firmness', item.label)}
-                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E8EEF5] rounded-xl text-left hover:border-[#BA8C48] hover:bg-[#FAF6EE] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
+                    <div className="font-bold text-sm text-[#132B45] group-hover:text-[#BA8C48]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#536B82] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -144,12 +144,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('backPain', item.label)}
-                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E8EEF5] rounded-xl text-left hover:border-[#BA8C48] hover:bg-[#FAF6EE] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
+                    <div className="font-bold text-sm text-[#132B45] group-hover:text-[#BA8C48]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#536B82] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -165,12 +165,12 @@ export default function MattressQuizModal({
                   <button
                     key={item.label}
                     onClick={() => handleSelect('sleepers', item.label)}
-                    className="p-4 border border-[#E5DAEA] rounded-xl text-left hover:border-[#723C90] hover:bg-[#FAF5FC] transition-all cursor-pointer group"
+                    className="p-4 border border-[#E8EEF5] rounded-xl text-left hover:border-[#BA8C48] hover:bg-[#FAF6EE] transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-sm text-[#2D1C38] group-hover:text-[#723C90]">
+                    <div className="font-bold text-sm text-[#132B45] group-hover:text-[#BA8C48]">
                       {item.label}
                     </div>
-                    <div className="text-xs text-[#665373] mt-1">{item.desc}</div>
+                    <div className="text-xs text-[#536B82] mt-1">{item.desc}</div>
                   </button>
                 ))}
               </div>
@@ -179,20 +179,20 @@ export default function MattressQuizModal({
         ) : (
           /* Results Screen */
           <div className="text-center py-2">
-            <div className="w-12 h-12 rounded-full bg-[#F0EAF3] text-[#723C90] flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-full bg-[#FAF6EE] text-[#BA8C48] flex items-center justify-center mx-auto mb-3">
               <Check className="w-6 h-6" />
             </div>
 
-            <span className="text-xs font-bold uppercase tracking-wider text-[#723C90]">
-              Recommandation personnalisée DARY
+            <span className="text-xs font-bold uppercase tracking-wider text-[#BA8C48]">
+              Recommandation personnalisée ARTON CONFORT
             </span>
 
-            <h3 className="font-serif text-3xl font-bold text-[#2D1C38] mt-1 mb-3">
+            <h3 className="font-serif text-3xl font-bold text-[#132B45] mt-1 mb-3">
               {getRecommendation().product.name}
             </h3>
 
-            <div className="bg-[#F8F6F9] p-4 rounded-xl border border-[#F0EAF3] my-4 flex flex-col sm:flex-row items-center gap-4 text-left">
-              <div className="w-24 h-20 shrink-0 bg-white p-2 rounded-lg border border-[#F0EAF3]">
+            <div className="bg-[#FAF9F7] p-4 rounded-xl border border-[#E8EEF5] my-4 flex flex-col sm:flex-row items-center gap-4 text-left">
+              <div className="w-24 h-20 shrink-0 bg-white p-2 rounded-lg border border-[#E8EEF5]">
                 <img
                   src={getRecommendation().product.image}
                   alt={getRecommendation().product.name}
@@ -200,11 +200,11 @@ export default function MattressQuizModal({
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="text-xs text-[#554860]">
-                <p className="font-semibold text-[#2D1C38] mb-1">Pourquoi ce choix ?</p>
+              <div className="text-xs text-[#536B82]">
+                <p className="font-semibold text-[#132B45] mb-1">Pourquoi ce choix ?</p>
                 <p>{getRecommendation().reason}</p>
-                <p className="mt-2 font-bold text-[#723C90]">
-                  À partir de {getRecommendation().product.price.toLocaleString('fr-FR')} DH • 100 nuits d'essai DARY
+                <p className="mt-2 font-bold text-[#BA8C48]">
+                  À partir de {getRecommendation().product.price.toLocaleString('fr-FR')} DH • 100 nuits d'essai ARTON CONFORT
                 </p>
               </div>
             </div>
@@ -215,15 +215,15 @@ export default function MattressQuizModal({
                   onSelectProduct(getRecommendation().product);
                   onClose();
                 }}
-                className="flex-1 py-3 px-6 bg-[#723C90] hover:bg-[#542D6B] text-white rounded-lg text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="flex-1 py-3 px-6 bg-[#132B45] hover:bg-[#0B1C2E] text-white rounded-lg text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <span>Découvrir et configurer</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#BA8C48]" />
               </button>
 
               <button
                 onClick={resetQuiz}
-                className="px-4 py-3 bg-[#F0EAF3] hover:bg-[#E5DAEA] text-[#542D6B] rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
+                className="px-4 py-3 bg-[#FAF9F7] hover:bg-[#E8EEF5] text-[#132B45] rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Recommencer</span>

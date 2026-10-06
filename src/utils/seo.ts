@@ -11,7 +11,7 @@ export function updateMetaTags({
   title,
   description,
   canonicalPath = '/',
-  image = 'https://res.cloudinary.com/psbqhe7h/image/upload/v1789644319/Dari_logo.jpg',
+  image = 'https://res.cloudinary.com/psbqhe7h/image/upload/v1790081363/Logo_ArtonConfort.png',
   type = 'website',
   schema,
 }: SeoData) {
@@ -35,7 +35,7 @@ export function updateMetaTags({
     'og:description': description,
     'og:type': type,
     'og:image': image,
-    'og:site_name': 'DARY Maroc',
+    'og:site_name': 'ARTON CONFORT Maroc',
   };
 
   if (typeof window !== 'undefined') {

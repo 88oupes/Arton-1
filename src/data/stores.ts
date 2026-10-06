@@ -29,7 +29,7 @@ export interface StoreLocation {
 export const STORES: StoreLocation[] = [
   {
     id: 'berrechid',
-    name: 'DARY Berrechid',
+    name: 'ARTON CONFORT Berrechid',
     city: 'Berrechid',
     region: 'Casablanca-Settat',
     type: 'Showroom & Espace Conseil Literie',
@@ -46,7 +46,7 @@ export const STORES: StoreLocation[] = [
     phone: '+212691707445',
     phoneDisplay: '06 91 70 74 45',
     whatsapp: '212691707445',
-    email: 'contact@dary.ma',
+    email: 'contact@artonconfort.ma',
     hours: [
       { days: 'Lundi — Samedi', hours: '09h30 — 20h00' },
       { days: 'Dimanche', hours: '10h30 — 19h30' },
@@ -66,7 +66,7 @@ export const STORES: StoreLocation[] = [
   },
   {
     id: 'mohammedia',
-    name: 'DARY Bed Mohammedia',
+    name: 'ARTON CONFORT Mohammedia',
     city: 'Mohammedia',
     region: 'Grand Casablanca',
     type: 'Showroom & Boutique Confort',
@@ -83,22 +83,22 @@ export const STORES: StoreLocation[] = [
     phone: '+212691707445',
     phoneDisplay: '06 91 70 74 45',
     whatsapp: '212691707445',
-    email: 'contact@dary.ma',
+    email: 'contact@artonconfort.ma',
     hours: [
       { days: 'Lundi — Samedi', hours: '09h30 — 20h00' },
       { days: 'Dimanche', hours: '10h30 — 19h30' },
     ],
     features: [
-      'Showroom complet DARY Bed avec présentation literie prestige',
+      'Showroom complet ARTON CONFORT avec présentation literie prestige',
       'Découverte des mousses haute résilience et ressorts ensachés 7 zones',
       'Nuancier de tissus velours & anti-taches pour sommiers et lits coffres',
       'Conseil sommeil personnalisé et devis instantané gratuit',
       'Accès facile et stationnement disponible à proximité',
     ],
-    badges: ['Espace DARY Bed', 'Accueil Personnalisé', 'Service Rapide'],
+    badges: ['Espace ARTON CONFORT', 'Accueil Personnalisé', 'Service Rapide'],
     description:
-      'Plongez dans l’univers DARY Bed à Mohammedia. Une atmosphère chaleureuse où vous pourrez prendre votre temps pour essayer nos matelas haut de gamme et imaginer votre suite parentale sur mesure.',
+      'Plongez dans l’univers ARTON CONFORT à Mohammedia. Une atmosphère chaleureuse où vous pourrez prendre votre temps pour essayer nos matelas haut de gamme et imaginer votre suite parentale sur mesure.',
     featuredImage:
-      'https://images.unsplash.com/photo-1540518614846-7ede433c4ef0?auto=format&fit=crop&w=1200&q=80',
+      'https://res.cloudinary.com/psbqhe7h/image/upload/v1789646884/arton_hero_suite.jpg',
   },
 ];

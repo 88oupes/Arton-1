@@ -1,15 +1,20 @@
 import { useState, useRef, useEffect, type MouseEvent } from 'react';
-import { Search, ShoppingBag, Menu, X, Phone, ChevronRight, Check, MapPin } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, Phone, ChevronRight, Check } from 'lucide-react';
 import Logo from './Logo';
 import { CATEGORIES_LIST, PRODUCTS } from '../data/products';
-import { navigateTo, getCategoryUrl, getProductUrl, getHomeUrl, getSitemapUrl, getStoresUrl } from '../utils/navigation';
+import { navigateTo, getCategoryUrl, getProductUrl, getHomeUrl } from '../utils/navigation';
 import { CategoryId } from '../types';
 
 const ANNOUNCEMENT_ITEMS = [
   {
     text: "-15% SUR TOUTE LA COLLECTION",
-    highlight: "CODE : DARY15",
+    highlight: "CODE : ARTON15",
     isPromo: true,
+  },
+  {
+    text: "LIVRAISON OFFERTE PARTOUT AU MAROC",
+    highlight: "CASABLANCA, RABAT, MARRAKECH...",
+    isPromo: false,
   },
 ];
 
@@ -25,7 +30,6 @@ export default function Navbar({
   cartCount,
   onOpenCart,
   onOpenSearch,
-  onOpenQuiz,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -57,7 +61,7 @@ export default function Navbar({
   const handleCopyCode = (e?: MouseEvent) => {
     if (e) e.stopPropagation();
     try {
-      navigator.clipboard?.writeText('DARY15');
+      navigator.clipboard?.writeText('ARTON15');
       setCopied(true);
       setTimeout(() => setCopied(false), 2400);
     } catch {
@@ -74,10 +78,10 @@ export default function Navbar({
   };
 
   return (
-    <header className="w-full sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all border-b border-[#F0EAF3]">
-      {/* Top Utility Announcement Bar - Moving Ticker with JavaScript */}
+    <header className="w-full sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all border-b border-[#E8EEF5]">
+      {/* Top Utility Announcement Bar - ARTON Midnight Navy with Gold Accents */}
       <div
-        className="bg-[#542D6B] border-b border-[#48255c] text-white py-1 sm:py-1.5 overflow-hidden select-none relative"
+        className="bg-[#132B45] border-b border-[#0B1C2E] text-white py-1 sm:py-1.5 overflow-hidden select-none relative"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
@@ -85,19 +89,19 @@ export default function Navbar({
       >
         {/* Visual feedback when code is copied */}
         {copied && (
-          <div className="absolute inset-0 bg-[#361D46] z-10 flex items-center justify-center gap-2 text-xs font-semibold text-white transition-all">
-            <Check className="w-3.5 h-3.5 text-[#25D366]" />
-            <span>Code <strong>DARY15</strong> copié dans le presse-papier (-15% à la commande)</span>
+          <div className="absolute inset-0 bg-[#0B1C2E] z-10 flex items-center justify-center gap-2 text-xs font-semibold text-white transition-all">
+            <Check className="w-3.5 h-3.5 text-[#BA8C48]" />
+            <span>Code <strong className="text-[#BA8C48]">ARTON15</strong> copié dans le presse-papier (-15% à la commande)</span>
           </div>
         )}
 
         <div
           ref={tickerRef}
           className="flex whitespace-nowrap will-change-transform cursor-pointer"
-          title="Cliquez pour copier le code DARY15 (défilement en pause au survol)"
+          title="Cliquez pour copier le code ARTON15 (défilement en pause au survol)"
         >
           {/* Repeated items for an infinite, continuous loop across all screen sizes */}
-          {Array.from({ length: 12 }, () => ANNOUNCEMENT_ITEMS).flat().map((item, idx) => (
+          {[...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS, ...ANNOUNCEMENT_ITEMS].map((item, idx) => (
             <div
               key={idx}
               onClick={item.isPromo ? (e) => handleCopyCode(e) : undefined}
@@ -109,15 +113,15 @@ export default function Navbar({
                 {item.isPromo ? (
                   <>
                     Code :{' '}
-                    <span className="font-semibold tracking-widest text-white border-b border-white/40 pb-px group-hover:border-white transition-colors bg-white/10 px-1.5 py-0.5 rounded">
-                      DARY15
+                    <span className="font-semibold tracking-widest text-[#FAF6EE] border-b border-[#BA8C48]/60 pb-px group-hover:border-[#BA8C48] transition-colors bg-[#BA8C48]/20 px-1.5 py-0.5 rounded">
+                      ARTON15
                     </span>
                   </>
                 ) : (
-                  <span className="text-[#E5DAEA] font-medium">{item.highlight}</span>
+                  <span className="text-[#E8EEF5] font-medium">{item.highlight}</span>
                 )}
               </span>
-              <span className="ml-6 sm:ml-10 text-[#A982B8]/60 font-serif">✦</span>
+              <span className="ml-6 sm:ml-10 text-[#BA8C48] font-serif">✦</span>
             </div>
           ))}
         </div>
@@ -129,22 +133,23 @@ export default function Navbar({
         <div className="flex items-center lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 -ml-1 text-[#2D1C38] hover:bg-[#F3EDF6] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#723C90]/20 cursor-pointer"
+            className="p-2 -ml-1 text-[#132B45] hover:bg-[#F0F4F8] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#132B45]/20 cursor-pointer"
             aria-label="Menu principal"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Brand Logo - Official DARY Logomark */}
+        {/* Brand Logo - Official ARTON CONFORT Logomark */}
         <a
           href={getHomeUrl()}
           onClick={(e) => navigateTo(getHomeUrl(), e)}
           className="flex-shrink-0 cursor-pointer focus:outline-none flex items-center py-0.5 group"
-          aria-label="DARY - Accueil"
+          aria-label="ARTON CONFORT - Accueil"
         >
-          <div className="relative flex items-center px-1 sm:px-2 py-0.5 rounded-xl transition-all duration-200 group-hover:bg-[#F8F6F9]">
+          <div className="relative flex items-center px-1 sm:px-2 py-0.5 rounded-xl transition-all duration-200 group-hover:bg-[#F7F9FB]">
             <Logo
+              variant="primary"
               size="md"
               className="transition-all duration-300 group-hover:scale-[1.02]"
             />
@@ -152,7 +157,7 @@ export default function Navbar({
         </a>
 
         {/* Desktop Navigation Links: Matelas, Salons, Oreillers */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[14.5px] font-medium text-[#2D1C38]">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[14.5px] font-medium text-[#132B45]">
           {navCategories.map((cat) => {
             const catProducts = PRODUCTS.filter((p) => p.category === cat.id);
             return (
@@ -165,17 +170,17 @@ export default function Navbar({
                 <a
                   href={getCategoryUrl(cat.id)}
                   onClick={(e) => handleCategoryClick(cat.id, e)}
-                  className="transition-colors hover:text-[#723C90] flex items-center gap-1 text-left cursor-pointer font-medium py-1"
+                  className="transition-colors hover:text-[#BA8C48] flex items-center gap-1 text-left cursor-pointer font-medium py-1"
                 >
                   <span>{cat.name}</span>
                 </a>
 
                 {/* Dropdown preview of products in this category */}
                 {activeDropdown === cat.id && catProducts.length > 0 && (
-                  <div className="absolute top-full left-0 w-80 bg-white border border-[#F0EAF3] shadow-xl rounded-xl p-3 mt-1 grid gap-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                    <div className="text-[11px] font-semibold text-[#723C90] uppercase tracking-wider px-2 py-1 flex items-center justify-between">
+                  <div className="absolute top-full left-0 w-80 bg-white border border-[#E8EEF5] shadow-xl rounded-xl p-3 mt-1 grid gap-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                    <div className="text-[11px] font-semibold text-[#BA8C48] uppercase tracking-wider px-2 py-1 flex items-center justify-between">
                       <span>Rayon {cat.name}</span>
-                      <span className="text-[#8E7E9C] font-normal lowercase">{catProducts.length} modèles</span>
+                      <span className="text-[#536B82] font-normal lowercase">{catProducts.length} modèles</span>
                     </div>
                     {catProducts.map((p) => (
                       <a
@@ -185,24 +190,24 @@ export default function Navbar({
                           navigateTo(getProductUrl(p.slug), e);
                           setActiveDropdown(null);
                         }}
-                        className="p-2 rounded-lg hover:bg-[#F8F6F9] transition-colors flex items-center justify-between group cursor-pointer"
+                        className="p-2 rounded-lg hover:bg-[#F7F9FB] transition-colors flex items-center justify-between group cursor-pointer"
                       >
                         <div className="min-w-0 pr-2">
-                          <div className="font-semibold text-xs text-[#2D1C38] group-hover:text-[#723C90] truncate">
+                          <div className="font-semibold text-xs text-[#132B45] group-hover:text-[#BA8C48] truncate">
                             {p.name}
                           </div>
-                          <div className="text-[11px] text-[#735F80]">
+                          <div className="text-[11px] text-[#536B82]">
                             Dès {p.price.toLocaleString()} DH
                           </div>
                         </div>
-                        <ChevronRight className="w-3.5 h-3.5 text-[#A982B8] group-hover:text-[#723C90] transition-transform group-hover:translate-x-0.5 flex-shrink-0" />
+                        <ChevronRight className="w-3.5 h-3.5 text-[#A0B2C6] group-hover:text-[#BA8C48] transition-transform group-hover:translate-x-0.5 flex-shrink-0" />
                       </a>
                     ))}
-                    <div className="pt-2 border-t border-[#F5EFF8] px-2">
+                    <div className="pt-2 border-t border-[#F0F4F8] px-2">
                       <a
                         href={getCategoryUrl(cat.id)}
                         onClick={(e) => handleCategoryClick(cat.id, e)}
-                        className="text-xs font-bold text-[#723C90] hover:underline flex items-center justify-between"
+                        className="text-xs font-bold text-[#132B45] hover:text-[#BA8C48] hover:underline flex items-center justify-between"
                       >
                         <span>Découvrir toute la catégorie</span>
                         <span>→</span>
@@ -213,16 +218,6 @@ export default function Navbar({
               </div>
             );
           })}
-
-          {/* Nos Magasins Link */}
-          <a
-            href={getStoresUrl()}
-            onClick={(e) => navigateTo(getStoresUrl(), e)}
-            className="transition-colors hover:text-[#723C90] flex items-center gap-1.5 text-left cursor-pointer font-medium py-1 px-2.5 rounded-lg hover:bg-[#F8F6F9]"
-          >
-            <MapPin className="w-3.5 h-3.5 text-[#723C90]" />
-            <span>Nos Magasins</span>
-          </a>
         </nav>
 
         {/* Action icons (Search, Sitemap, and Cart) */}
@@ -230,7 +225,7 @@ export default function Navbar({
           {/* Search button */}
           <button
             onClick={onOpenSearch}
-            className="p-2.5 text-[#2D1C38] hover:text-[#723C90] hover:bg-[#F3EDF6] rounded-full transition-colors focus:outline-none cursor-pointer"
+            className="p-2.5 text-[#132B45] hover:text-[#BA8C48] hover:bg-[#F0F4F8] rounded-full transition-colors focus:outline-none cursor-pointer"
             title="Rechercher"
             aria-label="Rechercher"
           >
@@ -240,12 +235,12 @@ export default function Navbar({
           {/* Cart button with counter */}
           <button
             onClick={onOpenCart}
-            className="p-2.5 text-[#2D1C38] hover:text-[#723C90] hover:bg-[#F3EDF6] rounded-full transition-colors relative focus:outline-none cursor-pointer"
+            className="p-2.5 text-[#132B45] hover:text-[#BA8C48] hover:bg-[#F0F4F8] rounded-full transition-colors relative focus:outline-none cursor-pointer"
             title="Panier"
             aria-label="Panier d'achats"
           >
             <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
-            <span className="absolute top-1 right-1 bg-[#723C90] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
+            <span className="absolute top-1 right-1 bg-[#BA8C48] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
               {cartCount}
             </span>
           </button>
@@ -255,21 +250,21 @@ export default function Navbar({
       {/* Mobile Slide-over Navigation Menu */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 top-[96px] z-50 bg-black/40 backdrop-blur-xs lg:hidden">
-          <div className="bg-white border-b border-[#F0EAF3] shadow-2xl p-6 flex flex-col gap-4 animate-in slide-in-from-top duration-250 max-h-[85vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-[#F0EAF3]">
+          <div className="bg-white border-b border-[#E8EEF5] shadow-2xl p-6 flex flex-col gap-4 animate-in slide-in-from-top duration-250 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E8EEF5]">
               <div className="flex items-center">
                 <Logo size="sm" />
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-gray-500 hover:text-[#723C90] p-1.5 rounded-lg hover:bg-[#F3EDF6] cursor-pointer"
+                className="text-gray-500 hover:text-[#132B45] p-1.5 rounded-lg hover:bg-[#F0F4F8] cursor-pointer"
                 aria-label="Fermer le menu"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="text-[11px] uppercase font-bold text-[#8E7E9C] tracking-wider px-2">
+            <div className="text-[11px] uppercase font-bold text-[#536B82] tracking-wider px-2">
               Nos Catégories
             </div>
 
@@ -279,37 +274,22 @@ export default function Navbar({
                   key={cat.id}
                   href={getCategoryUrl(cat.id)}
                   onClick={(e) => handleCategoryClick(cat.id, e)}
-                  className="flex items-center justify-between py-3 px-3 rounded-lg text-base font-medium text-[#2D1C38] hover:bg-[#F8F6F9] hover:text-[#723C90] text-left transition-colors cursor-pointer"
+                  className="flex items-center justify-between py-3 px-3 rounded-lg text-base font-medium text-[#132B45] hover:bg-[#F7F9FB] hover:text-[#BA8C48] text-left transition-colors cursor-pointer"
                 >
                   <span>{cat.name}</span>
-                  <ChevronRight className="w-4 h-4 text-[#A982B8]" />
+                  <ChevronRight className="w-4 h-4 text-[#A0B2C6]" />
                 </a>
               ))}
-
-              <a
-                href={getStoresUrl()}
-                onClick={(e) => {
-                  navigateTo(getStoresUrl(), e);
-                  setMobileMenuOpen(false);
-                }}
-                className="flex items-center justify-between py-3 px-3 rounded-lg text-base font-medium text-[#723C90] bg-[#FAF4FD] hover:bg-[#F0EAF3] text-left transition-colors cursor-pointer mt-1 border border-[#EADBEE]"
-              >
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#723C90]" />
-                  <span>Nos Magasins (Berrechid & Mohammedia)</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-[#723C90]" />
-              </a>
             </div>
 
-            <div className="pt-4 border-t border-[#F0EAF3] flex flex-col gap-3">
-              <div className="bg-[#F8F6F9] p-4 rounded-xl flex items-center justify-between text-sm text-[#2D1C38]">
+            <div className="pt-4 border-t border-[#E8EEF5] flex flex-col gap-3">
+              <div className="bg-[#F7F9FB] p-4 rounded-xl flex items-center justify-between text-sm text-[#132B45]">
                 <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#723C90]" />
+                  <Phone className="w-4 h-4 text-[#BA8C48]" />
                   <span>Service client :</span>
                 </div>
-                <a href="tel:0681707445" className="font-bold text-[#723C90]">
-                  06 81 70 74 45
+                <a href="tel:0691707445" className="font-bold text-[#132B45] hover:text-[#BA8C48]">
+                  06 91 70 74 45
                 </a>
               </div>
             </div>
@@ -319,4 +299,3 @@ export default function Navbar({
     </header>
   );
 }
-

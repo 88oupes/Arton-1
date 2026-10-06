@@ -5,16 +5,16 @@ export default function TrustBar() {
     {
       icon: Factory,
       title: 'Confection 100% Marocaine',
-      subtitle: 'Fabriqué dans nos ateliers',
+      subtitle: 'Manufacture ARTON CONFORT',
     },
     {
       icon: Leaf,
       title: 'Matériaux certifiés',
-      subtitle: 'Sains et durables',
+      subtitle: 'Mousse saine & Oeko-Tex',
     },
     {
       icon: Truck,
-      title: 'Livraison rapide',
+      title: 'Livraison rapide & soignée',
       subtitle: 'Partout au Maroc',
     },
     {
@@ -25,7 +25,7 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="w-full bg-[#FCFAFD] border-b border-[#EFE8F2] py-3 sm:py-3.5">
+    <section className="w-full bg-[#FAF9F7] border-b border-[#E8EEF5] py-3.5 sm:py-4">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-2.5 sm:gap-4 lg:gap-6">
           {items.map((item, idx) => {
@@ -33,16 +33,16 @@ export default function TrustBar() {
             return (
               <div
                 key={idx}
-                className="flex items-start sm:items-center gap-2 sm:gap-2.5 p-1 rounded-lg transition-colors hover:bg-white"
+                className="flex items-start sm:items-center gap-2 sm:gap-2.5 p-1.5 rounded-lg transition-colors hover:bg-white"
               >
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#F3EDF6] flex items-center justify-center shrink-0 text-[#723C90] border border-[#E8DCEE] mt-0.5 sm:mt-0">
-                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.5]" />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#FAF6EE] flex items-center justify-center shrink-0 text-[#BA8C48] border border-[#E6D6B6] mt-0.5 sm:mt-0">
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.6]" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-[10.5px] sm:text-[11.5px] font-medium text-[#2D1C38] leading-tight">
+                  <h3 className="text-[10.5px] sm:text-[11.5px] font-semibold text-[#132B45] leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[9.5px] sm:text-[10.5px] text-[#665373] mt-0.5 leading-tight">
+                  <p className="text-[9.5px] sm:text-[10.5px] text-[#536B82] mt-0.5 leading-tight">
                     {item.subtitle}
                   </p>
                 </div>

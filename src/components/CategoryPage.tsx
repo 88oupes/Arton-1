@@ -1,30 +1,35 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
-  Star,
-  Sparkles,
-  ChevronRight,
-  ArrowRight,
   SlidersHorizontal,
-  PackageCheck,
-  CheckCircle2
+  ArrowRight,
+  Star,
+  Check,
+  ChevronRight,
+  Sparkles,
 } from 'lucide-react';
-import { CategoryId, Product } from '../types';
-import { PRODUCTS, CATEGORIES_INFO, CATEGORIES_LIST } from '../data/products';
+import { PRODUCTS, CATEGORIES_LIST, CATEGORIES_INFO } from '../data/products';
+import { Product } from '../types';
 import { navigateTo, getProductUrl, getCategoryUrl, getHomeUrl } from '../utils/navigation';
 import { updateMetaTags } from '../utils/seo';
 
 interface CategoryPageProps {
-  categorySlug: CategoryId;
-  onAddToCart: (product: Product, selectedSize: string, quantity: number) => void;
+  categorySlug: string;
+  onSelectProduct?: (product: Product) => void;
+  onAddToCart: (product: Product, size: string, quantity?: number) => void;
   onOpenQuiz?: () => void;
 }
 
-export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: CategoryPageProps) {
-  const currentCategory = CATEGORIES_INFO[categorySlug] || CATEGORIES_INFO.matelas;
+export default function CategoryPage({
+  categorySlug,
+  onAddToCart,
+  onOpenQuiz,
+}: CategoryPageProps) {
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating'>('featured');
   const [filterFirmness, setFilterFirmness] = useState<string>('all');
 
-  // Filter products belonging to this category
+  const currentCategory = CATEGORIES_INFO[categorySlug] || CATEGORIES_INFO.matelas;
+
+  // Filter products by category
   const categoryProducts = useMemo(() => {
     let list = PRODUCTS.filter((p) => p.category === categorySlug);
 
@@ -32,24 +37,24 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
       list = list.filter((p) => p.firmness === filterFirmness);
     }
 
-    if (sortBy === 'price-asc') {
-      return [...list].sort((a, b) => a.price - b.price);
+    switch (sortBy) {
+      case 'price-asc':
+        return [...list].sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return [...list].sort((a, b) => b.price - a.price);
+      case 'rating':
+        return [...list].sort((a, b) => b.rating - a.rating);
+      default:
+        return list;
     }
-    if (sortBy === 'price-desc') {
-      return [...list].sort((a, b) => b.price - a.price);
-    }
-    if (sortBy === 'rating') {
-      return [...list].sort((a, b) => b.rating - a.rating);
-    }
-    return list;
   }, [categorySlug, sortBy, filterFirmness]);
 
   // SEO updates
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    const title = `${currentCategory.name} Haut de Gamme — DARY Manufacture Marocaine`;
-    const description = `${currentCategory.description.slice(0, 140)}... Fabrication artisanale d'exception, garantie jusqu'à 35 ans et livraison offerte.`;
+    const title = `${currentCategory.name} Haut de Gamme — ARTON CONFORT Manufacture Marocaine`;
+    const description = `${currentCategory.description.slice(0, 140)}... Fabrication artisanale d'exception, garantie longue durée et livraison offerte.`;
 
     const schema = {
       '@context': 'https://schema.org',
@@ -60,7 +65,7 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
       itemListElement: categoryProducts.map((prod, index) => ({
         '@type': 'ListItem',
         position: index + 1,
-        url: `https://dary.ma/produits/${prod.slug}`,
+        url: `https://artonconfort.ma/produits/${prod.slug}`,
         name: prod.name,
       })),
     };
@@ -75,31 +80,31 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
   }, [categorySlug, currentCategory, categoryProducts]);
 
   return (
-    <div className="min-h-screen bg-[#FAF8FB] text-[#2D1C38] pb-24">
+    <div className="min-h-screen bg-[#FAF9F7] text-[#132B45] pb-24">
       {/* Breadcrumbs */}
-      <nav aria-label="Fil d'Ariane" className="border-b border-[#F0EAF3] bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center text-xs sm:text-sm text-[#735F80] gap-1.5">
+      <nav aria-label="Fil d'Ariane" className="border-b border-[#E8EEF5] bg-white/80 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center text-xs sm:text-sm text-[#536B82] gap-1.5">
           <a
             href={getHomeUrl()}
             onClick={(e) => navigateTo(getHomeUrl(), e)}
-            className="hover:text-[#723C90] transition-colors flex items-center gap-1 font-medium"
+            className="hover:text-[#BA8C48] transition-colors flex items-center gap-1 font-medium"
           >
             Accueil
           </a>
-          <ChevronRight className="w-3.5 h-3.5 text-[#BBAAC7]" />
-          <span className="text-[#8E7E9C]">Catégories</span>
-          <ChevronRight className="w-3.5 h-3.5 text-[#BBAAC7]" />
-          <span className="font-semibold text-[#2D1C38]">{currentCategory.name}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#A0B2C6]" />
+          <span className="text-[#8BA0B8]">Catégories</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#A0B2C6]" />
+          <span className="font-semibold text-[#132B45]">{currentCategory.name}</span>
         </div>
       </nav>
 
       {/* Hero Category Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-[#2D1C38] via-[#48255c] to-[#60337A] text-white py-12 sm:py-16">
+      <section className="relative overflow-hidden bg-gradient-to-r from-[#0B1C2E] via-[#132B45] to-[#1E3A5A] text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-4">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-semibold text-white/90 border border-white/15">
-              <Sparkles className="w-3.5 h-3.5 text-[#E7BFF5]" />
-              <span>Collection DARY Maroc</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#BA8C48]" />
+              <span>Collection ARTON CONFORT Maroc</span>
               <span className="text-white/40">•</span>
               <span>{currentCategory.itemCountText}</span>
             </div>
@@ -109,14 +114,13 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
             <p className="text-sm sm:text-base text-white/85 max-w-2xl leading-relaxed">
               {currentCategory.description}
             </p>
-            {/* Highlights */}
             <div className="flex flex-wrap gap-2.5 pt-2">
-              {currentCategory.highlights.map((h, i) => (
+              {currentCategory.highlights?.map((h, i) => (
                 <span
                   key={i}
-                  className="text-xs bg-white/15 px-3 py-1 rounded-lg text-white/90 font-medium flex items-center gap-1.5"
+                  className="inline-flex items-center gap-1 text-xs bg-white/15 backdrop-blur-xs px-3 py-1 rounded-lg font-medium text-white/95 border border-white/10"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#E7BFF5]" />
+                  <Check className="w-3.5 h-3.5 text-[#BA8C48]" />
                   {h}
                 </span>
               ))}
@@ -132,7 +136,7 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-4 text-xs font-medium text-white/90">
-                Atelier DARY • Casablanca
+                Atelier ARTON CONFORT • Casablanca
               </div>
             </div>
           </div>
@@ -140,10 +144,10 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
       </section>
 
       {/* Category Pills Switcher */}
-      <section className="bg-white border-b border-[#F0EAF3] py-3 sticky top-[57px] sm:top-[69px] z-30 shadow-xs">
+      <section className="bg-white border-b border-[#E8EEF5] py-3 sticky top-[57px] sm:top-[69px] z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none py-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#8E7E9C] hidden md:inline-block mr-1">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#536B82] hidden md:inline-block mr-1">
               Catégories :
             </span>
             {CATEGORIES_LIST.map((cat) => (
@@ -152,13 +156,13 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
                 onClick={(e) => navigateTo(getCategoryUrl(cat.id), e)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                   cat.id === categorySlug
-                    ? 'bg-[#723C90] text-white shadow-xs font-semibold'
-                    : 'bg-[#F8F5FA] text-[#52405F] hover:bg-[#EFE7F3] hover:text-[#2D1C38]'
+                    ? 'bg-[#132B45] text-white shadow-xs font-semibold'
+                    : 'bg-[#F7F9FB] text-[#536B82] hover:bg-[#E8EEF5] hover:text-[#132B45]'
                 }`}
               >
                 <span>{cat.name}</span>
                 {cat.id === categorySlug && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#BA8C48] animate-pulse" />
                 )}
               </button>
             ))}
@@ -169,10 +173,10 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-8 pt-8 sm:pt-10">
         {/* Filters and Sorting Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-[#EFE7F3] mb-8 shadow-xs">
-          <div className="flex items-center gap-2 text-xs text-[#735F80]">
-            <SlidersHorizontal className="w-4 h-4 text-[#723C90]" />
-            <span className="font-semibold text-[#2D1C38]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-[#E8EEF5] mb-8 shadow-xs">
+          <div className="flex items-center gap-2 text-xs text-[#536B82]">
+            <SlidersHorizontal className="w-4 h-4 text-[#BA8C48]" />
+            <span className="font-semibold text-[#132B45]">
               {categoryProducts.length} modèle{categoryProducts.length > 1 ? 's' : ''} disponible{categoryProducts.length > 1 ? 's' : ''}
             </span>
           </div>
@@ -183,7 +187,7 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
               <select
                 value={filterFirmness}
                 onChange={(e) => setFilterFirmness(e.target.value)}
-                className="text-xs bg-[#FAF8FB] border border-[#EFE7F3] text-[#2D1C38] rounded-lg px-3 py-2 font-medium cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#723C90]"
+                className="text-xs bg-[#FAF9F7] border border-[#E8EEF5] text-[#132B45] rounded-lg px-3 py-2 font-medium cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#BA8C48]"
               >
                 <option value="all">Toutes les fermetés</option>
                 <option value="Moelleux">Moelleux</option>
@@ -196,9 +200,9 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="text-xs bg-[#FAF8FB] border border-[#EFE7F3] text-[#2D1C38] rounded-lg px-3 py-2 font-medium cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#723C90]"
+              className="text-xs bg-[#FAF9F7] border border-[#E8EEF5] text-[#132B45] rounded-lg px-3 py-2 font-medium cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#BA8C48]"
             >
-              <option value="featured">Tri : Sélection DARY</option>
+              <option value="featured">Tri : Sélection ARTON CONFORT</option>
               <option value="price-asc">Prix : Moins cher au plus cher</option>
               <option value="price-desc">Prix : Plus cher au moins cher</option>
               <option value="rating">Meilleures notes clients</option>
@@ -211,28 +215,28 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
           {categoryProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-2xl border border-[#EFE7F3] overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group"
+              className="bg-white rounded-2xl border border-[#E8EEF5] overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group"
             >
               {/* Image & Badges */}
               <div
                 onClick={(e) => navigateTo(getProductUrl(product.slug), e)}
-                className="relative aspect-[4/3] overflow-hidden bg-[#FAF8FB] cursor-pointer"
+                className="relative aspect-[4/3] overflow-hidden bg-[#FAF9F7] cursor-pointer"
               >
                 <img
                   src={product.image}
-                  alt={`${product.name} DARY`}
+                  alt={`${product.name} ARTON CONFORT`}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {product.badge && (
                   <span
                     className="absolute top-3 left-3 text-[11px] font-bold text-white px-3 py-1 rounded-full shadow-sm"
-                    style={{ backgroundColor: product.badgeColor || '#723C90' }}
+                    style={{ backgroundColor: product.badgeColor || '#BA8C48' }}
                   >
                     {product.badge}
                   </span>
                 )}
-                <span className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm text-[10px] font-bold text-[#542D6B] px-2 py-0.5 rounded-md border border-[#F0EAF3] shadow-xs">
+                <span className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-sm text-[10px] font-bold text-[#132B45] px-2 py-0.5 rounded-md border border-[#E8EEF5] shadow-xs">
                   {product.sizes.length} dimensions
                 </span>
               </div>
@@ -241,32 +245,32 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
               <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
                   <div className="flex items-center justify-between text-xs mb-1.5">
-                    <span className="font-semibold text-[#723C90] uppercase tracking-wider">
+                    <span className="font-semibold text-[#BA8C48] uppercase tracking-wider">
                       {product.categoryName}
                     </span>
                     <div className="flex items-center gap-1 text-[#F5A623]">
                       <Star className="w-3.5 h-3.5 fill-current" />
-                      <span className="font-bold text-[#2D1C38]">{product.rating}</span>
-                      <span className="text-[#8E7E9C]">({product.reviewsCount})</span>
+                      <span className="font-bold text-[#132B45]">{product.rating}</span>
+                      <span className="text-[#8BA0B8]">({product.reviewsCount})</span>
                     </div>
                   </div>
 
                   <h2
                     onClick={(e) => navigateTo(getProductUrl(product.slug), e)}
-                    className="font-serif font-bold text-lg sm:text-xl text-[#2D1C38] group-hover:text-[#723C90] transition-colors cursor-pointer"
+                    className="font-serif font-bold text-lg sm:text-xl text-[#132B45] group-hover:text-[#BA8C48] transition-colors cursor-pointer"
                   >
                     {product.name}
                   </h2>
 
-                  <p className="text-xs text-[#665373] line-clamp-2 mt-2 leading-relaxed">
+                  <p className="text-xs text-[#536B82] line-clamp-2 mt-2 leading-relaxed">
                     {product.description}
                   </p>
 
                   {/* Features Mini list */}
                   <div className="mt-3.5 space-y-1">
                     {product.features.slice(0, 2).map((feat, i) => (
-                      <div key={i} className="text-[11px] text-[#52405F] flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-[#723C90]" />
+                      <div key={i} className="text-[11px] text-[#37485A] flex items-center gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-[#BA8C48]" />
                         <span className="truncate">{feat}</span>
                       </div>
                     ))}
@@ -274,18 +278,18 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
                 </div>
 
                 {/* Price and CTA */}
-                <div className="pt-4 border-t border-[#F5EFF8]">
+                <div className="pt-4 border-t border-[#F0F4F8]">
                   <div className="flex items-baseline justify-between mb-3">
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#8E7E9C] block">
+                      <span className="text-[10px] uppercase tracking-wider text-[#8BA0B8] block">
                         Dès
                       </span>
-                      <span className="font-serif font-bold text-xl text-[#723C90]">
+                      <span className="font-serif font-bold text-xl text-[#132B45]">
                         {product.price.toLocaleString()} DH
                       </span>
                     </div>
                     {product.originalPrice && (
-                      <span className="text-xs text-[#9A8AA6] line-through">
+                      <span className="text-xs text-[#8BA0B8] line-through">
                         {product.originalPrice.toLocaleString()} DH
                       </span>
                     )}
@@ -294,14 +298,14 @@ export default function CategoryPage({ categorySlug, onAddToCart, onOpenQuiz }: 
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={(e) => navigateTo(getProductUrl(product.slug), e)}
-                      className="w-full bg-[#FAF5FC] hover:bg-[#F0E4F5] text-[#723C90] text-xs font-bold py-2.5 px-3 rounded-xl transition-colors text-center cursor-pointer flex items-center justify-center gap-1"
+                      className="w-full bg-[#FAF6EE] hover:bg-[#F5EEDB] text-[#132B45] text-xs font-bold py-2.5 px-3 rounded-xl transition-colors text-center cursor-pointer flex items-center justify-center gap-1 border border-[#E6D6B6]"
                     >
                       <span>Découvrir</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-3.5 h-3.5 text-[#BA8C48]" />
                     </button>
                     <button
                       onClick={() => onAddToCart(product, product.sizes[0].size, 1)}
-                      className="w-full bg-[#723C90] hover:bg-[#5E3176] text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-colors text-center cursor-pointer shadow-xs active:scale-[0.98]"
+                      className="w-full bg-[#132B45] hover:bg-[#0B1C2E] text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-colors text-center cursor-pointer shadow-xs active:scale-[0.98]"
                     >
                       + Panier
                     </button>

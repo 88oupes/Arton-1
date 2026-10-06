@@ -1,6 +1,6 @@
 {
-  "name": "DARY — Literie & Confort d'Exception",
-  "description": "DARY : Marque et manufacture marocaine de literie d'exception. Élégance accessible, féminité assumée et confort sur-mesure pour un sommeil d'excellence.",
+  "name": "ARTON CONFORT — Literie & Matelas d'Exception",
+  "description": "ARTON CONFORT : Marque et manufacture marocaine de literie d'exception. Matelas ergonomiques, sommiers et confort sur-mesure pour un sommeil d'excellence.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
